@@ -1,10 +1,13 @@
 import 'package:better_u/screens/home.dart';
+import 'package:better_u/screens/login.dart';
 import 'package:better_u/screens/onboarding_model.dart';
 import 'package:better_u/screens/signup.dart';
 import 'package:flutter/material.dart';
 
 
 class OnboardingPage extends StatefulWidget {
+  const OnboardingPage({super.key});
+
   @override
   _OnboardingPageState createState() => _OnboardingPageState();
 }
@@ -31,7 +34,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
         currentIndex++;
       });
       _controller.nextPage(
-        duration: Duration(milliseconds: 100),
+        duration: const Duration(milliseconds: 100),
         curve: Curves.easeIn,
       );
     } else {
@@ -47,6 +50,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      resizeToAvoidBottomInset: false,
       body: Column(
         children: [
           Expanded(
@@ -69,16 +73,16 @@ class _OnboardingPageState extends State<OnboardingPage> {
                       ),
                       Text(
                         contents[i].title,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       Text(
                         contents[i].description,
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 18,
                           color: Colors.grey,
                         ),
@@ -96,21 +100,48 @@ class _OnboardingPageState extends State<OnboardingPage> {
               (index) => buildDot(index, context),
             ),
           ),
-          Container(
-            height: 60,
-            margin: EdgeInsets.all(40),
-            width: double.infinity,
-            child: ElevatedButton(
-              onPressed: nextPage,
-              child: Text(
-                currentIndex == contents.length - 1 ? 'Continue' : 'Next', style: TextStyle(fontSize: 18, 
-                fontWeight: FontWeight.bold, color: Color.fromARGB(255, 139, 93, 175)),
+          Column(
+            children: [
+              if(currentIndex == contents.length - 1)
+              Container(
+                height: 60,
+                margin: const EdgeInsets.only(left: 60, right: 60, top: 40, bottom: 20),
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: (){
+                    LoginModal(context);
+                  },
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 226, 189, 255)),
+                    elevation: MaterialStateProperty.all<double>(0)
+                  ),
+                  child: const Text(
+                    'Login',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromARGB(255, 139, 93, 175)
+                    ),
+                  ),
+                ),
               ),
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(Color.fromARGB(255, 226, 189, 255)),
-                elevation: MaterialStateProperty.all<double>(0),
+              Container(
+                height: 60,
+                margin: currentIndex == contents.length - 1 ? const EdgeInsets.only(left: 60, right: 60, bottom: 60) : const EdgeInsets.all(60),
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: nextPage,
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 226, 189, 255)),
+                    elevation: MaterialStateProperty.all<double>(0),
+                  ),
+                  child: Text(
+                    currentIndex == contents.length - 1 ? 'Sign In' : 'Next', style: const TextStyle(fontSize: 18, 
+                    fontWeight: FontWeight.bold, color: Color.fromARGB(255, 139, 93, 175)),
+                  ),
+                ),
               ),
-            ),
+            ],
           ),
         ],
       ),
@@ -121,7 +152,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
     return Container(
       height: 10,
       width: currentIndex == index ? 25 : 10,
-      margin: EdgeInsets.only(right: 5),
+      margin: const EdgeInsets.only(right: 5),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         color: Theme.of(context).primaryColor,
