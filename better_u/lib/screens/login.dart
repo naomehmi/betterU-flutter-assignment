@@ -12,7 +12,7 @@ Future<dynamic> LoginModal(context) {
             padding:
                 EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
             child: SizedBox(
-              height: MediaQuery.of(context).size.height * 0.30,
+              height: MediaQuery.of(context).size.height * 0.35,
               width: double.infinity,
               child: Column(
                 mainAxisSize: MainAxisSize.min,

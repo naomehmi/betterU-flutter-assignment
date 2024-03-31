@@ -41,7 +41,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
       // Navigate to the next screen
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (_) => SignUp()),
+        MaterialPageRoute(builder: (_) => const SignUp()),
       );
     }
   }
@@ -101,11 +101,12 @@ class _OnboardingPageState extends State<OnboardingPage> {
             ),
           ),
           Column(
+            // login button
             children: [
               if(currentIndex == contents.length - 1)
               Container(
                 height: 60,
-                margin: const EdgeInsets.only(left: 60, right: 60, top: 40, bottom: 20),
+                margin: const EdgeInsets.only(left: 60, right: 60, top: 20, bottom: 20),
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: (){
@@ -125,6 +126,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                   ),
                 ),
               ),
+              // continue && sign up button
               Container(
                 height: 60,
                 margin: currentIndex == contents.length - 1 ? const EdgeInsets.only(left: 60, right: 60, bottom: 60) : const EdgeInsets.all(60),
