@@ -1,5 +1,4 @@
 import 'package:better_u/screens/home.dart';
-import 'package:better_u/screens/signup.dart';
 import 'package:better_u/screens/welcome.dart';
 import 'package:flutter/material.dart';
 

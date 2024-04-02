@@ -1,4 +1,3 @@
-import 'package:better_u/screens/home.dart';
 import 'package:better_u/screens/login.dart';
 import 'package:better_u/screens/onboarding_model.dart';
 import 'package:better_u/screens/signup.dart';
