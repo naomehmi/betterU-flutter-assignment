@@ -48,6 +48,18 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^3.0.0
 
+  flutter_native_splash: ^2.4.0
+
+flutter_native_splash: 
+  color: "#ffffff"
+  image:  images/logo.png
+  android: true
+  ios: true
+  web: true
+  android_disable_fullscreen: true
+  web_disable_fullscreen: true
+  fill: true
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
@@ -89,3 +101,4 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+  
