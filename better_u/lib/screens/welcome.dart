@@ -133,12 +133,24 @@ class _OnboardingPageState extends State<OnboardingPage> {
                 child: ElevatedButton(
                   onPressed: nextPage,
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 226, 189, 255)),
+                    backgroundColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
+                      return currentIndex == contents.length - 1 ? const Color.fromARGB(255, 241, 230,130):const Color.fromARGB(255, 226, 189, 255);
+                    }),
                     elevation: MaterialStateProperty.all<double>(0),
                   ),
                   child: Text(
-                    currentIndex == contents.length - 1 ? 'Sign In' : 'Next', style: const TextStyle(fontSize: 18, 
-                    fontWeight: FontWeight.bold, color: Color.fromARGB(255, 139, 93, 175)),
+                    currentIndex == contents.length - 1 ? 'Sign In' : 'Next',
+                    style: currentIndex == contents.length - 1
+                        ? const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromARGB(255, 170, 140, 36),
+                          )
+                        : const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.normal,
+                            color: Color.fromARGB(255, 139, 93, 175), // Or any other color you want for 'Next'
+                          ),
                   ),
                 ),
               ),
