@@ -1,9 +1,12 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: AppBar(
         title: Row(
@@ -27,30 +30,53 @@ class Home extends StatelessWidget {
           ],
         ),
       ),
-      body: Column(
-        children: [
-          CarouselSlider(
-            items: [
-              Image.asset('images/carousel1.png'),
-              Image.asset('images/carousel2.png'),
-              Image.asset('images/carousel3.jpg'),
-            ], 
-            options: CarouselOptions(
-              height: 200,
-              aspectRatio: 16/9,
-              viewportFraction: 0.8,
-              initialPage: 0,
-              enableInfiniteScroll: true,
-              autoPlay: true,
-              autoPlayInterval: Duration(seconds: 3),
-              autoPlayAnimationDuration: Duration(milliseconds: 800),
-              autoPlayCurve: Curves.fastOutSlowIn,
-              enlargeCenterPage: true,
-              scrollDirection: Axis.horizontal,
+      body: Padding(
+        padding: const EdgeInsets.only(top: 16),
+        child: Column(
+          children: [
+            CarouselSlider(
+              items: [
+                ContainImage(imagePath: 'images/carousel1.png'),
+                ContainImage(imagePath: 'images/carousel2.png'),
+                ContainImage(imagePath: 'images/carousel3.jpg'),
+              ], 
+              options: CarouselOptions(
+                height: 200,
+                aspectRatio: screenWidth / 200,
+                viewportFraction: 1.0,
+                initialPage: 0,
+                enableInfiniteScroll: true,
+                autoPlay: true,
+                autoPlayInterval: Duration(seconds: 3),
+                autoPlayAnimationDuration: Duration(milliseconds: 800),
+                autoPlayCurve: Curves.fastOutSlowIn,
+                enlargeCenterPage: true,
+                scrollDirection: Axis.horizontal,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       )
+    );
+  }
+}
+
+class ContainImage extends StatelessWidget {
+  final String imagePath;
+
+  const ContainImage({required this.imagePath});
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return Image.asset(
+          imagePath,
+          width: constraints.maxWidth,
+          height: constraints.maxHeight,
+          fit: BoxFit.cover,
+        );
+      },
     );
   }
 }
