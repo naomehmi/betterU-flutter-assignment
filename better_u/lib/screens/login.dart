@@ -1,3 +1,4 @@
+import 'package:better_u/screens/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
@@ -93,7 +94,7 @@ Future<dynamic> LoginModal(context) {
                       width: double.infinity,
                       child: ElevatedButton(
                         onPressed: () {
-                          Navigator.pushReplacementNamed(context, '/home');
+                          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>Home()));
                         },
                         style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all<Color>(

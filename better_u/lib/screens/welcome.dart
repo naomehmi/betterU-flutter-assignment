@@ -38,9 +38,8 @@ class _OnboardingPageState extends State<OnboardingPage> {
       );
     } else {
       // Navigate to the next screen
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (_) => const SignUp()),
+      Navigator.of(context).push(
+        MaterialPageRoute(builder: (context) => const SignUp()),
       );
     }
   }

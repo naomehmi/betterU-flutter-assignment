@@ -173,10 +173,7 @@ class _SignUpState extends State<SignUp> {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      print("${nameError.isNotEmpty}, ${emailError.isNotEmpty}, ${passwordError.isNotEmpty}");
-                      if (nameError.isEmpty ||
-                          emailError.isEmpty ||
-                          passwordError.isEmpty) {
+                      if (nameController.text.length >= 4 && emailController.text.length >= 4 && passwordController.text.length >= 4) {
                         onPressed(context);
                       } else {
                         ScaffoldMessenger.of(context)

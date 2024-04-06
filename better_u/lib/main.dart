@@ -5,7 +5,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 Future main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  await Future.delayed(const Duration(seconds:0));
+  await Future.delayed(const Duration(seconds:1));
   //FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   runApp(const MyApp());
 }
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/home': (context) => Home(),
       },
-      home: Home(),
+      home: const OnboardingPage(),
     );
   }
 }
