@@ -3,12 +3,12 @@ import 'package:flutter/widgets.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 
 class TopPicksCard extends StatelessWidget {
-  TopPicksCard({super.key,
-  required this.coverImage,
-  required this.days,
-  required this.interval,
-  required this.title
-  });
+  TopPicksCard(
+      {super.key,
+      required this.coverImage,
+      required this.days,
+      required this.interval,
+      required this.title});
 
   String coverImage;
   int days;
@@ -72,16 +72,17 @@ class TopPicksCard extends StatelessWidget {
                       const SizedBox(
                         width: 5,
                       ),
-                      Text("$interval mins/day", style: const TextStyle(fontSize: 12))
+                      Text("$interval mins/day",
+                          style: const TextStyle(fontSize: 12))
                     ],
                   ),
                 ],
               ),
             ),
             Text(
-                title,
-                style: const TextStyle(fontWeight: FontWeight.w500),
-              ),
+              title,
+              style: const TextStyle(fontWeight: FontWeight.w500),
+            ),
           ],
         ),
       ),
