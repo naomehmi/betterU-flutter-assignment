@@ -97,25 +97,24 @@ class _HomeState extends State<Home> {
             items: const [
               BottomNavigationBarItem(
                 label: "Home",
-                icon:
-                    Icon(Icons.home, color: Color.fromARGB(255, 226, 189, 255)),
+                icon: Icon(Icons.home,),
               ),
               BottomNavigationBarItem(
                 label: "Chart",
-                icon: Icon(Icons.bar_chart_outlined,
-                    color: Color.fromARGB(255, 226, 189, 255)),
+                icon: Icon(Icons.bar_chart_outlined),
               ),
               BottomNavigationBarItem(
                 label: "Community",
-                icon: Icon(Icons.people,
-                    color: Color.fromARGB(255, 226, 189, 255)),
+                icon: Icon(Icons.people),
               ),
               BottomNavigationBarItem(
                 label: "Profile",
-                icon: Icon(Icons.account_circle,
-                    color: Color.fromARGB(255, 226, 189, 255)),
+                icon: Icon(Icons.account_circle),
               ),
-            ]),
+            ],
+            selectedItemColor: const Color.fromARGB(255, 226, 189, 255),
+            unselectedItemColor: Colors.grey[400],
+          ),
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.only(top: 16),
