@@ -1,5 +1,5 @@
 import 'package:better_u/screens/bottomNav.dart';
-import 'package:better_u/screens/data/all_programs.dart';
+import 'package:better_u/data/all_programs_and_videos.dart';
 import 'package:flutter/material.dart';
 
 class WorkoutPrograms extends StatefulWidget {

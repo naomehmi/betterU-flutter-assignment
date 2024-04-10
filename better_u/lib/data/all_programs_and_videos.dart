@@ -49,4 +49,27 @@ class AllPrograms {
       "title": "2024 Weight Loss Challenge"
     },
   ];
+
+  List<Map<String, String>> videos = [
+    {
+      "title" : "Abs in 2 Weeks",
+      "coverImage" : "images/thumbnail1.jpg",
+      "url" : "https://youtu.be/2pLT-olgUJs?feature=shared" 
+    },
+    {
+      "title" : "Tiny Waist and Round Butt",
+      "coverImage" : "images/thumbnail2.jpg",
+      "url" : "https://youtu.be/cIuiQyfKBTg?feature=shared" 
+    },
+    {
+      "title" : "Warmup Routine",
+      "coverImage" : "images/thumbnail3.jpg",
+      "url" : "https://youtu.be/j6C-6F6dr-4?feature=shared" 
+    },
+    {
+      "title" : "6 Pack Abs Workout",
+      "coverImage" : "images/thumbnail4.jpg",
+      "url" : "https://youtu.be/SX6Vhj9wZh8?feature=shared" 
+    },
+  ];
 }
