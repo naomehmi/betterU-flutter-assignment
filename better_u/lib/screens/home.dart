@@ -1,6 +1,8 @@
+import 'package:better_u/screens/bottomNav.dart';
 import 'package:better_u/screens/models/carousel.dart';
 import 'package:better_u/screens/models/carousel_indicator.dart';
 import 'package:better_u/screens/models/top_picks_card.dart';
+import 'package:better_u/screens/workout_progams.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -14,7 +16,6 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _currentIndex = 0;
-  int _currentNavIndex = 0;
   List<String> imagePaths = [
     'images/carousel1.png',
     'images/carousel2.png',
@@ -127,7 +128,7 @@ class _HomeState extends State<Home> {
                 ),
                 const SizedBox(height: 10),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(10.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -135,7 +136,9 @@ class _HomeState extends State<Home> {
                         'Top Picks',
                         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
                       ),
-                      OutlinedButton(onPressed: (){}, 
+                      OutlinedButton(onPressed: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> WorkoutPrograms()));
+                      }, 
                       style: OutlinedButton.styleFrom(
                         padding: const EdgeInsets.all(10),
                         side: const BorderSide(
@@ -167,35 +170,7 @@ class _HomeState extends State<Home> {
             ),
           ),
         ),
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _currentNavIndex,
-          onTap: (int newIndex) {
-            setState(() {
-              _currentNavIndex = newIndex;
-            });
-          },
-          items: const [
-            BottomNavigationBarItem(
-              label: "Home",
-              icon: Icon(
-                Icons.home,
-              ),
-            ),
-            BottomNavigationBarItem(
-              label: "Chart",
-              icon: Icon(Icons.bar_chart_outlined),
-            ),
-            BottomNavigationBarItem(
-              label: "Community",
-              icon: Icon(Icons.people),
-            ),
-            BottomNavigationBarItem(
-              label: "Profile",
-              icon: Icon(Icons.account_circle),
-            ),
-          ],
-          selectedItemColor: const Color.fromARGB(255, 226, 189, 255),
-          unselectedItemColor: Colors.grey[400],
-        ));
+        bottomNavigationBar: const BottomNav()
+    );
   }
 }
