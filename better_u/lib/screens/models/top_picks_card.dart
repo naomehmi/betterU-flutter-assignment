@@ -19,7 +19,7 @@ class TopPicksCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 170,
-      height: 300,
+      //height: 260,
       margin: const EdgeInsets.only(left: 10),
       decoration: BoxDecoration(
         border: const GradientBoxBorder(
@@ -34,6 +34,8 @@ class TopPicksCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(15.0),
       ),
       child: Card(
+        semanticContainer: true,
+        clipBehavior: Clip.antiAliasWithSaveLayer,
         margin: const EdgeInsets.all(0),
         child: Column(
           children: [
@@ -43,7 +45,7 @@ class TopPicksCard extends StatelessWidget {
                 coverImage,
                 fit: BoxFit.cover,
                 width: 170,
-                height: 200,
+                height: 150,
               ),
             ),
             Padding(

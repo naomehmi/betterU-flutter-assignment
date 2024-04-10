@@ -87,34 +87,6 @@ class _HomeState extends State<Home> {
             ),
           ),
         ),
-        bottomNavigationBar: BottomNavigationBar(
-            currentIndex: _currentNavIndex,
-            onTap: (int newIndex) {
-              setState(() {
-                _currentNavIndex = newIndex;
-              });
-            },
-            items: const [
-              BottomNavigationBarItem(
-                label: "Home",
-                icon: Icon(Icons.home,),
-              ),
-              BottomNavigationBarItem(
-                label: "Chart",
-                icon: Icon(Icons.bar_chart_outlined),
-              ),
-              BottomNavigationBarItem(
-                label: "Community",
-                icon: Icon(Icons.people),
-              ),
-              BottomNavigationBarItem(
-                label: "Profile",
-                icon: Icon(Icons.account_circle),
-              ),
-            ],
-            selectedItemColor: const Color.fromARGB(255, 226, 189, 255),
-            unselectedItemColor: Colors.grey[400],
-          ),
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.only(top: 16),
@@ -154,11 +126,27 @@ class _HomeState extends State<Home> {
                   spacing: 5.0,
                 ),
                 const SizedBox(height: 10),
-                const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text(
-                    'Top Picks',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        'Top Picks',
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+                      ),
+                      OutlinedButton(onPressed: (){}, 
+                      style: OutlinedButton.styleFrom(
+                        padding: const EdgeInsets.all(10),
+                        side: const BorderSide(
+                          width: 2, 
+                          color: Color.fromARGB(255, 224, 186, 253)
+                          )
+                        ), child: const Text("view all", style: TextStyle(
+                          color: Color.fromARGB(255, 224, 186, 253)
+                        ),),
+                      )
+                    ],
                   ),
                 ),
                 CarouselSlider(
@@ -171,13 +159,43 @@ class _HomeState extends State<Home> {
                       );
                     }).toList(),
                     options: CarouselOptions(
-                        height: 300,
-                        viewportFraction: 0.45,
+                        height: 260,
+                        viewportFraction: 0.35,
                         enableInfiniteScroll: false,
                         initialPage: 1)),
               ],
             ),
           ),
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: _currentNavIndex,
+          onTap: (int newIndex) {
+            setState(() {
+              _currentNavIndex = newIndex;
+            });
+          },
+          items: const [
+            BottomNavigationBarItem(
+              label: "Home",
+              icon: Icon(
+                Icons.home,
+              ),
+            ),
+            BottomNavigationBarItem(
+              label: "Chart",
+              icon: Icon(Icons.bar_chart_outlined),
+            ),
+            BottomNavigationBarItem(
+              label: "Community",
+              icon: Icon(Icons.people),
+            ),
+            BottomNavigationBarItem(
+              label: "Profile",
+              icon: Icon(Icons.account_circle),
+            ),
+          ],
+          selectedItemColor: const Color.fromARGB(255, 226, 189, 255),
+          unselectedItemColor: Colors.grey[400],
         ));
   }
 }
