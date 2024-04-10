@@ -20,7 +20,7 @@ class _WorkoutProgramsState extends State<WorkoutPrograms> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Top Picks"),
+        title: const Text("Workout Programs"),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
