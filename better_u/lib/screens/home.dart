@@ -14,6 +14,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _currentIndex = 0;
+  int _currentNavIndex = 0;
   List<String> imagePaths = [
     'images/carousel1.png',
     'images/carousel2.png',
@@ -87,10 +88,10 @@ class _HomeState extends State<Home> {
           ),
         ),
         bottomNavigationBar: BottomNavigationBar(
-            currentIndex: _currentIndex,
+            currentIndex: _currentNavIndex,
             onTap: (int newIndex) {
               setState(() {
-                _currentIndex = newIndex;
+                _currentNavIndex = newIndex;
               });
             },
             items: const [
