@@ -27,13 +27,19 @@ class _WorkoutProgramsState extends State<WorkoutPrograms> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text("Latest Workout Exercises"),
+            const Text("Latest Workout Exercises", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28),),
+            const SizedBox(
+              height: 25,
+            ),
             const Text(
                 "Stay consistent in your fitness journey by starting with the latest exercises. You can also view all exercises in order starting with the most recent"),
+            const SizedBox(
+              height: 10,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("${allPrograms.length} programs"),
+                Text("${allPrograms.length} programs", style: const TextStyle(fontWeight: FontWeight.bold),),
                 DropdownButton(
                     value: currentValue,
                     icon: const Icon(Icons.expand_more),
