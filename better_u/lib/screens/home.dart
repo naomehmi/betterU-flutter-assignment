@@ -1,4 +1,5 @@
 import 'package:better_u/screens/bottomNav.dart';
+import 'package:better_u/screens/data/all_programs.dart';
 import 'package:better_u/screens/models/carousel.dart';
 import 'package:better_u/screens/models/carousel_indicator.dart';
 import 'package:better_u/screens/models/top_picks_card.dart';
@@ -22,32 +23,7 @@ class _HomeState extends State<Home> {
     'images/carousel3.jpg',
   ];
 
-  List<Map<String, dynamic>> topPicks = [
-    {
-      "coverImage": "images/top-picks-sample1.jpg",
-      "days": 26,
-      "interval": "30-45",
-      "title": "2024 Weight Loss Challenge"
-    },
-    {
-      "coverImage": "images/top-picks-sample2.jpg",
-      "days": 30,
-      "interval": "20-40",
-      "title": "Beginner Abs Challenge"
-    },
-    {
-      "coverImage": "images/top-picks-sample3.jpg",
-      "days": 14,
-      "interval": "35-45",
-      "title": "Flat Belly Challenge"
-    },
-    {
-      "coverImage": "images/top-picks-sample4.jpg",
-      "days": 21,
-      "interval": "15-30",
-      "title": "Strong Arms Challenge"
-    },
-  ];
+  List<Map<String, dynamic>> topPicks = AllPrograms().programs.sublist(0,4);
 
   List<Widget> body = const [
     Icon(Icons.home),
@@ -137,7 +113,7 @@ class _HomeState extends State<Home> {
                         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
                       ),
                       OutlinedButton(onPressed: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> WorkoutPrograms()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> const WorkoutPrograms()));
                       }, 
                       style: OutlinedButton.styleFrom(
                         padding: const EdgeInsets.all(10),
