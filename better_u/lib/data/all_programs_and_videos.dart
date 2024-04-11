@@ -25,7 +25,7 @@ class AllPrograms {
       "title": "Strong Arms Challenge"
     },
     {
-      "coverImage": "images/top-picks-sample1.jpg",
+      "coverImage": "images/top-picks-sample5.webp",
       "days": 26,
       "interval": "30-45",
       "title": "2024 Weight Loss Challenge"

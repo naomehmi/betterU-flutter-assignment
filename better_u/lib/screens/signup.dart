@@ -11,8 +11,8 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   void onPressed(BuildContext context) {
-    // Navigate to the Home page
-    Navigator.pushReplacementNamed(context, '/home');
+    String firstName = firstNameController.text.trim();
+    Navigator.pushReplacementNamed(context, '/home', arguments: firstName);
   }
 
   TextEditingController nameController = TextEditingController();
@@ -20,6 +20,8 @@ class _SignUpState extends State<SignUp> {
   TextEditingController emailController = TextEditingController();
 
   TextEditingController passwordController = TextEditingController();
+
+  TextEditingController firstNameController = TextEditingController();
 
   String nameError = '';
 
@@ -89,10 +91,11 @@ class _SignUpState extends State<SignUp> {
                                 width: 2),
                             borderRadius: BorderRadius.all(Radius.zero)),
                         errorText: nameError),
-                    controller: nameController,
+                    controller: firstNameController,
                     onChanged: (text) {
                       setState(() {
                         nameError = validate(text, nameError);
+                        nameController.text = text;
                       });
                     }),
                 const SizedBox(

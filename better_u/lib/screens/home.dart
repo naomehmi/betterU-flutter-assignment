@@ -11,7 +11,7 @@ import 'package:flutter/rendering.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 
 class Home extends StatefulWidget {
-  const Home({super.key});
+   const Home({Key? key}) : super(key: key);
 
   @override
   _HomeState createState() => _HomeState();
@@ -35,8 +35,16 @@ class _HomeState extends State<Home> {
     Icon(Icons.account_circle)
   ];
 
+  late String firstName;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+    firstName = ModalRoute.of(context)!.settings.arguments as String;
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
         appBar: AppBar(
@@ -60,9 +68,9 @@ class _HomeState extends State<Home> {
                   ),
                 ),
                 const SizedBox(width: 8),
-                const Text('Hi, Kelly!',
-                    style:
-                        TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                Text('Hi, ${firstName.isNotEmpty ? firstName : "User"}!',
+                  style:
+                    TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
               ],
             ),
           ),
