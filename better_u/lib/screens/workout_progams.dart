@@ -17,6 +17,33 @@ class _WorkoutProgramsState extends State<WorkoutPrograms> {
   List allPrograms = AllPrograms().programs;
 
   @override
+  void initState() {
+    super.initState();
+    allPrograms = List.from(AllPrograms().programs); // Copy the original list
+    currentValue = options[0]; // Default sorting option
+  }
+
+  void sortPrograms(String option) {
+    setState(() {
+      switch (option) {
+        case "Name A-Z":
+          allPrograms.sort((a, b) => a["title"].compareTo(b["title"]));
+          break;
+        case "Interval":
+          allPrograms.sort((a, b) => a["interval"].compareTo(b["interval"]));
+          break;
+        case "Total days":
+          allPrograms.sort((a, b) => a["days"].compareTo(b["days"]));
+          break;
+        default:
+          // Default sorting by name if no valid option is selected
+          allPrograms.sort((a, b) => a["title"].compareTo(b["title"]));
+          break;
+      }
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -61,6 +88,7 @@ class _WorkoutProgramsState extends State<WorkoutPrograms> {
                     onChanged: (val) {
                       setState(() {
                         currentValue = val!;
+                        sortPrograms(currentValue!);
                       });
                     })
               ],

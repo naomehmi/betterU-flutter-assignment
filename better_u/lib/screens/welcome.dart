@@ -72,7 +72,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                       Text(
                         contents[i].title,
                         style: const TextStyle(
-                          fontSize: 30,
+                          fontSize: 27,
                           fontWeight: FontWeight.bold,
                         ),
                       ),

@@ -11,7 +11,9 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   void onPressed(BuildContext context) {
-    String firstName = firstNameController.text.trim();
+    String fullName = firstNameController.text.trim();
+    List<String> nameParts = fullName.split(' ');
+    String firstName = nameParts.first; // This will give you "Anna"
     Navigator.pushReplacementNamed(context, '/home', arguments: firstName);
   }
 

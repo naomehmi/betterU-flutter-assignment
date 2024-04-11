@@ -6,12 +6,12 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 Future main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   await Future.delayed(const Duration(seconds:1));
-  //FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   runApp(const MyApp());
 }
 
 // whenever your initialization is completed, remove the splash screen:
-    //FlutterNativeSplash.remove();
+  // FlutterNativeSplash.remove();
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

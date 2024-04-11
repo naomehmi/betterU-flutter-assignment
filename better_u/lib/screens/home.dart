@@ -44,7 +44,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    firstName = ModalRoute.of(context)!.settings.arguments as String;
+    firstName = ModalRoute.of(context)?.settings.arguments as String? ?? "";
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
         appBar: AppBar(
@@ -58,7 +58,7 @@ class _HomeState extends State<Home> {
                     shape: BoxShape.circle,
                     border: Border.all(
                       color: const Color.fromARGB(255, 226, 189, 255),
-                      width: 2, // Adjust the width of the outline as needed
+                      width: 2,
                     ),
                   ),
                   child: const CircleAvatar(
@@ -70,7 +70,7 @@ class _HomeState extends State<Home> {
                 const SizedBox(width: 8),
                 Text('Hi, ${firstName.isNotEmpty ? firstName : "User"}!',
                   style:
-                    TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                    const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
               ],
             ),
           ),
