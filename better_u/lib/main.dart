@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/home': (context) => Home(),
       },
-      home: Home(),
+      home: OnboardingPage(),
     );
   }
 }
