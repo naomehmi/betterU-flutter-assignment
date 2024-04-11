@@ -18,7 +18,7 @@ class TopPicksCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 180,
+      //width: 180,
       //height: 260,
       margin: const EdgeInsets.only(left: 10),
       decoration: BoxDecoration(
@@ -38,13 +38,14 @@ class TopPicksCard extends StatelessWidget {
         clipBehavior: Clip.antiAliasWithSaveLayer,
         margin: const EdgeInsets.all(0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ClipRRect(
-              borderRadius: BorderRadius.circular(14),
+              borderRadius: BorderRadius.circular(10),
               child: Image.asset(
                 coverImage,
                 fit: BoxFit.cover,
-                width: 170,
+                width: MediaQuery.of(context).size.width * 0.45,
                 height: 150,
               ),
             ),
@@ -81,11 +82,17 @@ class TopPicksCard extends StatelessWidget {
                 ],
               ),
             ),
-            Text(
-              title,
-              style: const TextStyle(fontWeight: FontWeight.w500),
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
+            Padding(
+              padding: const EdgeInsets.only(left: 8),
+              child: Text(
+                title,
+                textAlign: TextAlign.left,
+                style: const TextStyle(
+                  fontWeight: FontWeight.w500,
+                ),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
           ],
         ),

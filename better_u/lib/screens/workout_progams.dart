@@ -96,7 +96,7 @@ class _WorkoutProgramsState extends State<WorkoutPrograms> {
             ...allPrograms.map((e) {
               return Container(
                 width: double.infinity - 40,
-                height: 300,
+                //height: 300,
                 margin: const EdgeInsets.all(10),
                 decoration:
                   BoxDecoration(

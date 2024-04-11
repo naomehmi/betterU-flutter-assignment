@@ -11,7 +11,7 @@ import 'package:flutter/rendering.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 
 class Home extends StatefulWidget {
-   const Home({Key? key}) : super(key: key);
+   const Home({super.key});
 
   @override
   _HomeState createState() => _HomeState();
@@ -157,7 +157,7 @@ class _HomeState extends State<Home> {
                     }).toList(),
                     options: CarouselOptions(
                         height: 260,
-                        viewportFraction: 0.35,
+                        viewportFraction: 0.45,
                         enableInfiniteScroll: false,
                         initialPage: 1)),
                 const SizedBox(
@@ -198,59 +198,57 @@ class _HomeState extends State<Home> {
                 CarouselSlider(
                     items: topVideos.map((e) {
                       return Container(
-                        width: 320,
-                        height: 180,
-                        margin: const EdgeInsets.only(left: 10),
-                        decoration: BoxDecoration(
-                          border: const GradientBoxBorder(
-                              gradient: LinearGradient(
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.bottomRight,
-                                  colors: [
-                                    Color.fromARGB(255, 241, 230, 130),
-                                    Color.fromARGB(255, 204, 161, 237)
-                                  ]),
-                              width: 2),
-                          borderRadius: BorderRadius.circular(15.0),
-                        ),
-                        child: Card(
-                          semanticContainer: true,
-                          clipBehavior: Clip.antiAliasWithSaveLayer,
-                          margin: const EdgeInsets.all(0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(15),
-                              child: Image.asset(
-                                '${e["coverImage"]}',
-                                fit: BoxFit.cover,
-                                width: 320,
-                                height: 180,
+                          margin: const EdgeInsets.only(left: 10),
+                          decoration: BoxDecoration(
+                            border: const GradientBoxBorder(
+                                gradient: LinearGradient(
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight,
+                                    colors: [
+                                      Color.fromARGB(255, 241, 230, 130),
+                                      Color.fromARGB(255, 204, 161, 237)
+                                    ]),
+                                width: 2),
+                            borderRadius: BorderRadius.circular(15.0),
+                          ),
+                          child: Card(
+                            semanticContainer: true,
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            margin: const EdgeInsets.all(0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(15),
+                                child: Image.asset(
+                                  '${e["coverImage"]}',
+                                  fit: BoxFit.cover,
+                                  width: 320,
+                                  height: 180,
+                                ),
                               ),
-                            ),
-                            Padding(
-                                padding: const EdgeInsets.all(10),
-                                child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      const SizedBox(
-                                        height: 3,
-                                      ),
-                                      Text(
-                                        '${e["title"]}',
-                                        style: const TextStyle(
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 20),
-                                      )
-                                    ]))
-                          ]),
-                        ),
-                      );
+                              Padding(
+                                  padding: const EdgeInsets.all(10),
+                                  child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        const SizedBox(
+                                          height: 3,
+                                        ),
+                                        Text(
+                                          '${e["title"]}',
+                                          style: const TextStyle(
+                                              fontWeight: FontWeight.w500,
+                                              fontSize: 20),
+                                        )
+                                      ]))
+                            ]),
+                          ),
+                        );
                     }).toList(),
                     options: CarouselOptions(
-                        height: 240,
+                        height: 270,
                         viewportFraction: 0.6,
                         enableInfiniteScroll: false,
                         initialPage: 1)),
