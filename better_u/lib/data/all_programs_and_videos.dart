@@ -26,27 +26,27 @@ class AllPrograms {
     },
     {
       "coverImage": "images/top-picks-sample5.webp",
-      "days": 26,
-      "interval": "30-45",
-      "title": "2024 Weight Loss Challenge"
+      "days": 27,
+      "interval": "50-60",
+      "title": "Upper Back Advanced Challenge"
     },
     {
-      "coverImage": "images/top-picks-sample1.jpg",
-      "days": 26,
-      "interval": "30-45",
-      "title": "2024 Weight Loss Challenge"
+      "coverImage": "images/top-picks-sample6.webp",
+      "days": 20,
+      "interval": "45-55",
+      "title": "Yoga Stretch for Back pain"
     },
     {
-      "coverImage": "images/top-picks-sample1.jpg",
-      "days": 26,
-      "interval": "30-45",
-      "title": "2024 Weight Loss Challenge"
+      "coverImage": "images/top-picks-sample7.jpg",
+      "days": 28,
+      "interval": "30-35",
+      "title": "Plank Workout for Beginner"
     },
     {
-      "coverImage": "images/top-picks-sample1.jpg",
-      "days": 26,
-      "interval": "30-45",
-      "title": "2024 Weight Loss Challenge"
+      "coverImage": "images/top-picks-sample8.jpg",
+      "days": 30,
+      "interval": "40-55",
+      "title": "Hip Dips Workout Challenge"
     },
   ];
 
