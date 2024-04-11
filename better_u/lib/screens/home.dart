@@ -38,21 +38,11 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-
     return Scaffold(
-<<<<<<< HEAD
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: Padding(
-          padding: const EdgeInsets.only(top: 8.0),
-          child :
-            Row(
-=======
         appBar: AppBar(
           title: Padding(
             padding: const EdgeInsets.only(top: 8.0),
             child: Row(
->>>>>>> 29c5844dddaa0b40a72a3d7b62e1b595d201c17d
               children: [
                 Container(
                   decoration: BoxDecoration(
