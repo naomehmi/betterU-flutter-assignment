@@ -19,8 +19,8 @@ class _WorkoutProgramsState extends State<WorkoutPrograms> {
   @override
   void initState() {
     super.initState();
-    allPrograms = List.from(AllPrograms().programs); // Copy the original list
-    currentValue = options[0]; // Default sorting option
+    allPrograms = List.from(AllPrograms().programs); 
+    currentValue = options[0]; 
   }
 
   void sortPrograms(String option) {
