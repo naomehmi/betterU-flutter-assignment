@@ -1,5 +1,5 @@
 import 'package:better_u/screens/login.dart';
-import 'package:better_u/screens/models/onboarding_model.dart';
+import 'package:better_u/models/onboarding_model.dart';
 import 'package:better_u/screens/signup.dart';
 import 'package:flutter/material.dart';
 
