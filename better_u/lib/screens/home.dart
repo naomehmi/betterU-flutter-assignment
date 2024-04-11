@@ -40,6 +40,7 @@ class _HomeState extends State<Home> {
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           title: Padding(
             padding: const EdgeInsets.only(top: 8.0),
             child: Row(
