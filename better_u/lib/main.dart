@@ -13,7 +13,7 @@ Future main() async {
   runApp(
     MultiProvider(providers: [
       ChangeNotifierProvider(create: (context) => AllUsers()),
-      Provider(create: (context) => LoggedInUser())
+      ChangeNotifierProvider(create: (context) => LoggedInUser())
       ],
       child: const MyApp()
     )

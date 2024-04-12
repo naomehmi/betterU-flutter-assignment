@@ -12,24 +12,22 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   void onPressed(BuildContext context) {
-    String fullName = nameController.text.trim();
-    List<String> nameParts = fullName.split(' ');
-    String firstName = nameParts.first; // This will give you "Anna"
-    String lastName =
-        nameParts.length > 1 ? nameParts.sublist(1).toString() : "";
+    // print("$firstName $lastName");
 
-    Consumer<AllUsers>(builder: (context, database, child) {
-      database.newUser(
-      firstName, lastName, emailController.text, passwordController.text);
-      return const SizedBox();
-    });
+    // Consumer<AllUsers>(builder: (context, database, child) {
+    //   print("a");
+    //   database.newUser(
+    //       firstName, lastName, emailController.text, passwordController.text);
+    //   return Consumer<LoggedInUser>(builder: (context, user, child) {
+    //     print("abc");
+    //     print("test $firstName $lastName ${emailController.text}");
+    //     user.currentUser(firstName, lastName, emailController.text);
+    //     return const SizedBox();
+    //   });
+    // });
 
-    Consumer<LoggedInUser>(builder: (context, user, child){
-      user.currentUser(firstName, lastName, emailController.text);
-      return const SizedBox();
-    });
-
-    Navigator.pushNamedAndRemoveUntil(context, '/home', (Route<dynamic> route) => false, arguments: firstName);
+    Navigator.pushNamedAndRemoveUntil(
+        context, '/home', (Route<dynamic> route) => false);
   }
 
   TextEditingController nameController = TextEditingController();
@@ -192,33 +190,53 @@ class _SignUpState extends State<SignUp> {
                   height: 60,
                   margin: const EdgeInsets.all(40),
                   width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      if (nameError.isEmpty &&
-                          emailError.isEmpty &&
-                          passwordError.isEmpty) {
-                        onPressed(context);
-                      } else {
-                        ScaffoldMessenger.of(context)
-                            .showSnackBar(const SnackBar(
-                          content:
-                              Text("Please fill in the correct credentials"),
-                          behavior: SnackBarBehavior.floating,
-                          margin: EdgeInsets.all(30),
-                          duration: Duration(seconds: 1),
-                        ));
-                      }
-                    },
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(
-                          const Color.fromARGB(255, 241, 230, 130)),
-                      elevation: MaterialStateProperty.all<double>(0),
-                    ), // Navigate to home page on button press
-                    child: const Text('Join Now',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color.fromARGB(255, 170, 140, 36))),
-                  ),
+                  child:
+                      Consumer<AllUsers>(builder: (context, database, child) {
+                    return Consumer<LoggedInUser>(
+                        builder: (context, user, child) {
+                      return ElevatedButton(
+                        onPressed: () {
+                          if (nameError.isEmpty &&
+                              emailError.isEmpty &&
+                              passwordError.isEmpty) {
+                            String fullName = nameController.text.trim();
+                            List<String> nameParts = fullName.split(' ');
+                            String firstName = nameParts.first
+                                .toString(); // This will give you "Anna"
+                            String lastName = nameParts.length > 1
+                                ? nameParts.sublist(1).join(" ")
+                                : "";
+                            database.newUser(firstName, lastName,
+                                emailController.text, passwordController.text);
+                            print("abc");
+                            print(
+                                "test $firstName $lastName ${emailController.text}");
+                            user.currentUser(
+                                firstName, lastName, emailController.text);
+                            onPressed(context);
+                          } else {
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(const SnackBar(
+                              content: Text(
+                                  "Please fill in the correct credentials"),
+                              behavior: SnackBarBehavior.floating,
+                              margin: EdgeInsets.all(30),
+                              duration: Duration(seconds: 1),
+                            ));
+                          }
+                        },
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                              const Color.fromARGB(255, 241, 230, 130)),
+                          elevation: MaterialStateProperty.all<double>(0),
+                        ), // Navigate to home page on button press
+                        child: const Text('Join Now',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Color.fromARGB(255, 170, 140, 36))),
+                      );
+                    });
+                  }),
                 ),
               ],
             ),

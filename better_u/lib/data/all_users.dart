@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 class AllUsers extends ChangeNotifier {
   final List<Map<String,dynamic>> users = [
     {
-      "first name" : "Kelly",
-      "last name" : "Moon",
+      "first name" : "kelly",
+      "last name" : "moon",
       "email" : "kellymoon@gmail.com",
       "password" : "12345678"
     }
@@ -23,7 +23,9 @@ class AllUsers extends ChangeNotifier {
   }
 
   void newUser(fn, ln, e, pw) {
+    print("hmm");
     users.add({"first name" : fn, "last name" : ln, "email" : e, "password" : pw});
+    print(users);
     notifyListeners();
   }
 
