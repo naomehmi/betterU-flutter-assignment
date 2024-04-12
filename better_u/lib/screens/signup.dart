@@ -1,6 +1,7 @@
-import 'package:flutter/cupertino.dart';
+import 'package:better_u/data/all_users.dart';
+import 'package:better_u/data/logged_in_user.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:provider/provider.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -11,25 +12,36 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   void onPressed(BuildContext context) {
-    String fullName = firstNameController.text.trim();
+    String fullName = nameController.text.trim();
     List<String> nameParts = fullName.split(' ');
     String firstName = nameParts.first; // This will give you "Anna"
-    Navigator.pushReplacementNamed(context, '/home', arguments: firstName);
+    String lastName =
+        nameParts.length > 1 ? nameParts.sublist(1).toString() : "";
+
+    Consumer<AllUsers>(builder: (context, database, child) {
+      database.newUser(
+      firstName, lastName, emailController.text, passwordController.text);
+      return const SizedBox();
+    });
+
+    Consumer<LoggedInUser>(builder: (context, user, child){
+      user.currentUser(firstName, lastName, emailController.text);
+      return const SizedBox();
+    });
+
+    Navigator.pushNamedAndRemoveUntil(context, '/home', (Route<dynamic> route) => false, arguments: firstName);
   }
 
   TextEditingController nameController = TextEditingController();
-
   TextEditingController emailController = TextEditingController();
-
   TextEditingController passwordController = TextEditingController();
 
-  TextEditingController firstNameController = TextEditingController();
+  // TextEditingController firstNameController = TextEditingController();
 
   String nameError = '';
-
   String emailError = '';
-
   String passwordError = '';
+  String emailValidation = '';
 
   String validate(text, errorText) {
     if (text.isEmpty) {
@@ -93,11 +105,10 @@ class _SignUpState extends State<SignUp> {
                                 width: 2),
                             borderRadius: BorderRadius.all(Radius.zero)),
                         errorText: nameError),
-                    controller: firstNameController,
+                    controller: nameController,
                     onChanged: (text) {
                       setState(() {
                         nameError = validate(text, nameError);
-                        nameController.text = text;
                       });
                     }),
                 const SizedBox(
@@ -110,30 +121,35 @@ class _SignUpState extends State<SignUp> {
                       color: Colors.purple[200],
                       fontSize: 20),
                 ),
-                TextField(
-                    decoration: InputDecoration(
-                      hintText: 'email address',
-                      hintStyle:
-                          TextStyle(color: Colors.grey[500], fontSize: 14),
-                      border: const UnderlineInputBorder(),
-                      errorText: emailError,
-                      errorBorder: const UnderlineInputBorder(
-                          borderSide: BorderSide(
-                              color: Color.fromARGB(255, 139, 93, 175),
-                              width: 1),
-                          borderRadius: BorderRadius.all(Radius.zero)),
-                      focusedErrorBorder: const UnderlineInputBorder(
-                          borderSide: BorderSide(
-                              color: Color.fromARGB(255, 139, 93, 175),
-                              width: 2),
-                          borderRadius: BorderRadius.all(Radius.zero)),
-                    ),
-                    controller: emailController,
-                    onChanged: (text) {
-                      setState(() {
-                        emailError = validate(text, emailError);
+                Consumer<AllUsers>(builder: (context, database, child) {
+                  return TextField(
+                      decoration: InputDecoration(
+                        hintText: 'email address',
+                        hintStyle:
+                            TextStyle(color: Colors.grey[500], fontSize: 14),
+                        border: const UnderlineInputBorder(),
+                        errorText: emailError,
+                        errorBorder: const UnderlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Color.fromARGB(255, 139, 93, 175),
+                                width: 1),
+                            borderRadius: BorderRadius.all(Radius.zero)),
+                        focusedErrorBorder: const UnderlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Color.fromARGB(255, 139, 93, 175),
+                                width: 2),
+                            borderRadius: BorderRadius.all(Radius.zero)),
+                      ),
+                      controller: emailController,
+                      onChanged: (text) {
+                        setState(() {
+                          emailValidation = database.validateEmail(text);
+                          emailError = emailValidation.isEmpty
+                              ? validate(text, emailError)
+                              : emailValidation;
+                        });
                       });
-                    }),
+                }),
                 const SizedBox(
                   height: 20,
                 ),
@@ -178,7 +194,9 @@ class _SignUpState extends State<SignUp> {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      if (nameController.text.length >= 4 && emailController.text.length >= 4 && passwordController.text.length >= 4) {
+                      if (nameError.isEmpty &&
+                          emailError.isEmpty &&
+                          passwordError.isEmpty) {
                         onPressed(context);
                       } else {
                         ScaffoldMessenger.of(context)

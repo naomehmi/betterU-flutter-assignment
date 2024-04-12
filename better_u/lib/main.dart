@@ -1,13 +1,23 @@
+import 'package:better_u/data/all_users.dart';
+import 'package:better_u/data/logged_in_user.dart';
 import 'package:better_u/screens/home.dart';
 import 'package:better_u/screens/welcome.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:provider/provider.dart';
 
 Future main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   await Future.delayed(const Duration(seconds:1));
   // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(providers: [
+      ChangeNotifierProvider(create: (context) => AllUsers()),
+      Provider(create: (context) => LoggedInUser())
+      ],
+      child: const MyApp()
+    )
+  );
 }
 
 // whenever your initialization is completed, remove the splash screen:
@@ -24,9 +34,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.deepOrange,
       ),
       routes: {
-        '/home': (context) => Home(),
+        '/home': (context) => const Home(),
       },
-      home: OnboardingPage(),
+      home: const OnboardingPage(),
     );
   }
 }

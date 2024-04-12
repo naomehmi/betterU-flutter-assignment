@@ -1,3 +1,4 @@
+import 'package:better_u/data/logged_in_user.dart';
 import 'package:better_u/screens/bottomNav.dart';
 import 'package:better_u/data/all_programs_and_videos.dart';
 import 'package:better_u/models/carousel.dart';
@@ -7,11 +8,11 @@ import 'package:better_u/screens/videos.dart';
 import 'package:better_u/screens/workout_progams.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
+import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
-   const Home({super.key});
+  const Home({super.key});
 
   @override
   _HomeState createState() => _HomeState();
@@ -35,8 +36,6 @@ class _HomeState extends State<Home> {
     Icon(Icons.account_circle)
   ];
 
-  late String firstName;
-
   @override
   void initState() {
     super.initState();
@@ -44,7 +43,6 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    firstName = ModalRoute.of(context)?.settings.arguments as String? ?? "";
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
         appBar: AppBar(
@@ -68,9 +66,13 @@ class _HomeState extends State<Home> {
                   ),
                 ),
                 const SizedBox(width: 8),
-                Text('Hi, ${firstName.isNotEmpty ? firstName : "User"}!',
-                  style:
-                    const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                Consumer<LoggedInUser>(builder: (context, user, child) {
+                  print("hell0 ${user.firstName}");
+                  return Text(
+                      'Hi, ${user.firstName.isNotEmpty ? user.firstName : "User"}!',
+                      style: const TextStyle(
+                          fontSize: 16, fontWeight: FontWeight.bold));
+                }),
               ],
             ),
           ),
@@ -178,8 +180,7 @@ class _HomeState extends State<Home> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) =>
-                                      const AllVideos()));
+                                  builder: (context) => const AllVideos()));
                         },
                         style: OutlinedButton.styleFrom(
                             padding: const EdgeInsets.all(10),
@@ -198,54 +199,54 @@ class _HomeState extends State<Home> {
                 CarouselSlider(
                     items: topVideos.map((e) {
                       return Container(
-                          margin: const EdgeInsets.only(left: 10),
-                          decoration: BoxDecoration(
-                            border: const GradientBoxBorder(
-                                gradient: LinearGradient(
-                                    begin: Alignment.topLeft,
-                                    end: Alignment.bottomRight,
-                                    colors: [
-                                      Color.fromARGB(255, 241, 230, 130),
-                                      Color.fromARGB(255, 204, 161, 237)
-                                    ]),
-                                width: 2),
-                            borderRadius: BorderRadius.circular(15.0),
-                          ),
-                          child: Card(
-                            semanticContainer: true,
-                            clipBehavior: Clip.antiAliasWithSaveLayer,
-                            margin: const EdgeInsets.all(0),
-                            child: Column(
+                        margin: const EdgeInsets.only(left: 10),
+                        decoration: BoxDecoration(
+                          border: const GradientBoxBorder(
+                              gradient: LinearGradient(
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                  colors: [
+                                    Color.fromARGB(255, 241, 230, 130),
+                                    Color.fromARGB(255, 204, 161, 237)
+                                  ]),
+                              width: 2),
+                          borderRadius: BorderRadius.circular(15.0),
+                        ),
+                        child: Card(
+                          semanticContainer: true,
+                          clipBehavior: Clip.antiAliasWithSaveLayer,
+                          margin: const EdgeInsets.all(0),
+                          child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(15),
-                                child: Image.asset(
-                                  '${e["coverImage"]}',
-                                  fit: BoxFit.cover,
-                                  width: 320,
-                                  height: 180,
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(15),
+                                  child: Image.asset(
+                                    '${e["coverImage"]}',
+                                    fit: BoxFit.cover,
+                                    width: 320,
+                                    height: 180,
+                                  ),
                                 ),
-                              ),
-                              Padding(
-                                  padding: const EdgeInsets.all(10),
-                                  child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        const SizedBox(
-                                          height: 3,
-                                        ),
-                                        Text(
-                                          '${e["title"]}',
-                                          style: const TextStyle(
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: 20),
-                                        )
-                                      ]))
-                            ]),
-                          ),
-                        );
+                                Padding(
+                                    padding: const EdgeInsets.all(10),
+                                    child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          const SizedBox(
+                                            height: 3,
+                                          ),
+                                          Text(
+                                            '${e["title"]}',
+                                            style: const TextStyle(
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: 20),
+                                          )
+                                        ]))
+                              ]),
+                        ),
+                      );
                     }).toList(),
                     options: CarouselOptions(
                         height: 270,

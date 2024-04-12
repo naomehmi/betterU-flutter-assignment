@@ -20,7 +20,7 @@ class _WorkoutProgramsState extends State<WorkoutPrograms> {
   void initState() {
     super.initState();
     allPrograms = List.from(AllPrograms().programs); 
-    currentValue = options[0]; 
+    currentValue = null; 
   }
 
   void sortPrograms(String option) {
