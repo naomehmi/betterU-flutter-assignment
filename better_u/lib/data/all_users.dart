@@ -23,9 +23,7 @@ class AllUsers extends ChangeNotifier {
   }
 
   void newUser(fn, ln, e, pw) {
-    print("hmm");
     users.add({"first name" : fn, "last name" : ln, "email" : e, "password" : pw});
-    print(users);
     notifyListeners();
   }
 

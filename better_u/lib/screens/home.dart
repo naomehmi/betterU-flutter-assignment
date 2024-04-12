@@ -67,7 +67,6 @@ class _HomeState extends State<Home> {
                 ),
                 const SizedBox(width: 8),
                 Consumer<LoggedInUser>(builder: (context, user, child) {
-                  print("hell0 ${user.firstName}");
                   return Text(
                       'Hi, ${user.firstName.isNotEmpty ? user.firstName : "User"}!',
                       style: const TextStyle(

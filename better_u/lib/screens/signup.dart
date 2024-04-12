@@ -12,20 +12,6 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   void onPressed(BuildContext context) {
-    // print("$firstName $lastName");
-
-    // Consumer<AllUsers>(builder: (context, database, child) {
-    //   print("a");
-    //   database.newUser(
-    //       firstName, lastName, emailController.text, passwordController.text);
-    //   return Consumer<LoggedInUser>(builder: (context, user, child) {
-    //     print("abc");
-    //     print("test $firstName $lastName ${emailController.text}");
-    //     user.currentUser(firstName, lastName, emailController.text);
-    //     return const SizedBox();
-    //   });
-    // });
-
     Navigator.pushNamedAndRemoveUntil(
         context, '/home', (Route<dynamic> route) => false);
   }
@@ -33,8 +19,6 @@ class _SignUpState extends State<SignUp> {
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-
-  // TextEditingController firstNameController = TextEditingController();
 
   String nameError = '';
   String emailError = '';
@@ -208,9 +192,6 @@ class _SignUpState extends State<SignUp> {
                                 : "";
                             database.newUser(firstName, lastName,
                                 emailController.text, passwordController.text);
-                            print("abc");
-                            print(
-                                "test $firstName $lastName ${emailController.text}");
                             user.currentUser(
                                 firstName, lastName, emailController.text);
                             onPressed(context);
