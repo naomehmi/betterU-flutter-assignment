@@ -180,9 +180,9 @@ class _SignUpState extends State<SignUp> {
                         builder: (context, user, child) {
                       return ElevatedButton(
                         onPressed: () {
-                          if (nameError.isEmpty &&
-                              emailError.isEmpty &&
-                              passwordError.isEmpty) {
+                          if (nameController.text.isNotEmpty &&
+                              emailController.text.isNotEmpty &&
+                              passwordController.text.isNotEmpty) {
                             String fullName = nameController.text.trim();
                             List<String> nameParts = fullName.split(' ');
                             String firstName = nameParts.first
