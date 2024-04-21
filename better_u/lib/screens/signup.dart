@@ -13,7 +13,7 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   void onPressed(BuildContext context) {
     Navigator.pushNamedAndRemoveUntil(
-        context, '/home', (Route<dynamic> route) => false);
+        context, '/home', ModalRoute.withName('/home'));
   }
 
   TextEditingController nameController = TextEditingController();

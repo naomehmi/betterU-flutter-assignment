@@ -114,7 +114,7 @@ Future<dynamic> LoginModal(context) {
                                       Map<String,dynamic> userWhoLoggedIn = database.users.firstWhere((e) => e["email"] == emailController.text);
                                       user.currentUser(userWhoLoggedIn["first name"], userWhoLoggedIn["last name"], userWhoLoggedIn["email"]);
                                     Navigator.pushNamedAndRemoveUntil(context,
-                                        '/home', (Route<dynamic> route) => false);
+                                        '/home', ModalRoute.withName('/home'));
                                   } else {
                                     ScaffoldMessenger.of(context)
                                         .showSnackBar(const SnackBar(

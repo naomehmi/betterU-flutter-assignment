@@ -54,22 +54,30 @@ class AllPrograms {
     {
       "title" : "Abs in 2 Weeks",
       "coverImage" : "images/thumbnail1.jpg",
-      "url" : "https://youtu.be/2pLT-olgUJs?feature=shared" 
+      "url" : "https://youtu.be/2pLT-olgUJs?feature=shared", 
+      "time" : "11:03",
+      "cat" : "Abs and Core"
     },
     {
       "title" : "Tiny Waist and Round Butt",
       "coverImage" : "images/thumbnail2.jpg",
-      "url" : "https://youtu.be/cIuiQyfKBTg?feature=shared" 
+      "url" : "https://youtu.be/cIuiQyfKBTg?feature=shared",
+      "time" : "16:27",
+      "cat" : "Abs, Legs, and Glutes"
     },
     {
       "title" : "Warmup Routine",
       "coverImage" : "images/thumbnail3.jpg",
-      "url" : "https://youtu.be/j6C-6F6dr-4?feature=shared" 
+      "url" : "https://youtu.be/j6C-6F6dr-4?feature=shared", 
+      "time" : "8:30",
+      "cat" : "Warmup"
     },
     {
       "title" : "6 Pack Abs Workout",
       "coverImage" : "images/thumbnail4.jpg",
-      "url" : "https://youtu.be/SX6Vhj9wZh8?feature=shared" 
+      "url" : "https://youtu.be/SX6Vhj9wZh8?feature=shared",
+      "time" : "11:06",
+      "cat" : "Abs and Core"
     },
   ];
 }
