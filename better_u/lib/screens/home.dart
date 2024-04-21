@@ -233,6 +233,33 @@ class _HomeState extends State<Home> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
+                                          Row(children: [
+                                            const Icon(
+                                              Icons.category_outlined,
+                                              size: 20,
+                                              color: Colors.grey,
+                                            ),
+                                            const SizedBox(
+                                              width: 5,
+                                            ),
+                                            Text('${e["cat"]}',
+                                                style: const TextStyle(
+                                                    fontSize: 12)),
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            const Icon(
+                                              Icons.schedule,
+                                              size: 20,
+                                              color: Colors.grey,
+                                            ),
+                                            const SizedBox(
+                                              width: 5,
+                                            ),
+                                            Text('${e["time"]}',
+                                                style: const TextStyle(
+                                                    fontSize: 12))
+                                          ]),
                                           const SizedBox(
                                             height: 3,
                                           ),
