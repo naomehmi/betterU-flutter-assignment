@@ -3,6 +3,8 @@ import 'package:better_u/data/logged_in_user.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+enum Gender { Male, Female }
+
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
 
@@ -20,6 +22,8 @@ class _SignUpState extends State<SignUp> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
+  Gender? selectedGender;
+
   String nameError = '';
   String emailError = '';
   String passwordError = '';
@@ -35,13 +39,23 @@ class _SignUpState extends State<SignUp> {
     }
   }
 
+  void handleGenderChange(Gender? value) {
+    setState(() {
+      selectedGender = value ?? selectedGender;
+    });
+  }
+
+  bool isGenderSelected() {
+    return selectedGender != null;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
           title: const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 35.0, vertical: 50.0),
+            padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 50.0),
             child: Text(
               'Welcome!',
               style: TextStyle(fontWeight: FontWeight.bold),
@@ -57,7 +71,7 @@ class _SignUpState extends State<SignUp> {
               children: [
                 const Text(
                     'Are you new here? Join us and we will be happy to be part of your healthy life journey!'),
-                const SizedBox(height: 100),
+                const SizedBox(height: 70),
                 Text(
                   'Name',
                   style: TextStyle(
@@ -93,6 +107,37 @@ class _SignUpState extends State<SignUp> {
                         nameError = validate(text, nameError);
                       });
                     }),
+                const SizedBox(
+                  height: 15,
+                ),
+                Text(
+                  'Gender',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.purple[200],
+                      fontSize: 20),
+                ),
+                Row(
+                  children: [
+                    Radio<Gender>(
+                      value: Gender.Male,
+                      groupValue: selectedGender,
+                      onChanged: handleGenderChange,
+                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      visualDensity: VisualDensity(vertical: -4, horizontal: -3),
+                    ),
+                    Text('Male'),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    Radio<Gender>(
+                      value: Gender.Female,
+                      groupValue: selectedGender,
+                      onChanged: handleGenderChange,
+                    ),
+                    Text('Female'),
+                  ],
+                ),
                 const SizedBox(
                   height: 20,
                 ),
@@ -182,7 +227,8 @@ class _SignUpState extends State<SignUp> {
                         onPressed: () {
                           if (nameController.text.isNotEmpty &&
                               emailController.text.isNotEmpty &&
-                              passwordController.text.isNotEmpty) {
+                              passwordController.text.isNotEmpty &&
+                              isGenderSelected()) {
                             String fullName = nameController.text.trim();
                             List<String> nameParts = fullName.split(' ');
                             String firstName = nameParts.first
