@@ -39,6 +39,8 @@ class _PlayVideoState extends State<PlayVideo> {
             YoutubePlayer(
               controller: _controller,
               showVideoProgressIndicator: true,
+              aspectRatio: 16/9,
+              width: double.infinity,
             ),
             Padding(
               padding: const EdgeInsets.all(15.0),
