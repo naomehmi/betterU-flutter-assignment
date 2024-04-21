@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:better_u/data/all_users.dart';
 import 'package:better_u/data/logged_in_user.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +23,7 @@ class _SignUpState extends State<SignUp> {
   TextEditingController passwordController = TextEditingController();
 
   String nameError = '';
+  String? selectedGender = '';
   String emailError = '';
   String passwordError = '';
   String emailValidation = '';
@@ -93,6 +96,44 @@ class _SignUpState extends State<SignUp> {
                         nameError = validate(text, nameError);
                       });
                     }),
+                const SizedBox(
+                  height: 15
+                ),
+                Text(
+                  'Gender',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.purple[200],
+                    fontSize: 20,
+                  ),
+                ),
+                Row(
+                  children: [
+                    Radio(
+                      value: 'Male',
+                      groupValue: selectedGender,
+                      onChanged: (value) {
+                        setState(() {
+                          selectedGender = value;
+                        });
+                      },
+                    ),
+                    Text('Male'),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    Radio(
+                      value: 'Female',
+                      groupValue: selectedGender,
+                      onChanged: (value) {
+                        setState(() {
+                          selectedGender = value;
+                        });
+                      },
+                    ),
+                    Text('Female'),
+                  ],
+                ),
                 const SizedBox(
                   height: 20,
                 ),
@@ -182,7 +223,8 @@ class _SignUpState extends State<SignUp> {
                         onPressed: () {
                           if (nameError.isEmpty &&
                               emailError.isEmpty &&
-                              passwordError.isEmpty) {
+                              passwordError.isEmpty){ 
+                              // selectedGender == null) {
                             String fullName = nameController.text.trim();
                             List<String> nameParts = fullName.split(' ');
                             String firstName = nameParts.first
