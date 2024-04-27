@@ -6,6 +6,7 @@ import 'package:better_u/models/carousel_indicator.dart';
 import 'package:better_u/models/top_picks_card.dart';
 import 'package:better_u/screens/playVideo.dart';
 import 'package:better_u/screens/videos.dart';
+import 'package:better_u/screens/workout_program_checklist.dart';
 import 'package:better_u/screens/workout_progams.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +29,7 @@ class _HomeState extends State<Home> {
   ];
 
   List<Map<String, dynamic>> topPicks = AllPrograms().programs.sublist(0, 4);
-  List<Map<String, String>> topVideos = AllPrograms().videos;
+  List<Map<String, dynamic>> topVideos = AllPrograms().videos;
 
   List<Widget> body = const [
     Icon(Icons.home),
@@ -148,20 +149,50 @@ class _HomeState extends State<Home> {
                     ],
                   ),
                 ),
-                CarouselSlider(
-                    items: topPicks.map((tp) {
-                      return TopPicksCard(
-                        coverImage: tp["coverImage"],
-                        days: tp["days"],
-                        interval: tp["interval"],
-                        title: tp["title"],
-                      );
-                    }).toList(),
-                    options: CarouselOptions(
-                        height: 260,
-                        viewportFraction: 0.45,
-                        enableInfiniteScroll: false,
-                        initialPage: 1)),
+                SizedBox(
+                  height: 260,
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: [
+                      ...topPicks.map((tp) {
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        WorkoutProgramChecklist(program: tp)));
+                          },
+                          child: TopPicksCard(
+                            coverImage: tp["coverImage"],
+                            days: tp["days"],
+                            interval: tp["interval"],
+                            title: tp["title"],
+                          ),
+                        );
+                      })
+                    ],
+                  ),
+                ),
+                // CarouselSlider(
+                //     items: topPicks.map((tp) {
+                //       return GestureDetector(
+                //         onTap: (){
+                //           Navigator.push(context, MaterialPageRoute(builder: (context)=>WorkoutProgramChecklist(program: tp)));
+                //         },
+                //         child: TopPicksCard(
+                //           coverImage: tp["coverImage"],
+                //           days: tp["days"],
+                //           interval: tp["interval"],
+                //           title: tp["title"],
+                //         ),
+                //       );
+                //     }).toList(),
+                //     options: CarouselOptions(
+                //         height: 260,
+                //         viewportFraction: 0.45,
+                //         enableInfiniteScroll: false,
+                //         initialPage: 1)),
                 const SizedBox(
                   height: 15,
                 ),
@@ -196,95 +227,189 @@ class _HomeState extends State<Home> {
                     ],
                   ),
                 ),
-                CarouselSlider(
-                    items: topVideos.map((e) {
-                      return GestureDetector(
-                        onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => PlayVideo(video: e)));
-                        },
-                        child: Container(
-                          margin: const EdgeInsets.only(left: 10),
-                          decoration: BoxDecoration(
-                            border: const GradientBoxBorder(
-                                gradient: LinearGradient(
-                                    begin: Alignment.topLeft,
-                                    end: Alignment.bottomRight,
-                                    colors: [
-                                      Color.fromARGB(255, 241, 230, 130),
-                                      Color.fromARGB(255, 204, 161, 237)
-                                    ]),
-                                width: 2),
-                            borderRadius: BorderRadius.circular(15.0),
-                          ),
-                          child: Card(
-                            semanticContainer: true,
-                            clipBehavior: Clip.antiAliasWithSaveLayer,
-                            margin: const EdgeInsets.all(0),
-                            child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(15),
-                                    child: Image.asset(
-                                      '${e["coverImage"]}',
-                                      fit: BoxFit.cover,
-                                      width: 320,
-                                      height: 180,
+                SizedBox(
+                  height: 270,
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: [
+                      ...topVideos.map((e) {
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => PlayVideo(video: e)));
+                          },
+                          child: Container(
+                            margin: const EdgeInsets.only(left: 10),
+                            decoration: BoxDecoration(
+                              border: const GradientBoxBorder(
+                                  gradient: LinearGradient(
+                                      begin: Alignment.topLeft,
+                                      end: Alignment.bottomRight,
+                                      colors: [
+                                        Color.fromARGB(255, 241, 230, 130),
+                                        Color.fromARGB(255, 204, 161, 237)
+                                      ]),
+                                  width: 2),
+                              borderRadius: BorderRadius.circular(15.0),
+                            ),
+                            child: Card(
+                              semanticContainer: true,
+                              clipBehavior: Clip.antiAliasWithSaveLayer,
+                              margin: const EdgeInsets.all(0),
+                              child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.circular(15),
+                                      child: Image.asset(
+                                        '${e["coverImage"]}',
+                                        fit: BoxFit.cover,
+                                        width: 320,
+                                        height: 180,
+                                      ),
                                     ),
-                                  ),
-                                  Padding(
-                                      padding: const EdgeInsets.all(10),
-                                      child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Row(children: [
-                                              const Icon(
-                                                Icons.category_outlined,
-                                                size: 20,
-                                                color: Colors.grey,
-                                              ),
+                                    Padding(
+                                        padding: const EdgeInsets.all(10),
+                                        child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Row(children: [
+                                                const Icon(
+                                                  Icons.category_outlined,
+                                                  size: 20,
+                                                  color: Colors.grey,
+                                                ),
+                                                const SizedBox(
+                                                  width: 5,
+                                                ),
+                                                Text('${e["cat"]}',
+                                                    style: const TextStyle(
+                                                        fontSize: 12)),
+                                                const SizedBox(
+                                                  width: 10,
+                                                ),
+                                                const Icon(
+                                                  Icons.schedule,
+                                                  size: 20,
+                                                  color: Colors.grey,
+                                                ),
+                                                const SizedBox(
+                                                  width: 5,
+                                                ),
+                                                Text('${e["time"]}',
+                                                    style: const TextStyle(
+                                                        fontSize: 12))
+                                              ]),
                                               const SizedBox(
-                                                width: 5,
+                                                height: 3,
                                               ),
-                                              Text('${e["cat"]}',
-                                                  style: const TextStyle(
-                                                      fontSize: 12)),
-                                              const SizedBox(
-                                                width: 10,
-                                              ),
-                                              const Icon(
-                                                Icons.schedule,
-                                                size: 20,
-                                                color: Colors.grey,
-                                              ),
-                                              const SizedBox(
-                                                width: 5,
-                                              ),
-                                              Text('${e["time"]}',
-                                                  style: const TextStyle(
-                                                      fontSize: 12))
-                                            ]),
-                                            const SizedBox(
-                                              height: 3,
-                                            ),
-                                            Text(
-                                              '${e["title"]}',
-                                              style: const TextStyle(
-                                                  fontWeight: FontWeight.w500,
-                                                  fontSize: 20),
-                                            )
-                                          ]))
-                                ]),
+                                              Text(
+                                                '${e["title"]}',
+                                                style: const TextStyle(
+                                                    fontWeight: FontWeight.w500,
+                                                    fontSize: 20),
+                                              )
+                                            ]))
+                                  ]),
+                            ),
                           ),
-                        ),
-                      );
-                    }).toList(),
-                    options: CarouselOptions(
-                        height: 270,
-                        viewportFraction: 0.6,
-                        enableInfiniteScroll: false,
-                        initialPage: 1)),
+                        );
+                      })
+                    ],
+                  ),
+                ),
+                // CarouselSlider(
+                //     items: topVideos.map((e) {
+                //       return GestureDetector(
+                //         onTap: (){
+                //           Navigator.push(context, MaterialPageRoute(builder: (context) => PlayVideo(video: e)));
+                //         },
+                //         child: Container(
+                //           margin: const EdgeInsets.only(left: 10),
+                //           decoration: BoxDecoration(
+                //             border: const GradientBoxBorder(
+                //                 gradient: LinearGradient(
+                //                     begin: Alignment.topLeft,
+                //                     end: Alignment.bottomRight,
+                //                     colors: [
+                //                       Color.fromARGB(255, 241, 230, 130),
+                //                       Color.fromARGB(255, 204, 161, 237)
+                //                     ]),
+                //                 width: 2),
+                //             borderRadius: BorderRadius.circular(15.0),
+                //           ),
+                //           child: Card(
+                //             semanticContainer: true,
+                //             clipBehavior: Clip.antiAliasWithSaveLayer,
+                //             margin: const EdgeInsets.all(0),
+                //             child: Column(
+                //                 crossAxisAlignment: CrossAxisAlignment.start,
+                //                 children: [
+                //                   ClipRRect(
+                //                     borderRadius: BorderRadius.circular(15),
+                //                     child: Image.asset(
+                //                       '${e["coverImage"]}',
+                //                       fit: BoxFit.cover,
+                //                       width: 320,
+                //                       height: 180,
+                //                     ),
+                //                   ),
+                //                   Padding(
+                //                       padding: const EdgeInsets.all(10),
+                //                       child: Column(
+                //                           crossAxisAlignment:
+                //                               CrossAxisAlignment.start,
+                //                           children: [
+                //                             Row(children: [
+                //                               const Icon(
+                //                                 Icons.category_outlined,
+                //                                 size: 20,
+                //                                 color: Colors.grey,
+                //                               ),
+                //                               const SizedBox(
+                //                                 width: 5,
+                //                               ),
+                //                               Text('${e["cat"]}',
+                //                                   style: const TextStyle(
+                //                                       fontSize: 12)),
+                //                               const SizedBox(
+                //                                 width: 10,
+                //                               ),
+                //                               const Icon(
+                //                                 Icons.schedule,
+                //                                 size: 20,
+                //                                 color: Colors.grey,
+                //                               ),
+                //                               const SizedBox(
+                //                                 width: 5,
+                //                               ),
+                //                               Text('${e["time"]}',
+                //                                   style: const TextStyle(
+                //                                       fontSize: 12))
+                //                             ]),
+                //                             const SizedBox(
+                //                               height: 3,
+                //                             ),
+                //                             Text(
+                //                               '${e["title"]}',
+                //                               style: const TextStyle(
+                //                                   fontWeight: FontWeight.w500,
+                //                                   fontSize: 20),
+                //                             )
+                //                           ]))
+                //                 ]),
+                //           ),
+                //         ),
+                //       );
+                //     }).toList(),
+                //     options: CarouselOptions(
+                //         height: 270,
+                //         viewportFraction: 0.6,
+                //         enableInfiniteScroll: false,
+                //         initialPage: 1)),
               ],
             ),
           ),

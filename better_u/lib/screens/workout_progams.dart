@@ -1,5 +1,6 @@
 import 'package:better_u/screens/bottomNav.dart';
 import 'package:better_u/data/all_programs_and_videos.dart';
+import 'package:better_u/screens/workout_program_checklist.dart';
 import 'package:flutter/material.dart';
 
 class WorkoutPrograms extends StatefulWidget {
@@ -10,7 +11,7 @@ class WorkoutPrograms extends StatefulWidget {
 }
 
 class _WorkoutProgramsState extends State<WorkoutPrograms> {
-  List<String> options = ["Name A-Z", "Interval", "Total days"];
+  List<String> options = ["Name A-Z", "Total days", "Interval"];
 
   dynamic currentValue;
 
@@ -29,11 +30,11 @@ class _WorkoutProgramsState extends State<WorkoutPrograms> {
         case "Name A-Z":
           allPrograms.sort((a, b) => a["title"].compareTo(b["title"]));
           break;
-        case "Interval":
-          allPrograms.sort((a, b) => a["interval"].compareTo(b["interval"]));
-          break;
         case "Total days":
           allPrograms.sort((a, b) => a["days"].compareTo(b["days"]));
+          break;
+        case "Interval":
+          allPrograms.sort((a, b) => a["interval"].compareTo(b["interval"]));
           break;
         default:
           // Default sorting by name if no valid option is selected
@@ -94,75 +95,82 @@ class _WorkoutProgramsState extends State<WorkoutPrograms> {
               ],
             ),
             ...allPrograms.map((e) {
-              return Container(
-                width: double.infinity - 40,
-                //height: 300,
-                margin: const EdgeInsets.all(10),
-                decoration:
-                  BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    boxShadow: const [BoxShadow(
-                      color: Colors.grey,
-                      blurRadius: 10,
-                      offset: Offset(0, 4)
-                    )]
-                  ),
-                child: Card(
-                  semanticContainer: true,
-                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                  margin: const EdgeInsets.all(0),
-                  child: Column(children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(14),
-                      child: Image.asset(
-                        e["coverImage"],
-                        fit: BoxFit.cover,
-                        width: double.infinity - 40,
-                        height: 200,
-                      ),
+              return GestureDetector(
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => WorkoutProgramChecklist(program: e)));
+                },
+                child: Container(
+                  width: double.infinity - 40,
+                  //height: 300,
+                  margin: const EdgeInsets.all(10),
+                  decoration:
+                    BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      boxShadow: const [BoxShadow(
+                        color: Colors.grey,
+                        blurRadius: 10,
+                        offset: Offset(0, 4)
+                      )]
                     ),
-                    Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                          Row(
+                  child: Card(
+                    semanticContainer: true,
+                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                    margin: const EdgeInsets.all(0),
+                    child: Column(children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(14),
+                        child: Image.asset(
+                          e["coverImage"],
+                          fit: BoxFit.cover,
+                          width: double.infinity - 40,
+                          height: 200,
+                        ),
+                      ),
+                      Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Icon(
-                                Icons.calendar_month_outlined,
-                                size: 20,
-                                color: Colors.grey,
-                              ),
-                              const SizedBox(
-                                width: 5,
-                              ),
-                              Text('${e["days"]} days',
-                                style: const TextStyle(fontSize: 12)
-                              ),
-                              const SizedBox(width: 10,),
-                              const Icon(
-                                Icons.schedule,
-                                size: 20,
-                                color: Colors.grey,
-                              ),
-                              const SizedBox(
-                                width: 5,
-                              ),
-                              Text('${e["interval"]} mins/day',
-                                  style: const TextStyle(fontSize: 12))
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 15,
-                          ),
-                          Text(
-                            e["title"],
-                            style: const TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 24),
-                          )
-                        ]))
-                  ]),
+                            Row(
+                              children: [
+                                const Icon(
+                                  Icons.calendar_month_outlined,
+                                  size: 20,
+                                  color: Colors.grey,
+                                ),
+                                const SizedBox(
+                                  width: 5,
+                                ),
+                                Text('${e["days"]} days',
+                                  style: const TextStyle(fontSize: 12)
+                                ),
+                                const SizedBox(width: 10,),
+                                const Icon(
+                                  Icons.schedule,
+                                  size: 20,
+                                  color: Colors.grey,
+                                ),
+                                const SizedBox(
+                                  width: 5,
+                                ),
+                                Text('${e["interval"]} mins/day',
+                                    style: const TextStyle(fontSize: 12))
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            Text(
+                              e["title"],
+                              style: const TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 24),
+                            ),
+                            const SizedBox(height: 10,),
+                            Text(e["desc"], overflow: TextOverflow.ellipsis,softWrap: true, maxLines: 2,)
+                          ]))
+                    ]),
+                  ),
                 ),
               );
             })

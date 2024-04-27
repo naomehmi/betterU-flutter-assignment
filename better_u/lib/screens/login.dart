@@ -1,5 +1,6 @@
 import 'package:better_u/data/all_users.dart';
 import 'package:better_u/data/logged_in_user.dart';
+import 'package:better_u/models/onboarding_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -13,12 +14,12 @@ Future<dynamic> LoginModal(context) {
       builder: (BuildContext _) {
         return SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.only(
-                bottom: MediaQuery.of(context).viewInsets.bottom),
+            padding: EdgeInsets.only(bottom : MediaQuery.of(context).viewInsets.bottom),
             child: SizedBox(
-              height: MediaQuery.of(context).size.height * 0.4,
+              height: MediaQuery.of(context).size.height * 0.33,
               width: double.infinity,
               child: Scaffold(
+                resizeToAvoidBottomInset: false,
                 body: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -100,8 +101,7 @@ Future<dynamic> LoginModal(context) {
                       padding: const EdgeInsets.only(top: 10),
                       child: Container(
                         height: 60,
-                        margin:
-                            const EdgeInsets.only(left: 60, right: 60, top: 10),
+                        margin: const EdgeInsets.only(left: 60, right: 60, top: 10),
                         width: double.infinity,
                         child: Consumer<AllUsers>(
                             builder: (context, database, child) {

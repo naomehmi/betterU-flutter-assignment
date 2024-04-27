@@ -57,7 +57,7 @@ class _AllVideosState extends State<AllVideos> {
               height: 25,
             ),
             const Text(
-                "This section is for users who don't feel like sticking to a program, and only wants to do a one-off exercise"),
+                "This section is for users who don't feel like sticking to a program currently, and only want to do a one-off exercises"),
             const SizedBox(
               height: 10,
             ),

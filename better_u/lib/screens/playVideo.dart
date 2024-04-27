@@ -5,7 +5,7 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 class PlayVideo extends StatefulWidget {
   PlayVideo({super.key, required this.video});
 
-  Map<String, String> video;
+  Map<String, dynamic> video;
 
   @override
   State<PlayVideo> createState() => _PlayVideoState();
@@ -14,7 +14,7 @@ class PlayVideo extends StatefulWidget {
 class _PlayVideoState extends State<PlayVideo> {
   late final url = widget.video["url"].toString();
   late YoutubePlayerController _controller;
-  List<Map<String, String>> otherVids = AllPrograms().videos;
+  List<Map<String, dynamic>> otherVids = AllPrograms().videos;
 
   @override
   void initState(){

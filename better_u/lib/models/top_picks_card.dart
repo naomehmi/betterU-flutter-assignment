@@ -18,7 +18,7 @@ class TopPicksCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      //width: 180,
+      width: MediaQuery.of(context).size.width * 0.4,
       //height: 260,
       margin: const EdgeInsets.only(left: 10),
       decoration: BoxDecoration(
@@ -89,6 +89,7 @@ class TopPicksCard extends StatelessWidget {
                 textAlign: TextAlign.left,
                 style: const TextStyle(
                   fontWeight: FontWeight.w500,
+                  fontSize: 16
                 ),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
