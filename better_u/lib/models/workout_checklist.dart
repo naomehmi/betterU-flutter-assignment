@@ -1,7 +1,5 @@
 import 'package:better_u/screens/playVideo.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 
 class WorkoutChecklist extends StatefulWidget {
