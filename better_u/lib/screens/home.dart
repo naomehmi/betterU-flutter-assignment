@@ -174,25 +174,6 @@ class _HomeState extends State<Home> {
                     ],
                   ),
                 ),
-                // CarouselSlider(
-                //     items: topPicks.map((tp) {
-                //       return GestureDetector(
-                //         onTap: (){
-                //           Navigator.push(context, MaterialPageRoute(builder: (context)=>WorkoutProgramChecklist(program: tp)));
-                //         },
-                //         child: TopPicksCard(
-                //           coverImage: tp["coverImage"],
-                //           days: tp["days"],
-                //           interval: tp["interval"],
-                //           title: tp["title"],
-                //         ),
-                //       );
-                //     }).toList(),
-                //     options: CarouselOptions(
-                //         height: 260,
-                //         viewportFraction: 0.45,
-                //         enableInfiniteScroll: false,
-                //         initialPage: 1)),
                 const SizedBox(
                   height: 15,
                 ),
@@ -321,95 +302,6 @@ class _HomeState extends State<Home> {
                     ],
                   ),
                 ),
-                // CarouselSlider(
-                //     items: topVideos.map((e) {
-                //       return GestureDetector(
-                //         onTap: (){
-                //           Navigator.push(context, MaterialPageRoute(builder: (context) => PlayVideo(video: e)));
-                //         },
-                //         child: Container(
-                //           margin: const EdgeInsets.only(left: 10),
-                //           decoration: BoxDecoration(
-                //             border: const GradientBoxBorder(
-                //                 gradient: LinearGradient(
-                //                     begin: Alignment.topLeft,
-                //                     end: Alignment.bottomRight,
-                //                     colors: [
-                //                       Color.fromARGB(255, 241, 230, 130),
-                //                       Color.fromARGB(255, 204, 161, 237)
-                //                     ]),
-                //                 width: 2),
-                //             borderRadius: BorderRadius.circular(15.0),
-                //           ),
-                //           child: Card(
-                //             semanticContainer: true,
-                //             clipBehavior: Clip.antiAliasWithSaveLayer,
-                //             margin: const EdgeInsets.all(0),
-                //             child: Column(
-                //                 crossAxisAlignment: CrossAxisAlignment.start,
-                //                 children: [
-                //                   ClipRRect(
-                //                     borderRadius: BorderRadius.circular(15),
-                //                     child: Image.asset(
-                //                       '${e["coverImage"]}',
-                //                       fit: BoxFit.cover,
-                //                       width: 320,
-                //                       height: 180,
-                //                     ),
-                //                   ),
-                //                   Padding(
-                //                       padding: const EdgeInsets.all(10),
-                //                       child: Column(
-                //                           crossAxisAlignment:
-                //                               CrossAxisAlignment.start,
-                //                           children: [
-                //                             Row(children: [
-                //                               const Icon(
-                //                                 Icons.category_outlined,
-                //                                 size: 20,
-                //                                 color: Colors.grey,
-                //                               ),
-                //                               const SizedBox(
-                //                                 width: 5,
-                //                               ),
-                //                               Text('${e["cat"]}',
-                //                                   style: const TextStyle(
-                //                                       fontSize: 12)),
-                //                               const SizedBox(
-                //                                 width: 10,
-                //                               ),
-                //                               const Icon(
-                //                                 Icons.schedule,
-                //                                 size: 20,
-                //                                 color: Colors.grey,
-                //                               ),
-                //                               const SizedBox(
-                //                                 width: 5,
-                //                               ),
-                //                               Text('${e["time"]}',
-                //                                   style: const TextStyle(
-                //                                       fontSize: 12))
-                //                             ]),
-                //                             const SizedBox(
-                //                               height: 3,
-                //                             ),
-                //                             Text(
-                //                               '${e["title"]}',
-                //                               style: const TextStyle(
-                //                                   fontWeight: FontWeight.w500,
-                //                                   fontSize: 20),
-                //                             )
-                //                           ]))
-                //                 ]),
-                //           ),
-                //         ),
-                //       );
-                //     }).toList(),
-                //     options: CarouselOptions(
-                //         height: 270,
-                //         viewportFraction: 0.6,
-                //         enableInfiniteScroll: false,
-                //         initialPage: 1)),
               ],
             ),
           ),

@@ -52,7 +52,7 @@ class _AllVideosState extends State<AllVideos> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text("Latest Workout Exercises", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28),),
+            const Text("Workout Videos", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28),),
             const SizedBox(
               height: 25,
             ),
