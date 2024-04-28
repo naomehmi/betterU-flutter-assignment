@@ -87,6 +87,24 @@ class AllPrograms {
             "cat" : "Abs and Core",
             "completed" : false
           }
+        ],
+        [ // day 5
+          {
+            "title" : "Warmup Routine",
+            "coverImage" : "images/thumbnail3.jpg",
+            "url" : "https://youtu.be/j6C-6F6dr-4?feature=shared", 
+            "time" : "8:30",
+            "cat" : "Warmup",
+            "completed" : false
+          },
+          {
+            "title" : "6 Pack Abs Workout",
+            "coverImage" : "images/thumbnail4.jpg",
+            "url" : "https://youtu.be/SX6Vhj9wZh8?feature=shared",
+            "time" : "11:06",
+            "cat" : "Abs and Core",
+            "completed" : false
+          },
         ]
       ]
     },

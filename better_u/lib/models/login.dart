@@ -1,6 +1,5 @@
 import 'package:better_u/data/all_users.dart';
 import 'package:better_u/data/logged_in_user.dart';
-import 'package:better_u/models/onboarding_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

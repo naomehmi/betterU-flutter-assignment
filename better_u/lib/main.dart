@@ -3,13 +3,17 @@ import 'package:better_u/data/logged_in_user.dart';
 import 'package:better_u/screens/home.dart';
 import 'package:better_u/screens/welcome.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:provider/provider.dart';
 
 Future main() async {
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp
+  ]);
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   await Future.delayed(const Duration(seconds:1));
-  // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  //FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   runApp(
     MultiProvider(providers: [
       ChangeNotifierProvider(create: (context) => AllUsers()),

@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class PlayVideo extends StatefulWidget {
-  PlayVideo({super.key, required this.video});
+  const PlayVideo({super.key, required this.video});
 
-  Map<String, dynamic> video;
+  final Map<String, dynamic> video;
 
   @override
   State<PlayVideo> createState() => _PlayVideoState();
