@@ -131,7 +131,7 @@ class _AllVideosState extends State<AllVideos> {
                             Row(
                               children: [
                                 const Icon(
-                                  Icons.category_outlined,
+                                  Icons.track_changes,
                                   size: 20,
                                   color: Colors.grey,
                                 ),

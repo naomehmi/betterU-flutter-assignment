@@ -278,7 +278,7 @@ class _HomeState extends State<Home> {
                                             children: [
                                               Row(children: [
                                                 const Icon(
-                                                  Icons.category_outlined,
+                                                  Icons.track_changes,
                                                   size: 20,
                                                   color: Colors.grey,
                                                 ),
