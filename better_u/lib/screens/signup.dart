@@ -1,5 +1,6 @@
 import 'package:better_u/data/all_users.dart';
 import 'package:better_u/data/logged_in_user.dart';
+import 'package:better_u/screens/bottomNav.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -14,8 +15,8 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   void onPressed(BuildContext context) {
-    Navigator.pushNamedAndRemoveUntil(
-        context, '/home', ModalRoute.withName('/home'));
+    Navigator.of(context)
+        .pushReplacement(MaterialPageRoute(builder: (context) => BottomNav()));
   }
 
   TextEditingController nameController = TextEditingController();
@@ -124,10 +125,11 @@ class _SignUpState extends State<SignUp> {
                       groupValue: selectedGender,
                       onChanged: handleGenderChange,
                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                      visualDensity: VisualDensity(vertical: -4, horizontal: -3),
+                      visualDensity:
+                          const VisualDensity(vertical: -4, horizontal: -3),
                     ),
-                    Text('Male'),
-                    SizedBox(
+                    const Text('Male'),
+                    const SizedBox(
                       width: 20,
                     ),
                     Radio<Gender>(
@@ -135,7 +137,7 @@ class _SignUpState extends State<SignUp> {
                       groupValue: selectedGender,
                       onChanged: handleGenderChange,
                     ),
-                    Text('Female'),
+                    const Text('Female'),
                   ],
                 ),
                 const SizedBox(

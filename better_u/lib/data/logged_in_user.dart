@@ -1,4 +1,3 @@
-import 'package:better_u/data/all_users.dart';
 import 'package:flutter/material.dart';
 
 class LoggedInUser extends ChangeNotifier{

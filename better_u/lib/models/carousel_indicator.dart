@@ -8,7 +8,7 @@ class CarouselIndicator extends StatelessWidget {
   final double indicatorSize;
   final double spacing;
 
-  const CarouselIndicator({
+  const CarouselIndicator({super.key, 
     required this.itemCount,
     required this.currentIndex,
     this.indicatorColor = Colors.grey,

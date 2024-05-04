@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class ContainImage extends StatelessWidget {
   final String imagePath;
 
-  const ContainImage({required this.imagePath});
+  const ContainImage({super.key, required this.imagePath});
 
   @override
   Widget build(BuildContext context) {

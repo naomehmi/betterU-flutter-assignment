@@ -305,7 +305,7 @@ class _HomeState extends State<Home> {
               ],
             ),
           ),
-        ),
-        bottomNavigationBar: const BottomNav());
+        ));
+    // bottomNavigationBar: const BottomNav());
   }
 }
