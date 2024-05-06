@@ -1,5 +1,5 @@
 import 'package:better_u/models/custom_widgets/login_texfield.dart';
-import 'package:better_u/state_management/users.dart';
+import 'package:better_u/state_management/user_management.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -30,7 +30,7 @@ Future<dynamic> LoginModal(context) {
                     const SizedBox(
                       height: 20,
                     ),
-                    LoginTextfield(controller: passwordController, icon: Icons.password, keyboard: TextInputType.name, hint: "Password"),
+                    LoginTextfield(controller: passwordController, icon: Icons.lock, keyboard: TextInputType.name, hint: "Password"),
                     Padding(
                       padding: const EdgeInsets.only(top: 10),
                       child: Container(

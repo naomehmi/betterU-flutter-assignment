@@ -6,7 +6,8 @@ class WorkoutProgram {
     required this.interval,
     required this.title,
     required this.desc,
-    required this.workouts
+    required this.workouts,
+    this.hard = false
   });
 
   int id;
@@ -16,4 +17,5 @@ class WorkoutProgram {
   String title;
   String desc;
   List workouts;
+  bool hard;
 }

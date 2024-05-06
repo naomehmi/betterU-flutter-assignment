@@ -1,4 +1,4 @@
-import 'package:better_u/state_management/users.dart';
+import 'package:better_u/state_management/user_management.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -27,6 +27,7 @@ class _SignUpTextFieldState extends State<SignUpTextField> {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
           widget.text,
@@ -83,9 +84,9 @@ class _SignUpTextFieldState extends State<SignUpTextField> {
             obscureText: widget.text == "Password" ? true : false,
           ),
         ),
-        const SizedBox(
-          height: 15,
-        )
+        // const SizedBox(
+        //   height: 15,
+        // )
       ],
     );
   }

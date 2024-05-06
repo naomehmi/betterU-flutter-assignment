@@ -1,6 +1,6 @@
 import 'package:better_u/data/all_videos.dart';
 import 'package:better_u/models/objects/video.dart';
-import 'package:better_u/screens/content/play_video.dart';
+import 'package:better_u/screens/content/videos/play_video.dart';
 
 import 'package:flutter/material.dart';
 
@@ -61,7 +61,7 @@ class _AllVideosShowState extends State<AllVideosShow> {
               height: 25,
             ),
             const Text(
-                "This section is for users who don't feel like sticking to a program currently, and only want to do a one-off exercises"),
+                "This section is for users who don't feel like sticking to a program currently, and only want to do one-off exercises"),
             const SizedBox(
               height: 10,
             ),

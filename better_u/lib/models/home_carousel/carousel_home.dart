@@ -12,9 +12,9 @@ class HomeCarousel extends StatefulWidget {
 
 class _HomeCarouselState extends State<HomeCarousel> {
   List allImagesUrl = [
-    '../assets/carousel-pics/carousel1.png',
-    '../assets/carousel-pics/carousel2.png',
-    '../assets/carousel-pics/carousel3.jpg',
+    'assets/carousel-pics/carousel1.png',
+    'assets/carousel-pics/carousel2.png',
+    'assets/carousel-pics/carousel3.jpg',
   ];
 
   int carouselIdx = 0;

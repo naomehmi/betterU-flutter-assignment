@@ -1,7 +1,7 @@
 import 'package:better_u/models/top_picks/top_picks_programs.dart';
 import 'package:better_u/models/top_picks/top_videos.dart';
-import 'package:better_u/screens/content/play_video.dart';
-import 'package:better_u/screens/content/workout_program_timeline.dart';
+import 'package:better_u/screens/content/videos/play_video.dart';
+import 'package:better_u/screens/content/programs/workout_program_timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 

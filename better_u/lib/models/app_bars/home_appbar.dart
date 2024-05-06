@@ -1,4 +1,4 @@
-import 'package:better_u/state_management/users.dart';
+import 'package:better_u/state_management/user_management.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -20,7 +20,7 @@ PreferredSizeWidget HomeAppBar() {
               radius: 20,
               //backgroundColor: Colors.grey[300],
               backgroundImage:
-                  AssetImage('../assets/other/profile-picture.jpg'),
+                  AssetImage('assets/other/profile-picture.jpg'),
             ),
           ),
           const SizedBox(width: 8),

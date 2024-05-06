@@ -1,6 +1,8 @@
 import 'package:better_u/data/all_videos.dart';
 import 'package:better_u/models/objects/video.dart';
+import 'package:better_u/state_management/user_management.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class PlayVideo extends StatefulWidget {
@@ -17,12 +19,20 @@ class _PlayVideoState extends State<PlayVideo> {
   late YoutubePlayerController _controller;
   List<Video> otherVids = AllVideos().videos;
 
+
   @override
   void initState(){
     final videoId = YoutubePlayer.convertUrlToId(url);
     _controller = YoutubePlayerController(
       initialVideoId: videoId!,
-      flags: const YoutubePlayerFlags(autoPlay: false));
+      flags: const YoutubePlayerFlags());
+    otherVids.shuffle();
+
+    _controller.addListener(() { 
+      if(Provider.of<UserManagement>(context, listen: false).loggedInUser.autoPlay && _controller.value.playerState == PlayerState.ended){
+        Navigator.push(context, MaterialPageRoute(builder: (context) => PlayVideo(video: otherVids[0])));
+      }
+    });
     super.initState();
   }
 
@@ -42,6 +52,11 @@ class _PlayVideoState extends State<PlayVideo> {
               showVideoProgressIndicator: true,
               aspectRatio: 16/9,
               width: double.infinity,
+              progressIndicatorColor: Colors.purple[200],
+              progressColors: ProgressBarColors(
+                playedColor: Colors.purple[200],
+                handleColor: Colors.purple[200]
+              ),
             ),
             Padding(
               padding: const EdgeInsets.all(15.0),
@@ -58,7 +73,23 @@ class _PlayVideoState extends State<PlayVideo> {
                     color: Colors.grey
                   )),
                   const SizedBox(height: 20),
-                  const Text("More Videos", style: TextStyle(fontSize: 18),),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text("More Videos", style: TextStyle(fontSize: 18),),
+                      Consumer<UserManagement>(
+                        builder: (context, user, child) => Switch(
+                          value: user.loggedInUser.autoPlay, 
+                          onChanged: (value){
+                            setState(() {
+                              user.loggedInUser.autoPlay = value;
+                            });
+                          }
+                        ),
+                      )
+                    ],
+                  ),
+                  const SizedBox(height: 8,),
                   ...otherVids.map((e){
                     if(e.title == widget.video.title) return const SizedBox();
                     return GestureDetector(

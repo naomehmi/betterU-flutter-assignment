@@ -1,5 +1,6 @@
+import 'package:better_u/models/custom_widgets/workout_details_chip.dart';
 import 'package:better_u/models/objects/program.dart';
-import 'package:better_u/screens/content/program_details.dart';
+import 'package:better_u/screens/content/programs/program_details.dart';
 import 'package:flutter/material.dart';
 
 class WorkoutProgramChecklist extends StatefulWidget {
@@ -8,7 +9,7 @@ class WorkoutProgramChecklist extends StatefulWidget {
     required this.program
   });
 
-  WorkoutProgram program;
+  final WorkoutProgram program;
   int _currentDay = 1;
 
   @override
@@ -41,47 +42,11 @@ class _WorkoutProgramChecklistState extends State<WorkoutProgramChecklist> {
                   left: 20,
                   child: Row(
                     children: [
-                      Chip(
-                          shape: const RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(30)),
-                              side: BorderSide(color: Colors.transparent)),
-                          label: Row(
-                            children: [
-                              const Icon(
-                                Icons.calendar_month_outlined,
-                                size: 20,
-                                color: Colors.grey,
-                              ),
-                              const SizedBox(
-                                width: 5,
-                              ),
-                              Text(
-                                "${widget.program.days} days",
-                                style: const TextStyle(fontSize: 12),
-                              )
-                            ],
-                          )),
+                      WorkoutDetailChip(icon: Icons.calendar_month_outlined, text: "${widget.program.days} days"),
                       const SizedBox(
                         width: 10,
                       ),
-                      Chip(
-                        shape: const RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(30)),
-                            side: BorderSide(color: Colors.transparent)),
-                        label: Row(
-                          children: [
-                            const Icon(Icons.schedule,
-                                size: 20, color: Colors.grey),
-                            const SizedBox(
-                              width: 5,
-                            ),
-                            Text("${widget.program.interval} mins/day",
-                                style: const TextStyle(fontSize: 12))
-                          ],
-                        )
-                      ),
+                      WorkoutDetailChip(icon: Icons.schedule, text: "${widget.program.interval} mins/day"),
                     ],
                   ),
                 )
@@ -134,11 +99,11 @@ class _WorkoutProgramChecklistState extends State<WorkoutProgramChecklist> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Image.asset("../assets/other/rest.jpg", width: 200,),
+                        Image.asset("assets/other/rest.jpg", width: 200,),
                         const SizedBox(
                           height: 15,
                         ),
-                        const Text("Rest is important for your body,\nread a book, take a nap, relax!\nYou deserve it.")
+                        const Text("Rest is important for your body,\nread a book, take a nap, relax!\nYou deserve it.", textAlign: TextAlign.center,)
                       ],
                     ),
                   )

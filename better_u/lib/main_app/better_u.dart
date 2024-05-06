@@ -6,7 +6,7 @@ import 'package:better_u/screens/main/profile.dart';
 import 'package:better_u/screens/main/progress_tracker.dart';
 import 'package:better_u/screens/onboarding/onboarding_page.dart';
 import 'package:better_u/screens/user_related/sign_up.dart';
-import 'package:better_u/state_management/users.dart';
+import 'package:better_u/state_management/user_management.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -35,21 +35,19 @@ class _BetterUState extends State<BetterU> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<UserManagement>(
-      builder: (context, user, child) {
-        if (user.loggedInUser.firstName == 'User') {
-          return const OnboardingPage();
-        } else {
-          return Scaffold(
-            appBar: HomeAppBar(),
-            body: screens[screenIdx],
-            bottomNavigationBar: BotNavBar(
-              curIdx: screenIdx, 
-              changeIdx: changeIdx,
-            ),
-          );
-        }
-      },
+    if (Provider.of<UserManagement>(context, listen: false)
+            .loggedInUser
+            .firstName ==
+        'User') {
+      return const OnboardingPage();
+    }
+    return Scaffold(
+      appBar: HomeAppBar(),
+      body: screens[screenIdx],
+      bottomNavigationBar: BotNavBar(
+        curIdx: screenIdx,
+        changeIdx: changeIdx,
+      ),
     );
   }
 }

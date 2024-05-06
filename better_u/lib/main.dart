@@ -1,7 +1,7 @@
 import 'package:better_u/main_app/better_u.dart';
-import 'package:better_u/screens/content/all_programs_show.dart';
-import 'package:better_u/screens/content/see_all_vids.dart';
-import 'package:better_u/state_management/users.dart';
+import 'package:better_u/screens/content/programs/all_programs_show.dart';
+import 'package:better_u/screens/content/videos/see_all_vids.dart';
+import 'package:better_u/state_management/user_management.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';

@@ -1,5 +1,5 @@
 import 'package:better_u/data/all_programs.dart';
-import 'package:better_u/screens/content/workout_program_timeline.dart';
+import 'package:better_u/screens/content/programs/workout_program_timeline.dart';
 import 'package:flutter/material.dart';
 
 class AllProgramsShow extends StatefulWidget {
@@ -14,13 +14,15 @@ class _AllProgramsShowState extends State<AllProgramsShow> {
 
   dynamic currentValue;
 
-  List allPrograms = AllPrograms().programs;
+  bool beginner = false;
+
+  List allPrograms = List.from(AllPrograms().programs);
 
   @override
   void initState() {
-    super.initState();
-    allPrograms = List.from(AllPrograms().programs); 
+    allPrograms = beginner ? allPrograms.where((element) => element.hard == false).toList() : allPrograms;
     currentValue = null; 
+    super.initState();
   }
 
   void sortPrograms(String option) {
@@ -62,6 +64,17 @@ class _AllProgramsShowState extends State<AllProgramsShow> {
                 "Stay consistent in your fitness journey by starting with the latest exercises. You can also view all exercises in order starting with the most recent"),
             const SizedBox(
               height: 10,
+            ),
+            SwitchListTile(
+              title: const Text("Beginner Workouts Only"),
+              value: beginner, 
+              controlAffinity: ListTileControlAffinity.leading,
+              onChanged: (value){
+                setState(() {
+                  beginner = value;
+                  allPrograms = beginner ? allPrograms.where((element) => element.hard == false).toList() : AllPrograms().programs;
+                });
+              } 
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -152,7 +165,7 @@ class _AllProgramsShowState extends State<AllProgramsShow> {
                                 const SizedBox(
                                   width: 5,
                                 ),
-                                Text('${e.interval}]} mins/day',
+                                Text('${e.interval} mins/day',
                                     style: const TextStyle(fontSize: 12))
                               ],
                             ),
