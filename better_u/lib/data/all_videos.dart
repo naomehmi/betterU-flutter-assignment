@@ -39,7 +39,7 @@ class AllVideos {
         cat: "Flat Stomatch"),
     Video(
         id: 6,
-        title: "10 Min Dumbbell Upper Body workout",
+        title: "Dumbbell Upper Body workout",
         coverImage: "assets/video-thumbnails/thumbnail6.jpg",
         url: "https://youtu.be/Mx9RrNZv2TI?si=QI395HqxTexaRHhF",
         time: "13:54",
