@@ -1,118 +1,139 @@
-import 'package:better_u/models/custom_widgets/workout_details_chip.dart';
-import 'package:better_u/models/objects/program.dart';
-import 'package:better_u/screens/content/programs/program_details.dart';
+import 'package:better_u/data/all_programs.dart';
+import 'package:better_u/data/all_videos.dart';
+import 'package:better_u/state_management/user_management.dart';
 import 'package:flutter/material.dart';
+import 'package:gradient_borders/box_borders/gradient_box_border.dart';
+import 'package:provider/provider.dart';
+import 'package:timeline_tile/timeline_tile.dart';
 
-class WorkoutProgramChecklist extends StatefulWidget {
-  WorkoutProgramChecklist({
-    super.key,
-    required this.program
-  });
+class ProgramDetails extends StatefulWidget {
+  const ProgramDetails({super.key, required this.programId, required this.day});
 
-  final WorkoutProgram program;
-  int _currentDay = 1;
+  final int programId;
+  final int day;
 
   @override
-  State<WorkoutProgramChecklist> createState() => _WorkoutProgramChecklistState();
+  State<ProgramDetails> createState() => _ProgramDetailsState();
 }
 
-class _WorkoutProgramChecklistState extends State<WorkoutProgramChecklist> {
+class _ProgramDetailsState extends State<ProgramDetails> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          widget.program.title,
-          style: const TextStyle(fontWeight: FontWeight.bold),
-        ),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Stack(
-              children: [
-                Image.asset(
-                  widget.program.coverImage,
-                  height: 250,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                ),
-                Positioned(
-                  bottom: 20,
-                  left: 20,
-                  child: Row(
-                    children: [
-                      WorkoutDetailChip(icon: Icons.calendar_month_outlined, text: "${widget.program.days} days"),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      WorkoutDetailChip(icon: Icons.schedule, text: "${widget.program.interval} mins/day"),
-                    ],
-                  ),
-                )
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsetsDirectional.all(20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    "Details",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(widget.program.desc),
-                  SizedBox(
-                    height: 65,
-                    child: ListView(
-                      scrollDirection: Axis.horizontal,
-                      children: [
-                        for (int i = 1; i <= widget.program.workouts.length; i++)
-                          Padding(
-                            padding: const EdgeInsets.only(right: 8),
-                            child: ChoiceChip(
-                                label: Text("Day $i"),
-                                selected:widget._currentDay == i,
-                                onSelected: (val) {
-                                  setState(() {
-                                    widget._currentDay = i;
-                                  });
-                                }),
-                          )
-                      ],
-                    ),
-                  ),
-                  Text(
-                    "Day ${widget._currentDay}'s Workout ${widget.program.workouts[widget._currentDay - 1] == 0 ? ' (Rest Day)' : ''}",
-                    style: const TextStyle(
-                        fontSize: 20, fontWeight: FontWeight.w500),
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  if(widget.program.workouts[widget._currentDay - 1] != 0) ProgramDetails(programId: widget.program.id, day: widget._currentDay)
-                  else SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset("assets/other/rest.jpg", width: 200,),
-                        const SizedBox(
-                          height: 15,
-                        ),
-                        const Text("Rest is important for your body,\nread a book, take a nap, relax!\nYou deserve it.", textAlign: TextAlign.center,)
-                      ],
-                    ),
-                  )
-                ]
+    List thisDayVideos =
+        AllPrograms().programs[widget.programId - 1].workouts[widget.day - 1];
+    Map<int, Map<int, Set<int>>> completedByUser =
+        Provider.of<UserManagement>(context).loggedInUser.completedWorkouts;
+
+    if (completedByUser.keys.firstWhere(
+            (element) => element == widget.programId,
+            orElse: () => 0) ==
+        0) completedByUser[widget.programId] = {};
+
+    return Column(
+      children: [
+        ...thisDayVideos.map((e) {
+          bool thisDayDone =
+              completedByUser[widget.programId]!.keys.contains(widget.day);
+          if (!thisDayDone) {
+            completedByUser[widget.programId]![widget.day] = {};
+          }
+          Set<int> thisWorkout =
+              completedByUser[widget.programId]![widget.day]!;
+          return TimelineTile(
+            afterLineStyle: LineStyle(color: Colors.grey[300]!),
+            beforeLineStyle: LineStyle(color: Colors.grey[300]!),
+            indicatorStyle: IndicatorStyle(
+                indicator: Transform.scale(
+              scale: 1.5,
+              child: Checkbox(
+                fillColor: MaterialStateProperty.resolveWith<Color>(
+                    (Set<MaterialState> states) {
+                  if (states.isEmpty) {
+                    return Colors.white;
+                  }
+                  return Colors.purple[200]!;
+                }),
+                shape: const CircleBorder(),
+                side: BorderSide(color: Colors.grey[300]!, width: 2),
+                value:
+                    completedByUser[widget.programId]![widget.day]?.contains(e),
+                onChanged: (value) {
+                  setState(() {
+                    thisWorkout.contains(e)
+                        ? thisWorkout.remove(e)
+                        : thisWorkout.add(e);
+                  });
+                },
               ),
-            )
-          ],
-        ),
-      ),
+            )),
+            isFirst: thisDayVideos.indexOf(e) == 0,
+            isLast: thisDayVideos.indexOf(e) == thisDayVideos.length - 1,
+            alignment: TimelineAlign.manual,
+            lineXY: 0.05,
+            endChild: Container(
+                width: (MediaQuery.of(context).size.width - 100),
+                margin: const EdgeInsets.all(10),
+                child: Card(
+                    shadowColor: Colors.transparent,
+                    semanticContainer: true,
+                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                    margin: const EdgeInsets.all(0),
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              border: const GradientBoxBorder(
+                                  gradient: LinearGradient(
+                                      begin: Alignment.topLeft,
+                                      end: Alignment.bottomRight,
+                                      colors: [
+                                        Color.fromARGB(255, 241, 230, 130),
+                                        Color.fromARGB(255, 204, 161, 237)
+                                      ]),
+                                  width: 2),
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(15),
+                              child: Image.asset(
+                                AllVideos().videos[e - 1].coverImage,
+                                fit: BoxFit.cover,
+                                width:
+                                    (MediaQuery.of(context).size.width - 100),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          Text(
+                            AllVideos().videos[e - 1].title,
+                            style: const TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.w500),
+                          ),
+                          Row(
+                            children: [
+                              const Icon(
+                                Icons.track_changes,
+                                size: 15,
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                AllVideos().videos[e - 1].cat,
+                                style: const TextStyle(fontSize: 13),
+                              )
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          )
+                        ]))),
+          );
+        })
+      ],
     );
   }
 }

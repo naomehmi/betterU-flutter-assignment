@@ -1,5 +1,6 @@
 import 'package:better_u/data/all_programs.dart';
-import 'package:better_u/screens/content/programs/workout_program_timeline.dart';
+import 'package:better_u/models/custom_widgets/search_feat.dart';
+import 'package:better_u/screens/content/programs/workout_program_checklist.dart';
 import 'package:flutter/material.dart';
 
 class AllProgramsShow extends StatefulWidget {
@@ -50,6 +51,16 @@ class _AllProgramsShowState extends State<AllProgramsShow> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Workout Programs"),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: IconButton(
+              onPressed: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => SearchFeature(contents: allPrograms, isProgram: true)));
+              }, 
+              icon: const Icon(Icons.search)),
+          )
+        ],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),

@@ -1,4 +1,5 @@
 import 'package:better_u/data/all_videos.dart';
+import 'package:better_u/models/custom_widgets/search_feat.dart';
 import 'package:better_u/models/objects/video.dart';
 import 'package:better_u/screens/content/videos/play_video.dart';
 
@@ -47,6 +48,14 @@ class _AllVideosShowState extends State<AllVideosShow> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Workout Videos"),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: IconButton(onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context) => SearchFeature(contents: allVideos, isProgram: false)));
+            }, icon: const Icon(Icons.search)),
+          )
+        ],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
