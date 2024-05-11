@@ -6,24 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
-/*
-TODO:
-- bottom nav [v]
-- splash screen
-- routes [v]
-- database for all programs
-- database for all videos
-- home page
-  - carousel [v]
-  - top picks
-  - top videos
-- view all programs
-- view all videos
-- play videos
-- sign up
-- login
-- welcome page
-*/
 
 Future main() async {
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
