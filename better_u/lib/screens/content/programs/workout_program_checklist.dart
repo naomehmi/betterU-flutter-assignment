@@ -1,5 +1,6 @@
 import 'package:better_u/models/custom_widgets/workout_details_chip.dart';
 import 'package:better_u/models/objects/program.dart';
+import 'package:better_u/screens/content/programs/workout_done_page.dart';
 import 'package:better_u/screens/content/programs/workout_program_timeline.dart';
 import 'package:flutter/material.dart';
 
@@ -107,7 +108,36 @@ class _WorkoutProgramChecklistState extends State<WorkoutProgramChecklist> {
                         const Text("Rest is important for your body,\nread a book, take a nap, relax!\nYou deserve it.", textAlign: TextAlign.center,)
                       ],
                     ),
-                  )
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      // Add logic to mark the selected day as completed
+                      // Navigate to the "workout_done" page
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => WorkoutDonePage()),
+                      );
+                    },
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(
+                        const Color.fromARGB(255, 226, 189, 255),
+                      ),
+                      elevation: MaterialStateProperty.all<double>(0),
+                    ),
+                    child: Container(
+                      alignment: Alignment.center,
+                      width: double.infinity,
+                      padding: const EdgeInsets.symmetric(vertical: 12),
+                      child: Text(
+                        'Mark Day ${widget._currentDay} as Completed',
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+
                 ]
               ),
             )
