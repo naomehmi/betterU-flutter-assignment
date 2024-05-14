@@ -2,6 +2,8 @@ import 'package:better_u/screens/main/home.dart';
 import 'package:flutter/material.dart';
 
 class WorkoutDonePage extends StatefulWidget {
+  const WorkoutDonePage({super.key});
+
   @override
   _WorkoutDonePageState createState() => _WorkoutDonePageState();
 }
@@ -12,7 +14,7 @@ class _WorkoutDonePageState extends State<WorkoutDonePage> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 3), () {
+    Future.delayed(const Duration(seconds: 3), () {
       setState(() {
         _showFAB = true;
       });
@@ -50,10 +52,7 @@ class _WorkoutDonePageState extends State<WorkoutDonePage> {
       floatingActionButton: _showFAB
           ? FloatingActionButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Home()),
-                );
+                Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
               },
               elevation: 0.0,
               child: const Icon(Icons.home),
