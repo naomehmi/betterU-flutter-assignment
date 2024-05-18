@@ -5,16 +5,18 @@ class AllPrograms {
     WorkoutProgram( 
       id: 1,
       coverImage: "assets/workout-programs/top-picks-sample1.jpg", 
-      days: 5, 
+      days: 7, 
       interval: "30-45", 
       title: "2024 Weight Loss Challenge", 
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       workouts: [ // id video is already completed (1) or not (0)
-        [1, 2],
-        [3, 1],
+        [3, 2],
+        [5, 6],
         0,
-        [2, 4],
-        [1, 4]
+        [3, 7, 4],
+        [10, 11],
+        [1, 7],
+        [9, 10]
       ],
       hard: true
     ),
@@ -27,25 +29,29 @@ class AllPrograms {
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor inciddunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       workouts: [ // id video is already completed (1) or not (0)
         [1, 2],
-        [3, 1],
+        [4, 7],
+        [3, 8],
         0,
-        [2, 4],
-        [1, 4]
+        [2, 6, 11]
       ]
     ),
     WorkoutProgram( 
       id: 3,
       coverImage: "assets/workout-programs/top-picks-sample3.jpg", 
-      days: 5, 
+      days: 8, 
       interval: "35-45", 
       title: "Flat Belly Challenge", 
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       workouts: [ // id video is already completed (1) or not (0)
-        [1, 2],
-        [3, 1],
+        [3, 5],
+        [2, 5],
+        [8, 10],
         0,
-        [2, 4],
-        [1, 4]
+        [3, 11, 7],
+        [1, 2],
+        [5, 8],
+        0,
+        [4, 11]
       ]
     ),
     WorkoutProgram( 
@@ -56,26 +62,27 @@ class AllPrograms {
       title: "Strong Arms Challenge", 
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       workouts: [ // id video is already completed (1) or not (0)
-        [1, 2],
-        [3, 1],
+        [6, 12],
+        [3, 9],
         0,
-        [2, 4],
-        [1, 4]
+        [10, 12],
+        [9, 6]
       ]
     ),
     WorkoutProgram( 
       id: 5,
       coverImage: "assets/workout-programs/top-picks-sample5.webp", 
-      days: 5, 
+      days: 6, 
       interval: "50-60", 
       title: "Upper Back Advanced Challenge", 
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       workouts: [ // id video is already completed (1) or not (0)
-        [1, 2],
-        [3, 1],
+        [3, 8],
+        [1, 6],
+        [5, 9],
         0,
-        [2, 4],
-        [1, 4]
+        [7, 6, 11],
+        [12, 5]
       ],
       hard: true
     ),
@@ -87,26 +94,27 @@ class AllPrograms {
       title: "Yoga Stretch for Back Pain", 
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       workouts: [ // id video is already completed (1) or not (0)
+        [3, 5],
         [1, 2],
-        [3, 1],
         0,
-        [2, 4],
-        [1, 4]
+        [5, 12],
+        [3, 9]
       ]
     ),
     WorkoutProgram(
       id: 7, 
       coverImage: "assets/workout-programs/top-picks-sample7.jpg", 
-      days: 5, 
+      days: 7, 
       interval: "30-45", 
       title: "Plank Workout for Beginners", 
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       workouts: [ // id video is already completed (1) or not (0)
-        [1, 2],
-        [3, 1],
+        [1, 4],
+        [2, 7],
+        [3, 9],
+        [5, 10],
         0,
-        [2, 4],
-        [1, 4]
+        [3, 8, 11]
       ]
     ),
     WorkoutProgram( 
@@ -118,9 +126,9 @@ class AllPrograms {
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       workouts: [ // video id is already completed (1) or not (0)
         [1, 2],
-        [3, 1],
+        [11, 1],
         0,
-        [2, 4],
+        [2, 11],
         [1, 4]
       ],
       hard: true

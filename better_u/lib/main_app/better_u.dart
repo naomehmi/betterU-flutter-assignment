@@ -1,5 +1,6 @@
 import 'package:better_u/models/app_bars/home_appbar.dart';
 import 'package:better_u/models/bottom_nav_bar/bottom_nav_bar.dart';
+import 'package:better_u/models/drawer/drawer.dart';
 import 'package:better_u/screens/main/community.dart';
 import 'package:better_u/screens/main/home.dart';
 import 'package:better_u/screens/main/profile.dart';
@@ -19,6 +20,7 @@ class BetterU extends StatefulWidget {
 
 class _BetterUState extends State<BetterU> {
   int screenIdx = 0;
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   void changeIdx(int idx) {
     setState(() {
@@ -42,11 +44,15 @@ class _BetterUState extends State<BetterU> {
       return const OnboardingPage();
     }
     return Scaffold(
-      appBar: HomeAppBar(),
+      key: _scaffoldKey,
+      appBar: HomeAppBar(_scaffoldKey),
       body: screens[screenIdx],
       bottomNavigationBar: BotNavBar(
         curIdx: screenIdx,
         changeIdx: changeIdx,
+      ),
+      drawer: CustomDrawer(
+        changeIdx: changeIdx
       ),
     );
   }
