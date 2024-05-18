@@ -40,7 +40,7 @@ class _WorkoutDonePageState extends State<WorkoutDonePage> {
             ),
             SizedBox(height: 30),
             Text(
-              "Hooray! It’s all done for today! Keep on going",
+              "Hooray! It’s all done for today! Keep on",
               style: TextStyle(
                 fontSize: 20,
                 color: Colors.white,
