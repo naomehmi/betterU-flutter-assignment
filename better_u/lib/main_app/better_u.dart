@@ -6,6 +6,7 @@ import 'package:better_u/screens/main/home.dart';
 import 'package:better_u/screens/main/profile.dart';
 import 'package:better_u/screens/main/progress_tracker.dart';
 import 'package:better_u/screens/onboarding/onboarding_page.dart';
+import 'package:better_u/state_management/forum_management.dart';
 import 'package:better_u/state_management/user_management.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -24,6 +25,15 @@ class _BetterUState extends State<BetterU> {
   int screenIdx = 0;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
+  List screens = [
+    const Home(),
+    const ProgressTracker(),
+    const Community(),
+    const Profile()
+  ];
+
+  late List headings;
+
   void changeIdx(int idx) {
     setState(() {
       screenIdx = idx;
@@ -41,15 +51,6 @@ class _BetterUState extends State<BetterU> {
       Provider.of<UserManagement>(context, listen: false).userLogout();
     });
   }
-
-  List screens = [
-    const Home(),
-    const ProgressTracker(),
-    const Community(),
-    const Profile()
-  ];
-
-  late List headings;
 
   @override
   void initState() {
@@ -87,20 +88,6 @@ class _BetterUState extends State<BetterU> {
         changeIdx: changeIdx,
         clickedLogout: clickedLogout,
       ),
-      floatingActionButton: screenIdx == 2
-          ? FloatingActionButton(
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const AddPost()));
-              },
-              backgroundColor: Colors.purple[200],
-              shape: const CircleBorder(),
-              child: const Icon(
-                Icons.add_comment_rounded,
-                color: Colors.white,
-                size: 22,
-              ),
-            )
-          : null,
     );
   }
 }

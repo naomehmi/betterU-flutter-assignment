@@ -29,4 +29,12 @@ class ForumManagement extends ChangeNotifier {
       content: 'Don’t forget to do the warm up and cool down guys!'
     )
   ];
+
+  int nextId = 4; // to generate post id
+
+  void newPost(email, reply, content){
+    allForums.add(Post(id: nextId, userEmail: email, reply: reply, likes: 0, time: DateTime.now(), content: content));
+    nextId++;
+    notifyListeners();
+  }
 }

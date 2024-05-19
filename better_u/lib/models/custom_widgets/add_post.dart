@@ -4,7 +4,14 @@ import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
 class AddPost extends StatelessWidget {
-  const AddPost({super.key});
+  AddPost({
+    super.key,
+    required this.function
+  });
+
+  Function function;
+
+  TextEditingController content = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +26,10 @@ class AddPost extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.purple[200],
                 ),
-                onPressed: (){}, 
+                onPressed: (){
+                  function(false, content.text);
+                  Navigator.pop(context);
+                }, 
                 child: const Center(
                   child: Text(
                     "Share", 
@@ -52,6 +62,7 @@ class AddPost extends StatelessWidget {
                       width: MediaQuery.of(context).size.width - 80,
                       //height: 100,
                       child: TextField(
+                        controller: content,
                         scrollPadding: const EdgeInsets.all(0),
                         style: const TextStyle(
                           fontSize: 16
