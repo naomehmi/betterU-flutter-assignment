@@ -28,7 +28,6 @@ class AddPost extends StatelessWidget {
                 ),
                 onPressed: (){
                   function(false, content.text);
-                  Navigator.pop(context);
                 }, 
                 child: const Center(
                   child: Text(

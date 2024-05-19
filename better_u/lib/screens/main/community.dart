@@ -17,13 +17,13 @@ class _CommunityState extends State<Community> {
   void refreshCommunityPost(replyOrNot, content){
     String email = Provider.of<UserManagement>(context, listen: false).loggedInUser.email;
     Provider.of<ForumManagement>(context, listen: false).newPost(email, false, content);
+    Navigator.pop(context);
     setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
     List<Post> allPosts = Provider.of<ForumManagement>(context, listen: false).allForums.where((element) => !element.reply).toList();
-    allPosts.sort((a,b) => b.time.compareTo(a.time));
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(

@@ -2,9 +2,18 @@ import 'package:better_u/models/objects/post.dart';
 import 'package:flutter/material.dart';
 
 class ForumManagement extends ChangeNotifier {
-  List<Post> allForums = [
+  List<Post> allForums = [ // posts are sorted in reverse
     Post(
-      id: 1, 
+      id: 3, 
+      userEmail: 'coolguy@gmail.com', 
+      reply: true, 
+      replyToId : 2, 
+      likes: 10, 
+      time: DateTime(2024, 5, 19, 11, 28),
+      content: 'Slay Queen!'
+    ),
+    Post(
+      id: 2, 
       userEmail: 'emmastone@gmail.com', 
       reply: false, 
       likes: 25, 
@@ -12,16 +21,7 @@ class ForumManagement extends ChangeNotifier {
       content: 'This app is so great! I have lost 5kg in a month! I love it'
     ),
     Post(
-      id: 2, 
-      userEmail: 'coolguy@gmail.com', 
-      reply: true, 
-      replyToId : 1, 
-      likes: 10, 
-      time: DateTime(2024, 5, 19, 11, 28),
-      content: 'Slay Queen!'
-    ),
-    Post(
-      id: 3,
+      id: 1,
       userEmail: 'coolguy@gmail.com',
       reply: false,
       likes: 10,
@@ -33,7 +33,7 @@ class ForumManagement extends ChangeNotifier {
   int nextId = 4; // to generate post id
 
   void newPost(email, reply, content){
-    allForums.add(Post(id: nextId, userEmail: email, reply: reply, likes: 0, time: DateTime.now(), content: content));
+    allForums.insert(0, Post(id: nextId, userEmail: email, reply: reply, likes: 0, time: DateTime.now(), content: content));
     nextId++;
     notifyListeners();
   }
