@@ -5,8 +5,9 @@ import 'package:better_u/state_management/user_management.dart';
 
 class CustomDrawer extends StatelessWidget {
   final Function(int) changeIdx;
+  final Function clickedLogout;
 
-  const CustomDrawer({Key? key, required this.changeIdx}) : super(key: key);
+  const CustomDrawer({super.key, required this.changeIdx, required this.clickedLogout});
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +25,9 @@ class CustomDrawer extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const CircleAvatar(
+                    CircleAvatar(
                       radius: 30,
-                      backgroundImage: AssetImage('assets/other/profile-picture.jpg'),
+                      backgroundImage: AssetImage(Provider.of<UserManagement>(context).loggedInUser.profilePic),
                     ),
                     const SizedBox(height: 15),
                     Consumer<UserManagement>(builder: (context, user, child) {
@@ -86,12 +87,7 @@ class CustomDrawer extends StatelessWidget {
                 leading: const Icon(Icons.logout, color: Color.fromARGB(255, 205, 141, 255)),
                 title: const Text('Log out'),
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const OnboardingPage(),
-                    ),
-                  );
+                  clickedLogout();
                 },
               ),
             ],

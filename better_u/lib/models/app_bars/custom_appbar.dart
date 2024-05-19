@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:better_u/state_management/user_management.dart';
 
-PreferredSizeWidget HomeAppBar(GlobalKey<ScaffoldState> scaffoldKey) {
+PreferredSizeWidget customAppBar(GlobalKey<ScaffoldState> scaffoldKey, String heading, String img) {
   return AppBar(
     automaticallyImplyLeading: false,
     title: Padding(
@@ -21,22 +19,20 @@ PreferredSizeWidget HomeAppBar(GlobalKey<ScaffoldState> scaffoldKey) {
                   width: 2,
                 ),
               ),
-              child: const CircleAvatar(
+              child: CircleAvatar(
                 radius: 20,
-                backgroundImage: AssetImage('assets/other/profile-picture.jpg'),
+                backgroundImage: AssetImage(img),
               ),
             ),
           ),
           const SizedBox(width: 8),
-          Consumer<UserManagement>(builder: (context, user, child) {
-            return Text(
-              'Hi, ${user.loggedInUser.firstName}!',
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
-            );
-          }),
+          Text(
+            heading,
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ],
       ),
     ),

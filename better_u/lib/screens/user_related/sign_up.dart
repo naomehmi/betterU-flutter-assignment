@@ -150,7 +150,7 @@ class _SignUpState extends State<SignUp> {
                           : "";
                       users.newUser(firstName, lastName, emailController.text, passwordController.text, selectedGender!);
                       users.setCurrentUser(emailController.text);
-                      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const BetterU()), (route) => false);
+                      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => BetterU()), (route) => false);
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                         content: Text("Please fill in the correct credentials"),

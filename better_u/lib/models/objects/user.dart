@@ -8,7 +8,9 @@ class User {
     required this.password,
     required this.completedWorkouts,
     this.gender = Gender.other,
-    this.autoPlay = false
+    this.autoPlay = false,
+    this.profilePic = 'assets/other/default-profile.jpg',
+    this.role = 'Rookie'
   });
 
   String firstName;
@@ -18,4 +20,6 @@ class User {
   Map<int, Map<int, Set<int>>> completedWorkouts;
   Gender gender;
   bool autoPlay;
+  String profilePic;
+  String role;
 }
