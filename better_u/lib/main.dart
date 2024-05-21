@@ -6,19 +6,13 @@ import 'package:better_u/state_management/user_management.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-
 Future main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   await Future.delayed(const Duration(seconds: 1));
-  runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (context) => UserManagement()),
-        ChangeNotifierProvider(create: (context) => ForumManagement())
-      ],
-      child: const MyApp()
-    )
-  );
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(create: (context) => UserManagement()),
+    ChangeNotifierProvider(create: (context) => ForumManagement())
+  ], child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -30,9 +24,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: const BetterU(),
       routes: {
-        '/home' : (context) => const BetterU(),
-        '/all-programs' : (context) => const AllProgramsShow(),
-        '/all-videos' : (context) => const AllVideosShow()
+        '/home': (context) => const BetterU(),
+        '/all-programs': (context) => const AllProgramsShow(),
+        '/all-videos': (context) => const AllVideosShow()
       },
     );
   }
