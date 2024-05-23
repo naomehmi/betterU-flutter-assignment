@@ -42,6 +42,7 @@ dependencies:
   youtube_player_flutter: ^8.1.2
   timelines: ^0.1.0
   timeline_tile: ^2.0.0
+  timeago: ^3.6.1
 
 dev_dependencies:
   flutter_test:

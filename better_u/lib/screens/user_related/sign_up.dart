@@ -14,7 +14,7 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   Gender? selectedGender;
-  
+
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -79,7 +79,7 @@ class _SignUpState extends State<SignUp> {
                     fontSize: 20),
               ),
               const SizedBox(
-               height: 10,
+                height: 10,
               ),
               Row(
                 children: [
@@ -143,14 +143,18 @@ class _SignUpState extends State<SignUp> {
                         isGenderSelected()) {
                       String fullName = nameController.text.trim();
                       List<String> nameParts = fullName.split(' ');
-                      String firstName =
-                          nameParts.first.toString(); // This will give you "Anna"
-                      String lastName = nameParts.length > 1
-                          ? nameParts.sublist(1).join(" ")
-                          : "";
-                      users.newUser(firstName, lastName, emailController.text, passwordController.text, selectedGender!);
+                      String firstName = nameParts.first
+                          .toString(); // This will give you "Anna"
+                      String? lastName = nameParts.length <= 1
+                          ? ""
+                          : nameParts.sublist(1).join(" ");
+                      users.newUser(firstName, lastName, emailController.text,
+                          passwordController.text, selectedGender!);
                       users.setCurrentUser(emailController.text);
-                      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const BetterU()), (route) => false);
+                      Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(builder: (context) => BetterU()),
+                          (route) => false);
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                         content: Text("Please fill in the correct credentials"),

@@ -7,18 +7,30 @@ class UserManagement extends ChangeNotifier {
   // every user that has signed up
   final List<User> allUsers = [
     User(
-      firstName: "kelly",
-      lastName: "moon",
-      email: "kellymoon@gmail.com",
-      password: "12345678",
-      completedWorkouts: {
-        // program id : {day n : {video ids completed}}
-        1: {
-          1: {2}
-        }
-      },
-      gender: Gender.female
-    )
+        firstName: "Kelly",
+        lastName: "Moon",
+        email: "kellymoon@gmail.com",
+        password: "12345678",
+        completedWorkouts: {
+          // program id : {day n : {video ids completed}}
+          1: {
+            1: {2}
+          }
+        },
+        gender: Gender.female,
+        profilePic: 'assets/other/profile-picture.jpg'),
+    User(
+        firstName: 'Emma',
+        lastName: 'Stone',
+        email: 'emmastone@gmail.com',
+        password: '1234',
+        completedWorkouts: {}),
+    User(
+        firstName: 'Jacob',
+        lastName: 'Smith',
+        email: 'coolguy@gmail.com',
+        password: '1234',
+        completedWorkouts: {}),
   ];
 
   // user who logged in credentials
@@ -61,12 +73,21 @@ class UserManagement extends ChangeNotifier {
     loggedInUser.email = thisUser.email;
     loggedInUser.completedWorkouts = thisUser.completedWorkouts;
     loggedInUser.gender = thisUser.gender;
+    loggedInUser.profilePic = thisUser.profilePic;
     notifyListeners();
   }
 
   // new user sign up
   void newUser(String firstName, String lastName, String email, String password,
       Gender gender) {
+    firstName =
+        firstName.substring(0, 1).toUpperCase() + firstName.substring(1);
+    lastName = lastName != ""
+        ? lastName
+            .split(" ")
+            .map((e) => e.substring(0, 1).toUpperCase() + e.substring(1))
+            .join(" ")
+        : "";
     allUsers.add(User(
         firstName: firstName,
         lastName: lastName,
@@ -86,5 +107,11 @@ class UserManagement extends ChangeNotifier {
     if (duplicate != -1) return "This email has been taken";
 
     return "";
+  }
+
+  void userLogout() {
+    loggedInUser = emptyUser;
+    loggedInUser.firstName = 'User';
+    notifyListeners();
   }
 }

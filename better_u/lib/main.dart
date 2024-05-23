@@ -1,21 +1,18 @@
 import 'package:better_u/main_app/better_u.dart';
 import 'package:better_u/screens/content/programs/all_programs_show.dart';
-import 'package:better_u/screens/content/programs/workout_done_page.dart';
 import 'package:better_u/screens/content/videos/see_all_vids.dart';
+import 'package:better_u/state_management/forum_management.dart';
 import 'package:better_u/state_management/user_management.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
-
 Future main() async {
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   await Future.delayed(const Duration(seconds: 1));
-  runApp(
-    ChangeNotifierProvider(create: (context) => UserManagement(),
-    child: const MyApp()
-  ));
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(create: (context) => UserManagement()),
+    ChangeNotifierProvider(create: (context) => ForumManagement())
+  ], child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -27,9 +24,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: const BetterU(),
       routes: {
-        '/home' : (context) => const BetterU(),
-        '/all-programs' : (context) => const AllProgramsShow(),
-        '/all-videos' : (context) => const AllVideosShow()
+        '/home': (context) => const BetterU(),
+        '/all-programs': (context) => const AllProgramsShow(),
+        '/all-videos': (context) => const AllVideosShow()
       },
     );
   }
