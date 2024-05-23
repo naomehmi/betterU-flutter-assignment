@@ -95,11 +95,11 @@ class CustomDrawer extends StatelessWidget {
                   color: Color.fromARGB(255, 226, 189, 255)),
               title: const Text('Setting'),
               onTap: () {
-                changeIdx(4);
-                Navigator.pop(context);
+                Navigator.pushNamed(context, '/settings');
+                //Navigator.pop(context);
               },
             ),
-            Divider(),
+            const Divider(),
             ListTile(
               leading: const Icon(Icons.logout,
                   color: Color.fromARGB(255, 205, 141, 255)),

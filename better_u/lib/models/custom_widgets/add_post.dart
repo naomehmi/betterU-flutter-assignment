@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
-class AddPost extends StatelessWidget {
+class AddPost extends StatefulWidget {
   AddPost({
     super.key,
     required this.function
@@ -11,23 +11,35 @@ class AddPost extends StatelessWidget {
 
   Function function;
 
+  @override
+  State<AddPost> createState() => _AddPostState();
+}
+
+class _AddPostState extends State<AddPost> {
+  bool isButtonDisabled = true;
+
   TextEditingController content = TextEditingController();
+
+  Color colorData = Colors.purple[200]!;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: true,
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
+        leading: IconButton(icon: const Icon(Icons.close), onPressed: (){Navigator.pop(context);},),
         title: const Text("New Post", style: TextStyle(fontWeight: FontWeight.bold),),
         actions: [
           Padding(
             padding: const EdgeInsets.all(10),
             child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.purple[200],
+                  backgroundColor: !isButtonDisabled ? Colors.purple[200] : Colors.grey[300],
                 ),
                 onPressed: (){
-                  function(false, content.text);
+                  if(!isButtonDisabled){
+                    widget.function(false, content.text);
+                  }
                 }, 
                 child: const Center(
                   child: Text(
@@ -59,8 +71,15 @@ class AddPost extends StatelessWidget {
                   children: [
                     SizedBox(
                       width: MediaQuery.of(context).size.width - 80,
-                      //height: 100,
                       child: TextField(
+                        onChanged: (val){
+                          if(val.isNotEmpty){
+                            isButtonDisabled = false;
+                          } else {
+                            isButtonDisabled = true;
+                          }
+                          setState(() {});
+                        },
                         controller: content,
                         scrollPadding: const EdgeInsets.all(0),
                         style: const TextStyle(
@@ -68,7 +87,7 @@ class AddPost extends StatelessWidget {
                         ),
                         textAlignVertical: TextAlignVertical.top,
                         keyboardType: TextInputType.multiline,
-                        maxLines: null,
+                        maxLines: 25,
                         autofocus: true,
                         decoration: InputDecoration(
                           isDense: true,

@@ -58,7 +58,7 @@ class _BetterUState extends State<BetterU> {
       "Hi, ${Provider.of<UserManagement>(context, listen: false).loggedInUser.firstName}!",
       "${Provider.of<UserManagement>(context, listen: false).loggedInUser.firstName}'s Progress Tracker",
       "Community Posts",
-      "Profile"
+      "Profile",
     ];
     super.initState();
   }

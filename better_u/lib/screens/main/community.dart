@@ -15,11 +15,9 @@ class Community extends StatefulWidget {
 
 class _CommunityState extends State<Community> {
   void refreshCommunityPost(replyOrNot, content){
-    // setState(() {});
     String email = Provider.of<UserManagement>(context, listen: false).loggedInUser.email;
     Provider.of<ForumManagement>(context, listen: false).newPost(email, false, content);
     Navigator.pop(context);
-    // setState(() {});
   }
 
   @override
@@ -28,12 +26,6 @@ class _CommunityState extends State<Community> {
       builder: (context, posts, child){
 
     List<Post> allPosts = Provider.of<ForumManagement>(context).allForums.where((element) => !element.reply).toList();
-
-    print("AAAAAAAAAAAAAAAAAAAAA");
-
-      for (var e in allPosts) {
-        print(e.userEmail);
-      }
 
         return Scaffold(
         body: SingleChildScrollView(
