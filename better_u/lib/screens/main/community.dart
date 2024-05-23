@@ -15,39 +15,51 @@ class Community extends StatefulWidget {
 
 class _CommunityState extends State<Community> {
   void refreshCommunityPost(replyOrNot, content){
+    // setState(() {});
     String email = Provider.of<UserManagement>(context, listen: false).loggedInUser.email;
     Provider.of<ForumManagement>(context, listen: false).newPost(email, false, content);
     Navigator.pop(context);
-    setState(() {});
+    // setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
-    List<Post> allPosts = Provider.of<ForumManagement>(context, listen: false).allForums.where((element) => !element.reply).toList();
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              ...allPosts.map((e) => ForumPost(post: e))
-            ],
+    return Consumer<ForumManagement>( 
+      builder: (context, posts, child){
+
+    List<Post> allPosts = Provider.of<ForumManagement>(context).allForums.where((element) => !element.reply).toList();
+
+    print("AAAAAAAAAAAAAAAAAAAAA");
+
+      for (var e in allPosts) {
+        print(e.userEmail);
+      }
+
+        return Scaffold(
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                ...allPosts.map((e) => ForumPost(post: e))
+              ],
+            ),
           ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => AddPost(function: refreshCommunityPost)));
-              },
-              backgroundColor: Colors.purple[200],
-              shape: const CircleBorder(),
-              child: const Icon(
-                Icons.add_comment_rounded,
-                color: Colors.white,
-                size: 22,
+        floatingActionButton: FloatingActionButton(
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => AddPost(function: refreshCommunityPost)));
+                },
+                backgroundColor: Colors.purple[200],
+                shape: const CircleBorder(),
+                child: const Icon(
+                  Icons.add_comment_rounded,
+                  color: Colors.white,
+                  size: 22,
+                ),
               ),
-            ),
+      );},
     );
   }
 }

@@ -35,6 +35,8 @@ class ForumManagement extends ChangeNotifier {
   void newPost(email, reply, content){
     allForums.insert(0, Post(id: nextId, userEmail: email, reply: reply, likes: 0, time: DateTime.now(), content: content));
     nextId++;
+    print(allForums[0].userEmail);
+    print(allForums[0].content);
     notifyListeners();
   }
 }
