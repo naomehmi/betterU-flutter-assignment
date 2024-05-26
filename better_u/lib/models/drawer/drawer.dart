@@ -89,7 +89,6 @@ class CustomDrawer extends StatelessWidget {
                 Navigator.pop(context);
               },
             ),
-            const SizedBox(height: 10),
             ListTile(
               leading: const Icon(Icons.settings,
                   color: Color.fromARGB(255, 226, 189, 255)),

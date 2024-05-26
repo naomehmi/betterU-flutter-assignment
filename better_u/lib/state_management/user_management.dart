@@ -11,6 +11,8 @@ class UserManagement extends ChangeNotifier {
         lastName: "Moon",
         email: "kellymoon@gmail.com",
         password: "12345678",
+        pronouns: "she/her",
+        memberSince: DateTime(2024, 2, 11),
         completedWorkouts: {
           // program id : {day n : {video ids completed}}
           1: {
@@ -26,6 +28,8 @@ class UserManagement extends ChangeNotifier {
         lastName: 'Stone',
         email: 'emmastone@gmail.com',
         password: '1234',
+        pronouns: "she/her",
+        memberSince: DateTime(2024, 5 ,4),
         completedWorkouts: {},
         likedPosts: {}),
     User(
@@ -33,6 +37,8 @@ class UserManagement extends ChangeNotifier {
         lastName: 'Smith',
         email: 'coolguy@gmail.com',
         password: '1234',
+        pronouns: "he/him",
+        memberSince: DateTime(2024, 1, 31),
         completedWorkouts: {},
         likedPosts: {}),
   ];
@@ -43,6 +49,8 @@ class UserManagement extends ChangeNotifier {
       lastName: '',
       email: '',
       password: '',
+      pronouns: '',
+      memberSince: DateTime.now(),
       completedWorkouts: {}, likedPosts: {});
 
   // for wrong inputs
@@ -51,6 +59,8 @@ class UserManagement extends ChangeNotifier {
       lastName: '',
       email: '',
       password: '',
+      pronouns: '',
+      memberSince: DateTime.now(),
       completedWorkouts: {},
       likedPosts: {});
 
@@ -79,30 +89,73 @@ class UserManagement extends ChangeNotifier {
     loggedInUser.completedWorkouts = thisUser.completedWorkouts;
     loggedInUser.gender = thisUser.gender;
     loggedInUser.profilePic = thisUser.profilePic;
+    loggedInUser.pronouns = thisUser.pronouns; // Set pronouns
+    loggedInUser.memberSince = thisUser.memberSince; // Set memberSince
+
+    // Set pronouns automatically based on gender
+    switch (thisUser.gender) {
+      case Gender.male:
+        loggedInUser.pronouns = 'he/him';
+        break;
+      case Gender.female:
+        loggedInUser.pronouns = 'she/her';
+        break;
+      case Gender.other:
+        loggedInUser.pronouns = 'other';
+        break;
+      default:
+        loggedInUser.pronouns = ''; // Handle other cases as needed
+    }
+
     notifyListeners();
   }
 
   // new user sign up
-  void newUser(String firstName, String lastName, String email, String password,
-      Gender gender) {
-    firstName =
-        firstName.substring(0, 1).toUpperCase() + firstName.substring(1);
-    lastName = lastName != ""
-        ? lastName
-            .split(" ")
-            .map((e) => e.substring(0, 1).toUpperCase() + e.substring(1))
-            .join(" ")
-        : "";
-    allUsers.add(User(
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
-        password: password,
-        completedWorkouts: {},
-        gender: gender,
-        likedPosts: {}));
-    notifyListeners();
+  void newUser({
+  required String firstName,
+  String? lastName,
+  required String email,
+  required String password,
+  Gender? gender,
+  DateTime? memberSince,
+}) {
+  firstName = firstName.substring(0, 1).toUpperCase() + firstName.substring(1);
+  lastName = lastName != null && lastName.isNotEmpty
+      ? lastName
+          .split(" ")
+          .map((e) => e.substring(0, 1).toUpperCase() + e.substring(1))
+          .join(" ")
+      : "";
+  
+  // Automatically set pronouns based on gender
+  String pronouns;
+  switch (gender) {
+    case Gender.male:
+      pronouns = 'he/him';
+      break;
+    case Gender.female:
+      pronouns = 'she/her';
+      break;
+    case Gender.other:
+    default:
+      pronouns = 'they/them'; // Default pronouns for 'Other' or unspecified gender
+      break;
   }
+
+  allUsers.add(User(
+    firstName: firstName,
+    lastName: lastName,
+    email: email,
+    password: password,
+    completedWorkouts: {},
+    gender: gender ?? Gender.other, // Default value for gender
+    profilePic: 'assets/other/default-profile.jpg', // Example default value for profile pic
+    likedPosts: {},
+    pronouns: pronouns, // Set pronouns based on gender
+    memberSince: memberSince ?? DateTime.now(), // Default value for memberSince
+  ));
+  notifyListeners();
+}
 
   // duplicate email
   String isDuplicateEmail(String inputEmail) {
@@ -119,5 +172,57 @@ class UserManagement extends ChangeNotifier {
     loggedInUser = emptyUser;
     loggedInUser.firstName = 'User';
     notifyListeners();
+  }
+
+  // Update the current logged-in user's information
+  void updateUser({
+    required String firstName,
+    required String lastName,
+    required String email,
+    String? profilePic,
+    String? pronouns,
+    DateTime? memberSince,
+    // Add other fields as needed
+  }) {
+    // Update the logged-in user's information
+    loggedInUser.firstName = firstName;
+    loggedInUser.lastName = lastName;
+    loggedInUser.email = email;
+    if (profilePic != null) {
+      loggedInUser.profilePic = profilePic;
+    }
+
+    // Calculate pronouns based on gender
+    if (loggedInUser.gender == Gender.female) {
+      loggedInUser.pronouns = 'she/her';
+    } else if (loggedInUser.gender == Gender.male) {
+      loggedInUser.pronouns = 'he/him';
+    } else {
+      loggedInUser.pronouns = 'other';
+    }
+
+    // Update member since if it's null
+    loggedInUser.memberSince ??= DateTime.now();
+
+    // Update the corresponding user in the allUsers list
+    for (int i = 0; i < allUsers.length; i++) {
+      if (allUsers[i].email == loggedInUser.email) {
+        allUsers[i] = loggedInUser;
+        break;
+      }
+    }
+
+    notifyListeners();
+  }
+
+  String _getDefaultPronouns(Gender gender) {
+    switch (gender) {
+      case Gender.male:
+        return 'he/him';
+      case Gender.female:
+        return 'she/her';
+      default:
+        return 'other';
+    }
   }
 }

@@ -148,8 +148,13 @@ class _SignUpState extends State<SignUp> {
                       String? lastName = nameParts.length <= 1
                           ? ""
                           : nameParts.sublist(1).join(" ");
-                      users.newUser(firstName, lastName, emailController.text,
-                          passwordController.text, selectedGender!);
+                      users.newUser(
+                        firstName: firstName,
+                        lastName: lastName,
+                        email: emailController.text,
+                        password: passwordController.text,
+                        gender: selectedGender,
+                      );
                       users.setCurrentUser(emailController.text);
                       Navigator.pushAndRemoveUntil(
                           context,
