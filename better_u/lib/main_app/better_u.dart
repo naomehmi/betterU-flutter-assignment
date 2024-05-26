@@ -40,16 +40,39 @@ class _BetterUState extends State<BetterU> {
     });
   }
 
-  void clickedLogout() {
-    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-      content: Text("You have successfully been logged out!"),
-      behavior: SnackBarBehavior.floating,
-      margin: EdgeInsets.all(30),
-      duration: Duration(seconds: 2),
-    ));
-    setState(() {
-      Provider.of<UserManagement>(context, listen: false).userLogout();
-    });
+  void clickedLogout(BuildContext context) {
+    showDialog(
+      context: context, 
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Logout Confirmation'),
+          content: const Text('Are you sure you want to log out?'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              }, 
+              child: const Text('No')
+            ),
+            TextButton(
+              onPressed: () {
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                  content: Text("You have successfully been logged out!"),
+                  behavior: SnackBarBehavior.floating,
+                  margin: EdgeInsets.all(30),
+                  duration: Duration(seconds: 2),
+                ));
+                Provider.of<UserManagement>(context, listen: false).userLogout();
+                Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (context) => const OnboardingPage()),
+                  (Route<dynamic> route) => false,
+                );
+              }, 
+              child: const Text('Yes'))
+          ],
+        );
+      }
+    );
   }
 
   @override

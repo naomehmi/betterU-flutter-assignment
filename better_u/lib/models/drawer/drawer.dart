@@ -105,7 +105,7 @@ class CustomDrawer extends StatelessWidget {
                   color: Color.fromARGB(255, 205, 141, 255)),
               title: const Text('Log out'),
               onTap: () {
-                clickedLogout();
+                clickedLogout(context);
               },
             ),
           ],
