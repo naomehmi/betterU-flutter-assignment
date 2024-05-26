@@ -18,19 +18,23 @@ class UserManagement extends ChangeNotifier {
           }
         },
         gender: Gender.female,
-        profilePic: 'assets/other/profile-picture.jpg'),
+        profilePic: 'assets/other/profile-picture.jpg',
+        likedPosts: {2}
+      ),
     User(
         firstName: 'Emma',
         lastName: 'Stone',
         email: 'emmastone@gmail.com',
         password: '1234',
-        completedWorkouts: {}),
+        completedWorkouts: {},
+        likedPosts: {}),
     User(
         firstName: 'Jacob',
         lastName: 'Smith',
         email: 'coolguy@gmail.com',
         password: '1234',
-        completedWorkouts: {}),
+        completedWorkouts: {},
+        likedPosts: {}),
   ];
 
   // user who logged in credentials
@@ -39,7 +43,7 @@ class UserManagement extends ChangeNotifier {
       lastName: '',
       email: '',
       password: '',
-      completedWorkouts: {});
+      completedWorkouts: {}, likedPosts: {});
 
   // for wrong inputs
   User emptyUser = User(
@@ -47,7 +51,8 @@ class UserManagement extends ChangeNotifier {
       lastName: '',
       email: '',
       password: '',
-      completedWorkouts: {});
+      completedWorkouts: {},
+      likedPosts: {});
 
   // check user credentials when logging in
   bool userLoginCreds(String inputEmail, String inputPassword) {
@@ -94,7 +99,8 @@ class UserManagement extends ChangeNotifier {
         email: email,
         password: password,
         completedWorkouts: {},
-        gender: gender));
+        gender: gender,
+        likedPosts: {}));
     notifyListeners();
   }
 

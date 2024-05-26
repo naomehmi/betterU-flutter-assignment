@@ -7,10 +7,12 @@ class User {
       required this.email,
       required this.password,
       required this.completedWorkouts,
+      required this.likedPosts,
       this.gender = Gender.other,
       this.autoPlay = false,
       this.profilePic = 'assets/other/default-profile.jpg',
-      this.role = 'Rookie'});
+      this.role = 'Rookie',
+    });
 
   String firstName;
   String? lastName;
@@ -21,4 +23,5 @@ class User {
   bool autoPlay;
   String profilePic;
   String role;
+  Set<int> likedPosts;
 }

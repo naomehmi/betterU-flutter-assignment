@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:better_u/models/objects/user.dart';
 import 'package:better_u/state_management/user_management.dart';
 import 'package:flutter/material.dart';
@@ -35,13 +33,13 @@ class Profile extends StatelessWidget {
                 ),
                 Text(
                   "${currentUser.firstName} ${currentUser.lastName}",
-                  style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                  style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
                 ),
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
+          const Padding(
+            padding: EdgeInsets.all(8.0),
             child: SizedBox(
               width: double.infinity,
               child: Column(
@@ -63,7 +61,7 @@ class Profile extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
               child: Center(
                   child: Text(
             "Edit Profile",
