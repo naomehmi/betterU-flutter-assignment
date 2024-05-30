@@ -91,6 +91,7 @@ class UserManagement extends ChangeNotifier {
     loggedInUser.profilePic = thisUser.profilePic;
     loggedInUser.pronouns = thisUser.pronouns; // Set pronouns
     loggedInUser.memberSince = thisUser.memberSince; // Set memberSince
+    loggedInUser.likedPosts = thisUser.likedPosts;
 
     // Set pronouns automatically based on gender
     switch (thisUser.gender) {
@@ -212,6 +213,15 @@ class UserManagement extends ChangeNotifier {
       }
     }
 
+    notifyListeners();
+  }
+
+  void userLike(postId){
+    if(loggedInUser.likedPosts.contains(postId)){
+      loggedInUser.likedPosts.remove(postId);
+    } else{
+      loggedInUser.likedPosts.add(postId);
+    }
     notifyListeners();
   }
 

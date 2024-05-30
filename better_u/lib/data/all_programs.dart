@@ -9,7 +9,7 @@ class AllPrograms {
       interval: "30-45", 
       title: "2024 Weight Loss Challenge", 
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-      workouts: [ // id video is already completed (1) or not (0)
+      workouts: [
         [3, 2],
         [5, 6],
         0,
@@ -27,7 +27,7 @@ class AllPrograms {
       interval: "20-40", 
       title: "Beginner Abs Challenge", 
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor inciddunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-      workouts: [ // id video is already completed (1) or not (0)
+      workouts: [
         [1, 2],
         [4, 7],
         [3, 8],
@@ -42,7 +42,7 @@ class AllPrograms {
       interval: "35-45", 
       title: "Flat Belly Challenge", 
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-      workouts: [ // id video is already completed (1) or not (0)
+      workouts: [
         [3, 5],
         [2, 5],
         [8, 10],
@@ -61,7 +61,7 @@ class AllPrograms {
       interval: "15-30", 
       title: "Strong Arms Challenge", 
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-      workouts: [ // id video is already completed (1) or not (0)
+      workouts: [
         [6, 12],
         [3, 9],
         0,
@@ -76,7 +76,7 @@ class AllPrograms {
       interval: "50-60", 
       title: "Upper Back Advanced Challenge", 
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-      workouts: [ // id video is already completed (1) or not (0)
+      workouts: [
         [3, 8],
         [1, 6],
         [5, 9],
@@ -93,7 +93,7 @@ class AllPrograms {
       interval: "30-45", 
       title: "Yoga Stretch for Back Pain", 
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-      workouts: [ // id video is already completed (1) or not (0)
+      workouts: [
         [3, 5],
         [1, 2],
         0,
@@ -108,7 +108,7 @@ class AllPrograms {
       interval: "30-45", 
       title: "Plank Workout for Beginners", 
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-      workouts: [ // id video is already completed (1) or not (0)
+      workouts: [
         [1, 4],
         [2, 7],
         [3, 9],

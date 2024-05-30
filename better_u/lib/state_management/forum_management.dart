@@ -37,4 +37,14 @@ class ForumManagement extends ChangeNotifier {
     nextId++;
     notifyListeners();
   }
+
+  void newLike(postId){
+    allForums.firstWhere((element) => element.id == postId).likes++;
+    notifyListeners();
+  }
+
+  void removeLike(postId){
+    allForums.firstWhere((element) => element.id == postId).likes--;
+    notifyListeners();
+  }
 }

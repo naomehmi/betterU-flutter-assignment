@@ -158,7 +158,7 @@ class _SignUpState extends State<SignUp> {
                       users.setCurrentUser(emailController.text);
                       Navigator.pushAndRemoveUntil(
                           context,
-                          MaterialPageRoute(builder: (context) => BetterU()),
+                          MaterialPageRoute(builder: (context) => const BetterU()),
                           (route) => false);
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
