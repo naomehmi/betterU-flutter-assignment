@@ -17,21 +17,9 @@ class ForumPost extends StatefulWidget {
 }
 
 class _ForumPostState extends State<ForumPost> {
-  // User? user;
-  // int? replies;
-
   @override
   Widget build(BuildContext context) {
     return Builder(builder: (context) {
-      // user = Provider.of<UserManagement>(context, listen: false)
-      //     .allUsers
-      //     .firstWhere((element) => element.email == widget.post.userEmail);
-      // print("BUILD => ${user!.likedPosts}");
-      // replies = Provider.of<ForumManagement>(context)
-          // .allForums
-          // .where(
-          //     (element) => element.reply && element.replyToId == widget.post.id)
-          // .length;
       return GestureDetector(
         onTap: () {
           Navigator.push(context, MaterialPageRoute(builder: (context) => Replies(post: widget.post)));
