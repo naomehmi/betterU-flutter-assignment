@@ -32,8 +32,8 @@ class ForumManagement extends ChangeNotifier {
 
   int nextId = 4; // to generate post id
 
-  void newPost(email, reply, content){
-    allForums.insert(0, Post(id: nextId, userEmail: email, reply: reply, likes: 0, time: DateTime.now(), content: content));
+  void newPost(String email, bool reply, String content, [int? replyId]){
+    allForums.insert(0, Post(id: nextId, userEmail: email, reply: reply, likes: 0, time: DateTime.now(), content: content, replyToId: replyId));
     nextId++;
     notifyListeners();
   }
