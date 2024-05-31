@@ -194,7 +194,8 @@ class _RepliesState extends State<Replies> {
                             Provider.of<ForumManagement>(context, listen: false)
                                 .newPost(curUser.email, true, reply.text,
                                     widget.post.id);
-                            // setState(() {});
+                            FocusManager.instance.primaryFocus?.unfocus();
+                            reply.text = "";
                           };
                         }
                         setState(() {});
