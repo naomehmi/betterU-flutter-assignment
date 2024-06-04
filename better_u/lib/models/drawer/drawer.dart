@@ -1,4 +1,3 @@
-import 'package:better_u/screens/onboarding/onboarding_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:better_u/state_management/user_management.dart';
