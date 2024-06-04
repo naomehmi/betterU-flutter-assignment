@@ -12,7 +12,6 @@ class UserManagement extends ChangeNotifier {
         email: "kellymoon@gmail.com",
         password: "12345678",
         pronouns: "she/her",
-        // role: "Intermediate",
         memberSince: DateTime(2024, 2, 11),
         completedWorkouts: {
           // program id : {day n : {video ids completed}}
@@ -30,8 +29,11 @@ class UserManagement extends ChangeNotifier {
         email: 'emmastone@gmail.com',
         password: '1234',
         pronouns: "she/her",
+        role: "Intermediate",
         memberSince: DateTime(2024, 5 ,4),
         completedWorkouts: {},
+        gender: Gender.female,
+        profilePic: 'assets/other/profile-picture-emma.jpg',
         likedPosts: {}),
     User(
         firstName: 'Jacob',
@@ -39,8 +41,11 @@ class UserManagement extends ChangeNotifier {
         email: 'coolguy@gmail.com',
         password: '1234',
         pronouns: "he/him",
+        role: "Advanced",
         memberSince: DateTime(2024, 1, 31),
         completedWorkouts: {},
+        gender: Gender.male,
+        profilePic: 'assets/other/profile-picture-jacob.jpg',
         likedPosts: {}),
   ];
 
@@ -227,14 +232,14 @@ class UserManagement extends ChangeNotifier {
     notifyListeners();
   }
 
-  String _getDefaultPronouns(Gender gender) {
-    switch (gender) {
-      case Gender.male:
-        return 'he/him';
-      case Gender.female:
-        return 'she/her';
-      default:
-        return 'other';
-    }
-  }
+  // String _getDefaultPronouns(Gender gender) {
+  //   switch (gender) {
+  //     case Gender.male:
+  //       return 'he/him';
+  //     case Gender.female:
+  //       return 'she/her';
+  //     default:
+  //       return 'other';
+  //   }
+  // }
 }
