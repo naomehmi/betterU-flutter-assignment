@@ -1,5 +1,6 @@
 import 'package:better_u/data/all_programs.dart';
 import 'package:better_u/data/all_videos.dart';
+import 'package:better_u/screens/content/videos/play_video.dart';
 import 'package:better_u/state_management/user_management.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
@@ -70,67 +71,72 @@ class _ProgramDetailsState extends State<ProgramDetails> {
             isLast: thisDayVideos.indexOf(e) == thisDayVideos.length - 1,
             alignment: TimelineAlign.manual,
             lineXY: 0.05,
-            endChild: Container(
-                width: (MediaQuery.of(context).size.width - 100),
-                margin: const EdgeInsets.all(10),
-                child: Card(
-                    shadowColor: Colors.transparent,
-                    semanticContainer: true,
-                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                    margin: const EdgeInsets.all(0),
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              border: const GradientBoxBorder(
-                                  gradient: LinearGradient(
-                                      begin: Alignment.topLeft,
-                                      end: Alignment.bottomRight,
-                                      colors: [
-                                        Color.fromARGB(255, 241, 230, 130),
-                                        Color.fromARGB(255, 204, 161, 237)
-                                      ]),
-                                  width: 2),
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(15),
-                              child: Image.asset(
-                                AllVideos().videos[e - 1].coverImage,
-                                fit: BoxFit.cover,
-                                width:
-                                    (MediaQuery.of(context).size.width - 100),
+            endChild: GestureDetector(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => PlayVideo(video: AllVideos().videos.firstWhere((element) => element.id == e))));
+              },
+              child: Container(
+                  width: (MediaQuery.of(context).size.width - 100),
+                  margin: const EdgeInsets.all(10),
+                  child: Card(
+                      shadowColor: Colors.transparent,
+                      semanticContainer: true,
+                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                      margin: const EdgeInsets.all(0),
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                border: const GradientBoxBorder(
+                                    gradient: LinearGradient(
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.bottomRight,
+                                        colors: [
+                                          Color.fromARGB(255, 241, 230, 130),
+                                          Color.fromARGB(255, 204, 161, 237)
+                                        ]),
+                                    width: 2),
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(15),
+                                child: Image.asset(
+                                  AllVideos().videos[e - 1].coverImage,
+                                  fit: BoxFit.cover,
+                                  width:
+                                      (MediaQuery.of(context).size.width - 100),
+                                ),
                               ),
                             ),
-                          ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          Text(
-                            AllVideos().videos[e - 1].title,
-                            style: const TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.w500),
-                          ),
-                          Row(
-                            children: [
-                              const Icon(
-                                Icons.track_changes,
-                                size: 15,
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              Text(
-                                AllVideos().videos[e - 1].cat,
-                                style: const TextStyle(fontSize: 13),
-                              )
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          )
-                        ]))),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              AllVideos().videos[e - 1].title,
+                              style: const TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.w500),
+                            ),
+                            Row(
+                              children: [
+                                const Icon(
+                                  Icons.track_changes,
+                                  size: 15,
+                                ),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                Text(
+                                  AllVideos().videos[e - 1].cat,
+                                  style: const TextStyle(fontSize: 13),
+                                )
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            )
+                          ]))),
+            ),
           );
         })
       ],

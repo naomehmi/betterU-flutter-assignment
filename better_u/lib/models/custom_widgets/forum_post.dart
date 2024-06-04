@@ -1,3 +1,4 @@
+import 'package:better_u/models/custom_widgets/replies.dart';
 import 'package:better_u/models/objects/post.dart';
 import 'package:better_u/models/objects/user.dart';
 import 'package:better_u/state_management/forum_management.dart';
@@ -16,135 +17,141 @@ class ForumPost extends StatefulWidget {
 }
 
 class _ForumPostState extends State<ForumPost> {
-  User? user;
-  int? replies;
-
   @override
   Widget build(BuildContext context) {
     return Builder(builder: (context) {
-      user = Provider.of<UserManagement>(context)
-          .allUsers
-          .firstWhere((element) => element.email == widget.post.userEmail);
-      replies = Provider.of<ForumManagement>(context)
-          .allForums
-          .where(
-              (element) => element.reply && element.replyToId == widget.post.id)
-          .length;
-      return Container(
-        margin: const EdgeInsets.only(bottom: 20),
-        decoration: BoxDecoration(
-            border: Border.all(
-              color: Colors.purple[200]!,
-              width: 1.5,
-            ),
-            borderRadius: BorderRadius.circular(15)),
-        child: Padding(
-          padding: const EdgeInsets.all(10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  CircleAvatar(
-                    radius: 20,
-                    backgroundImage: AssetImage(user!.profilePic),
+      return GestureDetector(
+        onTap: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => Replies(post: widget.post)));
+        },
+        child: Consumer<UserManagement>(
+          builder: (context, users, child) => Consumer<ForumManagement>(
+            builder: (context, forum, child) {
+              User poster = users.allUsers.firstWhere((element) => element.email == widget.post.userEmail);
+              User curUser = users.loggedInUser;
+              print(curUser.firstName);
+              print(curUser.likedPosts);
+              int replies = forum.allForums.where(
+              (element) => element.reply && element.replyToId == widget.post.id).length;
+              return Container(
+              margin: const EdgeInsets.only(bottom: 20),
+              decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.purple[200]!,
+                    width: 1.5,
                   ),
-                  const SizedBox(
-                    width: 8,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "${user!.firstName} ${user!.lastName}",
-                        style: const TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        user!.role,
-                        style:
-                            const TextStyle(fontSize: 13, color: Colors.grey),
-                      )
-                    ],
-                  )
-                ],
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Text(
-                widget.post.content,
-                style: const TextStyle(fontSize: 15),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Row(children: [
-                Consumer<UserManagement>(
-                  builder: (context, user, child) => Row(
-                    children: [
-                      IconButton(
-                        visualDensity: const VisualDensity(horizontal: -4),
-                        iconSize: 20,
-                        icon: const Icon(Icons.thumb_up),
-                        color: user.loggedInUser.likedPosts.contains(widget.post.id) ? Colors.purple[200] : Colors.grey[400],
-                        onPressed: () {
-                          if(user.loggedInUser.likedPosts.contains(widget.post.id)){
-                            user.loggedInUser.likedPosts.remove(widget.post.id);
-                            widget.post.likes--;
-                          } else {
-                            user.loggedInUser.likedPosts.add(widget.post.id);
-                            widget.post.likes++;
-                          }
-                          setState(() {
-                            
-                          });
-                        },
-                      ),
-                      Text(
-                        '${widget.post.likes} likes',
-                        style: TextStyle(fontSize: 13, color: Colors.grey[600]),
-                      ),
-                    ],
-                  ),
-                ),
-                Row(
+                  borderRadius: BorderRadius.circular(15)),
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    IconButton(
-                      visualDensity: const VisualDensity(horizontal: -4),
-                      iconSize: 20,
-                      icon: const Icon(Icons.comment),
-                      color: Colors.grey[400],
-                      onPressed: () {},
-                    ),
-                    Text(
-                      '$replies ${replies == 1 ? "reply" : "replies"}',
-                      style: TextStyle(fontSize: 13, color: Colors.grey[600]),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Icon(
-                      Icons.schedule,
-                      size: 20,
-                      color: Colors.grey[400],
+                    Row(
+                      children: [
+                        CircleAvatar(
+                          radius: 20,
+                          backgroundImage: AssetImage(poster.profilePic),
+                        ),
+                        const SizedBox(
+                          width: 8,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "${poster.firstName} ${poster.lastName}",
+                              style: const TextStyle(
+                                  fontSize: 15, fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              poster.role,
+                              style:
+                                  const TextStyle(fontSize: 13, color: Colors.grey),
+                            )
+                          ],
+                        )
+                      ],
                     ),
                     const SizedBox(
-                      width: 5,
+                      height: 20,
                     ),
                     Text(
-                      timeago.format(DateTime.now().subtract(
-                          DateTime.now().difference(widget.post.time))),
-                      style: TextStyle(fontSize: 13, color: Colors.grey[600]),
+                      widget.post.content,
+                      style: const TextStyle(fontSize: 15),
                     ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Row(children: [
+                      Row(
+                          children: [
+                            IconButton(
+                              visualDensity: const VisualDensity(horizontal: -4),
+                              iconSize: 20,
+                              icon: const Icon(Icons.thumb_up),
+                              color: curUser.likedPosts.contains(widget.post.id) ? Colors.purple[200] : Colors.grey[400],
+                              onPressed: () {
+                                if(curUser.likedPosts.contains(widget.post.id)){
+                                  forum.removeLike(widget.post.id);
+                                  print("sini");
+                                } else{
+                                  print("sana");
+                                  forum.newLike(widget.post.id);
+                                }
+                                users.userLike(widget.post.id);
+                                // user = currentUser.loggedInUser;
+                                setState(() {});
+                              },
+                            ),
+                            Text(
+                              '${widget.post.likes} ${widget.post.likes == 1 ? "like" : "likes"}',
+                              style: TextStyle(fontSize: 13, color: Colors.grey[600]),
+                            ),
+                          ],
+                        ),
+                      Row(
+                        children: [
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Icon(
+                            Icons.comment, size: 20,
+                            color: Colors.grey[400]
+                          ),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          Text(
+                            '$replies ${replies == 1 ? "reply" : "replies"}',
+                            style: TextStyle(fontSize: 13, color: Colors.grey[600]),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Icon(
+                            Icons.schedule,
+                            size: 20,
+                            color: Colors.grey[400],
+                          ),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          Text(
+                            timeago.format(DateTime.now().subtract(
+                                DateTime.now().difference(widget.post.time))),
+                            style: TextStyle(fontSize: 13, color: Colors.grey[600]),
+                          ),
+                        ],
+                      ),
+                    ])
                   ],
                 ),
-              ])
-            ],
+              ),
+            );},
           ),
         ),
       );
