@@ -12,6 +12,7 @@ class UserManagement extends ChangeNotifier {
         email: "kellymoon@gmail.com",
         password: "12345678",
         pronouns: "she/her",
+        // role: "Intermediate",
         memberSince: DateTime(2024, 2, 11),
         completedWorkouts: {
           // program id : {day n : {video ids completed}}
@@ -92,6 +93,7 @@ class UserManagement extends ChangeNotifier {
     loggedInUser.pronouns = thisUser.pronouns; // Set pronouns
     loggedInUser.memberSince = thisUser.memberSince; // Set memberSince
     loggedInUser.likedPosts = thisUser.likedPosts;
+    loggedInUser.role = thisUser.role;
 
     // Set pronouns automatically based on gender
     switch (thisUser.gender) {

@@ -8,6 +8,19 @@ import 'package:intl/intl.dart';
 class Profile extends StatelessWidget {
   const Profile({super.key});
 
+  double _getProgressPercentage(String role) {
+    switch (role) {
+      case 'Rookie':
+        return 0.25;
+      case 'Intermediate':
+        return 0.50;
+      case 'Advanced':
+        return 1.0;
+      default:
+        return 0.0;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,6 +52,53 @@ class Profile extends StatelessWidget {
                       "${currentUser.firstName} ${currentUser.lastName}",
                       style: const TextStyle(
                           fontSize: 30, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 20),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      child: Column(
+                        children: [
+                          Stack(
+                            children: [
+                              Container(
+                                height: 20,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      Colors.purple.shade100,
+                                      Colors.purple.shade200,
+                                      Colors.purple.shade300,
+                                      Colors.purple.shade400,
+                                    ],
+                                    stops: [
+                                      0.0,
+                                      _getProgressPercentage(currentUser.role),
+                                      _getProgressPercentage(currentUser.role),
+                                      1.0,
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Positioned(
+                                left: _getProgressPercentage(currentUser.role) * MediaQuery.of(context).size.width - 25,
+                                top: -5,
+                                child: Icon(
+                                  Icons.star,
+                                  color: Colors.amber,
+                                  size: 30,
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 10),
+                          Text(
+                            currentUser.role,
+                            style: const TextStyle(
+                                fontSize: 18, color: Colors.purple),
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 );
