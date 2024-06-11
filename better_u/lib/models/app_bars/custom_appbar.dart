@@ -11,7 +11,8 @@ PreferredSizeWidget customAppBar(GlobalKey<ScaffoldState> scaffoldKey, String he
             onTap: () {
               scaffoldKey.currentState?.openDrawer();
             },
-            child: Container(
+            child: 
+            heading != "Profile" ? Container(
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 border: Border.all(
@@ -23,7 +24,7 @@ PreferredSizeWidget customAppBar(GlobalKey<ScaffoldState> scaffoldKey, String he
                 radius: 20,
                 backgroundImage: AssetImage(img),
               ),
-            ),
+            ) : const Icon(Icons.menu),
           ),
           const SizedBox(width: 8),
           Text(
