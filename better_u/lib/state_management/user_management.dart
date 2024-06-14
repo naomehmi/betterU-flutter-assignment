@@ -21,7 +21,8 @@ class UserManagement extends ChangeNotifier {
         },
         gender: Gender.female,
         profilePic: 'assets/other/profile-picture.jpg',
-        likedPosts: {2}
+        likedPosts: {2},
+        goalWeight: 55
       ),
     User(
         firstName: 'Emma',
@@ -34,7 +35,9 @@ class UserManagement extends ChangeNotifier {
         completedWorkouts: {},
         gender: Gender.female,
         profilePic: 'assets/other/profile-picture-emma.jpg',
-        likedPosts: {}),
+        likedPosts: {},
+        goalWeight: 60
+      ),
     User(
         firstName: 'Jacob',
         lastName: 'Smith',
@@ -46,7 +49,9 @@ class UserManagement extends ChangeNotifier {
         completedWorkouts: {},
         gender: Gender.male,
         profilePic: 'assets/other/profile-picture-jacob.jpg',
-        likedPosts: {}),
+        likedPosts: {},
+        goalWeight: 52
+      ),
   ];
 
   // user who logged in credentials
@@ -99,6 +104,7 @@ class UserManagement extends ChangeNotifier {
     loggedInUser.memberSince = thisUser.memberSince; // Set memberSince
     loggedInUser.likedPosts = thisUser.likedPosts;
     loggedInUser.role = thisUser.role;
+    loggedInUser.goalWeight = thisUser.goalWeight;
 
     // Set pronouns automatically based on gender
     switch (thisUser.gender) {

@@ -1,18 +1,40 @@
 import 'package:better_u/models/custom_widgets/todays_exercise.dart';
+import 'package:better_u/models/objects/user.dart';
+import 'package:better_u/state_management/user_management.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 
 class ProgressTracker extends StatelessWidget {
   ProgressTracker({super.key});
 
   Map sampleData = {
-    "2024-06-10" : 54.8,
-    "2024-06-11" : 55.7
+    DateTime(2024, 06, 10) : 54.8,
+    DateTime(2024, 06, 11) : 55.7,
+    DateTime(2024, 06, 12) : 54.8,
+    DateTime(2024, 06, 13) : 55.7,
+    DateTime(2024, 06, 14) : 54.8,
+    DateTime(2024, 06, 15) : 53.8,
+    DateTime(2024, 06, 16) : 52,
   };
-
   @override
   Widget build(BuildContext context) {
+    int totalWorkouts = 0;
+    double userTarget = Provider.of<UserManagement>(context).loggedInUser.goalWeight;
+    TextEditingController targetWeight = TextEditingController(text: userTarget.toString());
+    print(Provider.of<UserManagement>(context).loggedInUser.goalWeight);
+
+    Map<int, Map<int, Set<int>>> completedWorkouts = Provider.of<UserManagement>(context).loggedInUser.completedWorkouts;
+
+    for(int i in completedWorkouts.keys){
+      List days = completedWorkouts[i]!.keys.toList();
+      for(int j in days){
+        totalWorkouts += completedWorkouts[i]![j]!.length;
+      }
+    }
+    
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -130,19 +152,40 @@ class ProgressTracker extends StatelessWidget {
                 aspectRatio: 2,
                 child: LineChart(
                   LineChartData(
+                    titlesData: FlTitlesData(
+                      rightTitles: const AxisTitles(
+                        sideTitles: SideTitles(showTitles: false)
+                      ),
+                      topTitles: const AxisTitles(
+                        sideTitles: SideTitles(showTitles: false)
+                      ),
+                      bottomTitles: AxisTitles(
+                        sideTitles: SideTitles(
+                          interval: 1,
+                          reservedSize: 50,
+                          showTitles: true,
+                          getTitlesWidget: (x, meta){
+                            List axisTitles = sampleData.keys.toList();
+                            if(sampleData.length > 7){
+                              axisTitles = axisTitles.sublist(sampleData.length - 8);
+                            }
+                            return SideTitleWidget(axisSide: meta.axisSide, child: Text(
+                              DateFormat.MMMd().format(axisTitles[x.toInt()-1]).replaceFirst(" ", "\n"),
+                              style: const TextStyle(
+                                fontSize: 14
+                              ),
+                            ));
+                          }
+                        )
+                      )
+                    ),
                     minX: 1,
-                    // minY: 0,
+                    betweenBarsData: [],
                     lineBarsData: [
                       LineChartBarData(
                         color: Colors.purple[200],
                         spots: [
-                          const FlSpot(1, 55),
-                          const FlSpot(2, 54),
-                          const FlSpot(3, 53),
-                          const FlSpot(4, 54),
-                          const FlSpot(5, 55),
-                          const FlSpot(6, 52),
-                          const FlSpot(7, 54),
+                          for(int i=1;i<=sampleData.length;i++) FlSpot(i.toDouble(), sampleData[sampleData.keys.toList()[i-1]].toDouble())
                         ]
                       )
                     ],
@@ -161,9 +204,9 @@ class ProgressTracker extends StatelessWidget {
                     ),
                   ),
                   const Expanded(child: SizedBox()),
-                  const Text(
-                    "53 kg",
-                    style: TextStyle(
+                  Text(
+                    "$userTarget kg",
+                    style: const TextStyle(
                       color: Color.fromARGB(255, 170, 140, 36),
                       fontWeight: FontWeight.w600,
                       fontSize: 18
@@ -196,6 +239,7 @@ class ProgressTracker extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             TextField(
+                              controller: targetWeight,
                               keyboardType: const TextInputType.numberWithOptions(decimal: true, signed: false),
                               autofocus: true,
                               decoration: InputDecoration(
@@ -242,10 +286,10 @@ class ProgressTracker extends StatelessWidget {
                   ),
                   width: 200,
                   height: 125,
-                  child: const Column(
+                  child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
+                      const Text(
                         "Total Workouts Done",
                         style: TextStyle(
                           fontSize: 16,
@@ -254,8 +298,8 @@ class ProgressTracker extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        "5",
-                        style: TextStyle(
+                        "$totalWorkouts",
+                        style: const TextStyle(
                           fontSize: 50,
                           fontFamily: "Monoton",
                           color: Color.fromARGB(255, 139, 93, 175)

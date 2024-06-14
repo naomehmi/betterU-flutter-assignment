@@ -82,39 +82,6 @@ class Profile extends StatelessWidget {
                               )
                             ],
                           ),
-                          // Stack(
-                          //   children: [
-                          //     Container(
-                          //       height: 20,
-                          //       decoration: BoxDecoration(
-                          //         borderRadius: BorderRadius.circular(10),
-                          //         gradient: LinearGradient(
-                          //           colors: [
-                          //             Colors.purple.shade100,
-                          //             Colors.purple.shade200,
-                          //             Colors.purple.shade300,
-                          //             Colors.purple.shade400,
-                          //           ],
-                          //           stops: [
-                          //             0.0,
-                          //             _getProgressPercentage(currentUser.role),
-                          //             _getProgressPercentage(currentUser.role),
-                          //             1.0,
-                          //           ],
-                          //         ),
-                          //       ),
-                          //     ),
-                          //     Positioned(
-                          //       left: _getProgressPercentage(currentUser.role) * MediaQuery.of(context).size.width - 25,
-                          //       top: -5,
-                          //       child: const Icon(
-                          //         Icons.star,
-                          //         color: Colors.amber,
-                          //         size: 30,
-                          //       ),
-                          //     ),
-                          //   ],
-                          // ),
                           const SizedBox(height: 10),
                           Text(
                             currentUser.role,
@@ -169,7 +136,7 @@ class Profile extends StatelessWidget {
                     },
                   ),
                   const SizedBox(height: 20),
-                  const Text(
+                  const Text( 
                     "pronouns",
                     textAlign: TextAlign.left,
                     style: TextStyle(fontSize: 18),

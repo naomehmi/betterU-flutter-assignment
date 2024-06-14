@@ -12,6 +12,7 @@ class User {
     this.autoPlay = false,
     this.profilePic = 'assets/other/default-profile.jpg',
     this.role = 'Rookie',
+    this.goalWeight = 0,
     required this.pronouns,
     required this.memberSince,
   });
@@ -27,5 +28,6 @@ class User {
   String role;
   Set<int> likedPosts;
   String pronouns; 
-  DateTime memberSince; 
+  DateTime memberSince;
+  double goalWeight; 
 }
