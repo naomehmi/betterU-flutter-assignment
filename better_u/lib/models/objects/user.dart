@@ -15,6 +15,7 @@ class User {
     this.goalWeight = 0,
     required this.pronouns,
     required this.memberSince,
+    this.weightLog = const {}
   });
 
   String firstName;
@@ -30,4 +31,5 @@ class User {
   String pronouns; 
   DateTime memberSince;
   double goalWeight; 
+  Map<DateTime, double> weightLog;
 }

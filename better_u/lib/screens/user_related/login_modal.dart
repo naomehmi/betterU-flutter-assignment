@@ -3,9 +3,9 @@ import 'package:better_u/state_management/user_management.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-Future<dynamic> LoginModal(context) {
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+Future<dynamic> loginModal(context) {
+  TextEditingController emailController = TextEditingController(text: "kellymoon@gmail.com");
+  TextEditingController passwordController = TextEditingController(text: "12345678");
 
   return showModalBottomSheet(
       context: context,

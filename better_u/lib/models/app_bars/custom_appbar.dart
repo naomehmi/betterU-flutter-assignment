@@ -4,7 +4,7 @@ PreferredSizeWidget customAppBar(GlobalKey<ScaffoldState> scaffoldKey, String he
   return AppBar(
     automaticallyImplyLeading: false,
     title: Padding(
-      padding: const EdgeInsets.only(top: 8),
+      padding: const EdgeInsets.symmetric(vertical: 5),
       child: Row(
         children: [
             GestureDetector(

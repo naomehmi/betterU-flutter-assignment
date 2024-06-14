@@ -108,7 +108,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                   LoginAndSignUpButton(
                     text: "Login",
                       onPressed: () {
-                        LoginModal(context);
+                        loginModal(context);
                       },
                       color1: const Color.fromARGB(255, 226, 189, 255),
                       color2: const Color.fromARGB(255, 139, 93, 175)),
