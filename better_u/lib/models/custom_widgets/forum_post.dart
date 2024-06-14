@@ -61,7 +61,7 @@ class _ForumPostState extends State<ForumPost> {
                             Text(
                               "${poster.firstName} ${poster.lastName}",
                               style: const TextStyle(
-                                  fontSize: 15, fontWeight: FontWeight.bold),
+                                  fontSize: 15, fontWeight: FontWeight.w600),
                             ),
                             Text(
                               poster.role,

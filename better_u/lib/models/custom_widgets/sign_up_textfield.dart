@@ -32,7 +32,7 @@ class _SignUpTextFieldState extends State<SignUpTextField> {
         Text(
           widget.text,
           style: TextStyle(
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w600,
             color: Colors.purple[200],
             fontSize: 20
           ),

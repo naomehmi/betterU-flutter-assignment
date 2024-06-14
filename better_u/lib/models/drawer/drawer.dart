@@ -37,7 +37,7 @@ class CustomDrawer extends StatelessWidget {
                       '${user.loggedInUser.firstName} ${user.loggedInUser.lastName}',
                       style: const TextStyle(
                         fontSize: 18,
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.w600,
                       ),
                     );
                   }),

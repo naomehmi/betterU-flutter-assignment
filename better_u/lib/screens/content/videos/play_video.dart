@@ -69,7 +69,7 @@ class _PlayVideoState extends State<PlayVideo> {
                   Text(widget.video.title,
                       style: TextStyle(
                           fontSize: 26,
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w600,
                           color: Colors.purple[200])),
                   Text(widget.video.cat,
                       style: const TextStyle(fontSize: 15, color: Colors.grey)),

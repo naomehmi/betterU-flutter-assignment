@@ -64,7 +64,7 @@ class _AllVideosShowState extends State<AllVideosShow> {
           children: [
             const Text(
               "Workout Videos",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28),
+              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 28),
             ),
             const SizedBox(
               height: 25,
@@ -79,7 +79,7 @@ class _AllVideosShowState extends State<AllVideosShow> {
               children: [
                 Text(
                   "${allVideos.length} programs",
-                  style: const TextStyle(fontWeight: FontWeight.bold),
+                  style: const TextStyle(fontWeight: FontWeight.w600),
                 ),
                 DropdownButton(
                     value: currentValue,

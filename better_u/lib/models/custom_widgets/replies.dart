@@ -45,7 +45,7 @@ class _RepliesState extends State<Replies> {
                 Text(
                   "${user.firstName} ${user.lastName}",
                   style: const TextStyle(
-                      fontSize: 15, fontWeight: FontWeight.bold),
+                      fontSize: 15, fontWeight: FontWeight.w600),
                 ),
                 Text(
                   user.role,

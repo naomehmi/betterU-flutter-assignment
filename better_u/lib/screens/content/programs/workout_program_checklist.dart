@@ -24,7 +24,7 @@ class _WorkoutProgramChecklistState extends State<WorkoutProgramChecklist> {
       appBar: AppBar(
         title: Text(
           widget.program.title,
-          style: const TextStyle(fontWeight: FontWeight.bold),
+          style: const TextStyle(fontWeight: FontWeight.w600),
         ),
       ),
       body: SingleChildScrollView(
@@ -60,7 +60,7 @@ class _WorkoutProgramChecklistState extends State<WorkoutProgramChecklist> {
                 children: [
                   const Text(
                     "Details",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28),
+                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 28),
                   ),
                   const SizedBox(
                     height: 10,
@@ -115,7 +115,7 @@ class _WorkoutProgramChecklistState extends State<WorkoutProgramChecklist> {
                       // Navigate to the "workout_done" page
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => WorkoutDonePage()),
+                        MaterialPageRoute(builder: (context) => const WorkoutDonePage()),
                       );
                     },
                     style: ButtonStyle(
@@ -130,7 +130,7 @@ class _WorkoutProgramChecklistState extends State<WorkoutProgramChecklist> {
                       padding: const EdgeInsets.symmetric(vertical: 12),
                       child: Text(
                         'Mark Day ${widget._currentDay} as Completed',
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 18,
                           color: Colors.white,
                         ),

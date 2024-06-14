@@ -27,7 +27,7 @@ class _BetterUState extends State<BetterU> {
 
   List screens = [
     const Home(),
-    const ProgressTracker(),
+    ProgressTracker(),
     const Community(),
     const Profile()
   ];

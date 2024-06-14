@@ -80,7 +80,7 @@ class _SearchFeatureState extends State<SearchFeature> {
                     fit: BoxFit.cover,
                   ),
                 ),
-                title: Text(e.title, style: const TextStyle(fontWeight: FontWeight.bold),),
+                title: Text(e.title, style: const TextStyle(fontWeight: FontWeight.w600),),
                 subtitle: widget.isProgram ? Text(e.desc, overflow: TextOverflow.ellipsis, maxLines: 2,) : Text(e.cat) 
               ))
             ],

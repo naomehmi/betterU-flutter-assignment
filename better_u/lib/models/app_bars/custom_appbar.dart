@@ -31,7 +31,7 @@ PreferredSizeWidget customAppBar(GlobalKey<ScaffoldState> scaffoldKey, String he
             heading,
             style: const TextStyle(
               fontSize: 16,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w600,
             ),
           ),
         ],

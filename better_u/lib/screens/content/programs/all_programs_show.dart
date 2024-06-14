@@ -67,7 +67,7 @@ class _AllProgramsShowState extends State<AllProgramsShow> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text("Latest Workout Exercises", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28),),
+            const Text("Latest Workout Exercises", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 28),),
             const SizedBox(
               height: 25,
             ),
@@ -90,7 +90,7 @@ class _AllProgramsShowState extends State<AllProgramsShow> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("${allPrograms.length} programs", style: const TextStyle(fontWeight: FontWeight.bold),),
+                Text("${allPrograms.length} programs", style: const TextStyle(fontWeight: FontWeight.w600),),
                 DropdownButton(
                     value: currentValue,
                     icon: const Icon(Icons.expand_more),

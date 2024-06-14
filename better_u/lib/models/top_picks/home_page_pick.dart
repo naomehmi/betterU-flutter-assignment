@@ -32,7 +32,7 @@ class HomePagePickTemplate extends StatelessWidget {
             children: [
               DefaultTextStyle(
                 style: const TextStyle(
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w600,
                   fontSize: 24,
                   color: Colors.black
                 ),

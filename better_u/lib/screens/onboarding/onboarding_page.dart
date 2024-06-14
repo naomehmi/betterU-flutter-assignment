@@ -73,9 +73,10 @@ class _OnboardingPageState extends State<OnboardingPage> {
                         ),
                         Text(
                           contents[i].title,
+                          textAlign: TextAlign.center,
                           style: const TextStyle(
                             fontSize: 27,
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
                         const SizedBox(height: 20),

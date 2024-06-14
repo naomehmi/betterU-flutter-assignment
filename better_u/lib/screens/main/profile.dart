@@ -2,6 +2,7 @@ import 'package:better_u/models/objects/user.dart';
 import 'package:better_u/screens/main/editprofilepage.dart';
 import 'package:better_u/state_management/user_management.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 
@@ -51,7 +52,7 @@ class Profile extends StatelessWidget {
                     Text(
                       "${currentUser.firstName} ${currentUser.lastName}",
                       style: const TextStyle(
-                          fontSize: 30, fontWeight: FontWeight.bold),
+                          fontSize: 30, fontWeight: FontWeight.w600),
                     ),
                     const SizedBox(height: 20),
                     Padding(
@@ -59,38 +60,61 @@ class Profile extends StatelessWidget {
                       child: Column(
                         children: [
                           Stack(
+                            clipBehavior: Clip.none,
                             children: [
                               Container(
-                                height: 20,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
-                                  gradient: LinearGradient(
-                                    colors: [
-                                      Colors.purple.shade100,
-                                      Colors.purple.shade200,
-                                      Colors.purple.shade300,
-                                      Colors.purple.shade400,
-                                    ],
-                                    stops: [
-                                      0.0,
-                                      _getProgressPercentage(currentUser.role),
-                                      _getProgressPercentage(currentUser.role),
-                                      1.0,
-                                    ],
-                                  ),
+                                  border: Border.all(color: const Color.fromARGB(255, 139, 93, 175), width: 2)
+                                ),
+                                child: LinearProgressIndicator(
+                                  value: _getProgressPercentage(currentUser.role),
+                                  backgroundColor: Colors.white,
+                                  color: const Color.fromARGB(255, 226, 189, 255),
+                                  borderRadius: BorderRadius.circular(10),
+                                  minHeight: 15,
                                 ),
                               ),
                               Positioned(
-                                left: _getProgressPercentage(currentUser.role) * MediaQuery.of(context).size.width - 25,
                                 top: -5,
-                                child: Icon(
-                                  Icons.star,
-                                  color: Colors.amber,
-                                  size: 30,
-                                ),
-                              ),
+                                left:  _getProgressPercentage(currentUser.role) * MediaQuery.of(context).size.width - 25,
+                                child: const Icon(Icons.star, color: Color.fromARGB(255, 250, 225, 0), size: 30, weight: 25, fill: 1,)
+                              )
                             ],
                           ),
+                          // Stack(
+                          //   children: [
+                          //     Container(
+                          //       height: 20,
+                          //       decoration: BoxDecoration(
+                          //         borderRadius: BorderRadius.circular(10),
+                          //         gradient: LinearGradient(
+                          //           colors: [
+                          //             Colors.purple.shade100,
+                          //             Colors.purple.shade200,
+                          //             Colors.purple.shade300,
+                          //             Colors.purple.shade400,
+                          //           ],
+                          //           stops: [
+                          //             0.0,
+                          //             _getProgressPercentage(currentUser.role),
+                          //             _getProgressPercentage(currentUser.role),
+                          //             1.0,
+                          //           ],
+                          //         ),
+                          //       ),
+                          //     ),
+                          //     Positioned(
+                          //       left: _getProgressPercentage(currentUser.role) * MediaQuery.of(context).size.width - 25,
+                          //       top: -5,
+                          //       child: const Icon(
+                          //         Icons.star,
+                          //         color: Colors.amber,
+                          //         size: 30,
+                          //       ),
+                          //     ),
+                          //   ],
+                          // ),
                           const SizedBox(height: 10),
                           Text(
                             currentUser.role,
@@ -178,7 +202,12 @@ class Profile extends StatelessWidget {
               child: Text(
                 "Edit Profile",
                 textAlign: TextAlign.end,
-                style: TextStyle(color: Colors.blue, fontSize: 16),
+                style: TextStyle(
+                  color: Color.fromARGB(255, 170, 140, 36), 
+                  fontSize: 16, 
+                  decoration: TextDecoration.underline,
+                  decorationColor: Color.fromARGB(255, 170, 140, 36)
+                ),
               ),
             ),
           ),

@@ -68,7 +68,7 @@ Future<dynamic> LoginModal(context) {
                                 'Login',
                                 style: TextStyle(
                                     fontSize: 18,
-                                    fontWeight: FontWeight.bold,
+                                    fontWeight: FontWeight.w600,
                                     color: Color.fromARGB(255, 139, 93, 175)),
                               ),
                             );

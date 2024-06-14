@@ -74,7 +74,7 @@ class _SignUpState extends State<SignUp> {
               Text(
                 'Gender',
                 style: TextStyle(
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w600,
                     color: Colors.purple[200],
                     fontSize: 20),
               ),

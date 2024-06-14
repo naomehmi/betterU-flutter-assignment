@@ -36,7 +36,7 @@ class TodaysExercise extends StatelessWidget {
                 child: Text(
                   text,
                   textAlign: TextAlign.right,
-                  style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
                 ),
               )
             ],
