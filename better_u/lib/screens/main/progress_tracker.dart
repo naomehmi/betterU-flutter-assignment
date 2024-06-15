@@ -412,14 +412,14 @@ class _ProgressTrackerState extends State<ProgressTracker> {
                 ],
               ),
               const Divider(),
-              const SizedBox(
+              SizedBox(
                 width: double.infinity,
                 child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 10),
+                  padding: const EdgeInsets.symmetric(vertical: 10),
                   child: Text(
-                    "Weight Progress in the Last 7 Days",
+                    "Weight Progress in the Last ${userWeight.length >= 7 ? 7 : userWeight.length} Days",
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 15),
+                    style: const TextStyle(fontSize: 15),
                   ),
                 ),
               ),
