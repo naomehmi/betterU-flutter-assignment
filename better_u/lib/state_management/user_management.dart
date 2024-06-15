@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:better_u/models/objects/user.dart';
 import 'package:flutter/material.dart';
 
@@ -23,15 +25,15 @@ class UserManagement extends ChangeNotifier {
         profilePic: 'assets/other/profile-picture.jpg',
         likedPosts: {2},
         goalWeight: 55,
-        weightLog: {
-          DateTime(2024, 06, DateTime.now().day - 6): 59,
+        weightLog: SplayTreeMap.from({
+          DateTime(2024, 06, DateTime.now().day - 6): 59.0,
           DateTime(2024, 06, DateTime.now().day - 5): 54.8,
           DateTime(2024, 06, DateTime.now().day - 4): 55.7,
           DateTime(2024, 06, DateTime.now().day - 3): 60.8,
           DateTime(2024, 06, DateTime.now().day - 2): 55.7,
           DateTime(2024, 06, DateTime.now().day - 1): 54.8,
-          DateTime(2024, 06, DateTime.now().day): 52,
-        }),
+          DateTime(2024, 06, DateTime.now().day): 52.0,
+        })),
     User(
         firstName: 'Emma',
         lastName: 'Stone',
@@ -44,7 +46,8 @@ class UserManagement extends ChangeNotifier {
         gender: Gender.female,
         profilePic: 'assets/other/profile-picture-emma.jpg',
         likedPosts: {},
-        goalWeight: 60),
+        goalWeight: 60,
+        weightLog: SplayTreeMap.from({})),
     User(
         firstName: 'Jacob',
         lastName: 'Smith',
@@ -57,7 +60,8 @@ class UserManagement extends ChangeNotifier {
         gender: Gender.male,
         profilePic: 'assets/other/profile-picture-jacob.jpg',
         likedPosts: {},
-        goalWeight: 52),
+        goalWeight: 52,
+        weightLog: SplayTreeMap.from({})),
   ];
 
   // user who logged in credentials
@@ -69,7 +73,8 @@ class UserManagement extends ChangeNotifier {
       pronouns: '',
       memberSince: DateTime.now(),
       completedWorkouts: {},
-      likedPosts: {});
+      likedPosts: {},
+      weightLog: SplayTreeMap.from({}));
 
   // for wrong inputs
   User emptyUser = User(
@@ -80,7 +85,8 @@ class UserManagement extends ChangeNotifier {
       pronouns: '',
       memberSince: DateTime.now(),
       completedWorkouts: {},
-      likedPosts: {});
+      likedPosts: {},
+      weightLog: SplayTreeMap.from({}));
 
   // check user credentials when logging in
   bool userLoginCreds(String inputEmail, String inputPassword) {
@@ -166,8 +172,8 @@ class UserManagement extends ChangeNotifier {
           'assets/other/default-profile.jpg', // Example default value for profile pic
       likedPosts: {},
       pronouns: pronouns, // Set pronouns based on gender
-      memberSince:
-          memberSince ?? DateTime.now(), // Default value for memberSince
+      memberSince: memberSince ?? DateTime.now(),
+      weightLog: SplayTreeMap.from({}), // Default value for memberSince
     ));
     notifyListeners();
   }
@@ -241,6 +247,11 @@ class UserManagement extends ChangeNotifier {
 
   void changeGoal(double newWeight) {
     loggedInUser.goalWeight = newWeight;
+    notifyListeners();
+  }
+
+  void addNewLog(DateTime date, double weight) {
+    loggedInUser.weightLog[date] = weight;
     notifyListeners();
   }
 }

@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:better_u/state_management/user_management.dart';
 
 class User {
@@ -15,7 +17,7 @@ class User {
     this.goalWeight = 0,
     required this.pronouns,
     required this.memberSince,
-    this.weightLog = const {}
+    required this.weightLog,
   });
 
   String firstName;
@@ -31,5 +33,5 @@ class User {
   String pronouns; 
   DateTime memberSince;
   double goalWeight; 
-  Map<DateTime, double> weightLog;
+  SplayTreeMap<DateTime, double> weightLog;
 }

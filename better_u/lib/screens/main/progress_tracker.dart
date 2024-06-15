@@ -1,3 +1,4 @@
+import 'dart:collection';
 import 'dart:math';
 
 import 'package:better_u/models/custom_widgets/todays_exercise.dart';
@@ -17,11 +18,12 @@ class ProgressTracker extends StatefulWidget {
 }
 
 class _ProgressTrackerState extends State<ProgressTracker> {
-  late Map<DateTime, double> userWeight;
+  late SplayTreeMap<DateTime, double> userWeight;
 
   TextEditingController targetWeight = TextEditingController();
   int totalWorkouts = 0;
   late double userTarget;
+  String errorText = "";
 
   @override
   void initState() {
@@ -94,9 +96,9 @@ class _ProgressTrackerState extends State<ProgressTracker> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
-                    "55.7 kg",
-                    style: TextStyle(
+                  Text(
+                    userWeight.isNotEmpty ? userWeight[userWeight.keys.last].toString() : 'Not Logged',
+                    style: const TextStyle(
                       fontSize: 28,
                       fontWeight: FontWeight.w600,
                       color: Color.fromARGB(255, 170, 140, 36),
@@ -151,7 +153,118 @@ class _ProgressTrackerState extends State<ProgressTracker> {
                                                           FontWeight.bold),
                                                 ),
                                                 onPressed: () {
-                                                  // showDatePicker(context: context, firstDate: DateTime(2024, 6, 10), lastDate: DateTime(2024, 6, 10));
+                                                  showDialog(
+                                                      context: context,
+                                                      builder: (context) {
+                                                        TextEditingController
+                                                            logWeight =
+                                                            TextEditingController(
+                                                                text: userWeight[
+                                                                            date]
+                                                                        .toString() == 'null' ?
+                                                                    "" : userWeight[
+                                                                            date]
+                                                                        .toString());
+                                                        return AlertDialog(
+                                                          title: Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .spaceBetween,
+                                                            children: [
+                                                              Text(
+                                                                "${DateFormat.yMMMd().format(date)}'s weight",
+                                                                style: const TextStyle(
+                                                                    fontSize:
+                                                                        16,
+                                                                    color: Color
+                                                                        .fromARGB(
+                                                                            255,
+                                                                            139,
+                                                                            93,
+                                                                            175),
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w600),
+                                                              ),
+                                                              IconButton(
+                                                                  onPressed:
+                                                                      () {
+                                                                    Navigator.pop(
+                                                                        context);
+                                                                  },
+                                                                  icon:
+                                                                      const Icon(
+                                                                    Icons.close,
+                                                                    size: 30,
+                                                                    color: Color
+                                                                        .fromARGB(
+                                                                            255,
+                                                                            139,
+                                                                            93,
+                                                                            175),
+                                                                  ))
+                                                            ],
+                                                          ),
+                                                          content: SizedBox(
+                                                            height: 150,
+                                                            child: Column(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .center,
+                                                              children: [
+                                                                TextField(
+                                                                  controller:
+                                                                      logWeight,
+                                                                  keyboardType: const TextInputType
+                                                                      .numberWithOptions(
+                                                                      decimal:
+                                                                          true,
+                                                                      signed:
+                                                                          false),
+                                                                  autofocus:
+                                                                      true,
+                                                                  decoration: InputDecoration(
+                                                                      contentPadding: const EdgeInsets
+                                                                          .symmetric(
+                                                                          vertical:
+                                                                              5,
+                                                                          horizontal:
+                                                                              5),
+                                                                      border: OutlineInputBorder(
+                                                                          borderRadius: BorderRadius.circular(
+                                                                              5),
+                                                                          borderSide:
+                                                                              BorderSide(color: Colors.purple[200]!))),
+                                                                  style: const TextStyle(
+                                                                      fontSize:
+                                                                          30),
+                                                                ),
+                                                                SizedBox(
+                                                                  height: 15,
+                                                                  child: Text(errorText),
+                                                                ),
+                                                                ElevatedButton(
+                                                                    onPressed:
+                                                                        () {
+                                                                          if(logWeight.text.isEmpty){
+                                                                            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Textfield Cannot Be Empty")));
+                                                                          } else{
+                                                                            Provider.of<UserManagement>(context, listen: false).addNewLog(date, double.parse(logWeight.text));
+                                                                            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Weight Log updated!")));
+                                                                            setState(() {});
+                                                                          }
+                                                                      Navigator.pop(
+                                                                          context);
+                                                                      Navigator.pop(context);
+                                                                    },
+                                                                    child:
+                                                                        const Text(
+                                                                            "OK"))
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        );
+                                                      });
                                                 },
                                               ),
                                             ),
@@ -177,8 +290,10 @@ class _ProgressTrackerState extends State<ProgressTracker> {
                                                             TextEditingController(
                                                                 text: userWeight[
                                                                             datePick]
-                                                                        .toString() ??
-                                                                    "");
+                                                                        .toString() == 'null' ?
+                                                                    "" : userWeight[
+                                                                            datePick]
+                                                                        .toString());
                                                         return AlertDialog(
                                                           title: Row(
                                                             mainAxisAlignment:
@@ -253,14 +368,22 @@ class _ProgressTrackerState extends State<ProgressTracker> {
                                                                       fontSize:
                                                                           30),
                                                                 ),
-                                                                const SizedBox(
+                                                                SizedBox(
                                                                   height: 15,
+                                                                  child: Text(errorText),
                                                                 ),
                                                                 ElevatedButton(
                                                                     onPressed:
                                                                         () {
+                                                                          if(logWeight.text.isEmpty){
+                                                                            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Textfield Cannot Be Empty")));
+                                                                          } else{
+                                                                            Provider.of<UserManagement>(context, listen: false).addNewLog(datePick, double.parse(logWeight.text));
+                                                                            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Weight Log updated!")));
+                                                                          }
                                                                       Navigator.pop(
                                                                           context);
+                                                                      Navigator.pop(context);
                                                                     },
                                                                     child:
                                                                         const Text(
@@ -327,8 +450,8 @@ class _ProgressTrackerState extends State<ProgressTracker> {
                                     ));
                               }))),
                   minX: 1,
-                  minY:  userWeight.values.fold(double.infinity, (previousValue, element) => previousValue < element ? previousValue : element).floorToDouble(),
-                  maxY:  userWeight.values.fold(double.negativeInfinity, (previousValue, element) => previousValue > element ? previousValue : element).ceilToDouble(),
+                  minY: userWeight.values.isNotEmpty ? userWeight.values.fold(double.infinity, (previousValue, element) => previousValue < element ? previousValue : element).floorToDouble() : 0,
+                  maxY: userWeight.values.isNotEmpty ? userWeight.values.fold(double.negativeInfinity, (previousValue, element) => previousValue > element ? previousValue : element).ceilToDouble() : 60,
                   betweenBarsData: [],
                   lineBarsData: [
                     LineChartBarData(color: Colors.purple[200], spots: [
