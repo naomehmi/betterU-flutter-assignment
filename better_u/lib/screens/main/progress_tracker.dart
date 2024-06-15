@@ -450,13 +450,13 @@ class _ProgressTrackerState extends State<ProgressTracker> {
                                       style: const TextStyle(fontSize: 14),
                                     ));
                               }))),
-                  minX: 1,
+                  minX: userWeight.length < 7 ? 1 : userWeight.length - 6,
                   minY: userWeight.values.isNotEmpty ? userWeight.values.fold(double.infinity, (previousValue, element) => previousValue < element ? previousValue : element).floorToDouble() : 0,
                   maxY: userWeight.values.isNotEmpty ? userWeight.values.fold(double.negativeInfinity, (previousValue, element) => previousValue > element ? previousValue : element).ceilToDouble() : 60,
                   betweenBarsData: [],
                   lineBarsData: [
                     LineChartBarData(color: Colors.purple[200], spots: [
-                      for (int i = 1; i <= userWeight.length; i++)
+                      for (int i = userWeight.length < 7 ? 1 : userWeight.length - 6; i <= userWeight.length; i++)
                         FlSpot(
                             i.toDouble(),
                             userWeight[userWeight.keys.toList()[i - 1]]!
