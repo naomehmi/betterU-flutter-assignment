@@ -1,6 +1,5 @@
 import 'dart:collection';
 import 'dart:math';
-
 import 'package:better_u/models/custom_widgets/todays_exercise.dart';
 import 'package:better_u/models/objects/user.dart';
 import 'package:better_u/state_management/user_management.dart';

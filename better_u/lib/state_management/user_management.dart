@@ -232,7 +232,7 @@ class UserManagement extends ChangeNotifier {
         break;
       }
     }
-
+    print(loggedInUser.firstName);
     notifyListeners();
   }
 

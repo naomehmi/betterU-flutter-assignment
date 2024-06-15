@@ -3,9 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:better_u/state_management/user_management.dart';
 
-class EditProfilePage extends StatelessWidget {
+class EditProfilePage extends StatefulWidget {
   const EditProfilePage({super.key});
 
+  @override
+  State<EditProfilePage> createState() => _EditProfilePageState();
+}
+
+class _EditProfilePageState extends State<EditProfilePage> {
   @override
   Widget build(BuildContext context) {
     UserManagement userManagement = Provider.of<UserManagement>(context, listen: false);
@@ -15,7 +20,7 @@ class EditProfilePage extends StatelessWidget {
     
     return Scaffold(
       appBar: AppBar(
-        title: Text('Edit Profile'),
+        title: const Text('Edit Profile'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -23,17 +28,17 @@ class EditProfilePage extends StatelessWidget {
           children: [
             TextField(
               controller: firstNameController,
-              decoration: InputDecoration(labelText: 'First Name'),
+              decoration: const InputDecoration(labelText: 'First Name'),
             ),
             const SizedBox(height: 10),
             TextField(
               controller: lastNameController,
-              decoration: InputDecoration(labelText: 'Last Name'),
+              decoration: const InputDecoration(labelText: 'Last Name'),
             ),
             const SizedBox(height: 10),
             TextField(
               controller: emailController,
-              decoration: InputDecoration(labelText: 'Email'),
+              decoration: const InputDecoration(labelText: 'Email'),
             ),
             const SizedBox(height: 50),
             LoginAndSignUpButton(
@@ -46,6 +51,7 @@ class EditProfilePage extends StatelessWidget {
                   lastName: lastNameController.text,
                   email: emailController.text,
                 );
+                setState(() {});
                 Navigator.pop(context);
               },
             ),

@@ -27,7 +27,7 @@ class _BetterUState extends State<BetterU> {
 
   List screens = [
     const Home(),
-    ProgressTracker(),
+    const ProgressTracker(),
     const Community(),
     const Profile()
   ];
@@ -75,6 +75,19 @@ class _BetterUState extends State<BetterU> {
     );
   }
 
+  String? appBarHeader (){
+    switch (screenIdx){
+      case 0:
+        return "Hi, ${Provider.of<UserManagement>(context, listen: false).loggedInUser.firstName}!";
+      case 1:
+        return "${Provider.of<UserManagement>(context, listen: false).loggedInUser.firstName}'s Progress Tracker";
+      case 2:
+        return "Community Posts";
+      case 3:
+        return "Profile";
+    }
+    return null;
+  }
   @override
   void initState() {
     headings = [
@@ -98,7 +111,7 @@ class _BetterUState extends State<BetterU> {
       key: _scaffoldKey,
       appBar: customAppBar(
           _scaffoldKey,
-          headings[screenIdx],
+          appBarHeader()!,
           Provider.of<UserManagement>(context, listen: false)
               .loggedInUser
               .profilePic),
