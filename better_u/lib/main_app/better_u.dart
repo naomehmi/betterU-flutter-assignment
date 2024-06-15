@@ -32,8 +32,6 @@ class _BetterUState extends State<BetterU> {
     const Profile()
   ];
 
-  late List headings;
-
   void changeIdx(int idx) {
     setState(() {
       screenIdx = idx;
@@ -87,16 +85,6 @@ class _BetterUState extends State<BetterU> {
         return "Profile";
     }
     return null;
-  }
-  @override
-  void initState() {
-    headings = [
-      "Hi, ${Provider.of<UserManagement>(context, listen: false).loggedInUser.firstName}!",
-      "${Provider.of<UserManagement>(context, listen: false).loggedInUser.firstName}'s Progress Tracker",
-      "Community Posts",
-      "Profile",
-    ];
-    super.initState();
   }
 
   @override
