@@ -123,6 +123,7 @@ class _ProgressTrackerState extends State<ProgressTracker> {
                                       const Text("Weight Log"),
                                       IconButton(
                                           onPressed: () {
+                                            setState(() {});
                                             Navigator.pop(context);
                                           },
                                           icon: const Icon(
@@ -380,6 +381,7 @@ class _ProgressTrackerState extends State<ProgressTracker> {
                                                                           } else{
                                                                             Provider.of<UserManagement>(context, listen: false).addNewLog(datePick, double.parse(logWeight.text));
                                                                             ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Weight Log updated!")));
+                                                                            setState(() {});
                                                                           }
                                                                       Navigator.pop(
                                                                           context);
