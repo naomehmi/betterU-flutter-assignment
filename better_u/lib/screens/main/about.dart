@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 
 class AboutSection extends StatelessWidget {
-  const AboutSection ({Key? key}) : super(key: key);
+  const AboutSection({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    // Create a TextEditingController to manage the text in the TextField
+    final TextEditingController _messageController = TextEditingController();
+
     return Scaffold(
       appBar: AppBar(
         title: Text('About Us'),
@@ -30,7 +33,7 @@ class AboutSection extends StatelessWidget {
                   ),
                   SizedBox(height: 16),
                   Text(
-                    'BetterU is an application that is designed to helped you reach your dream weight body goal. We provide a lot of workout programs that you can do at your own home and  it\'s totally FREE! So what you are waiting for?!! Let\'s Fire It Up!',
+                    'BetterU is an application that is designed to helped you reach your dream weight body goal. We provide a lot of workout programs that you can do at your own home and it\'s totally FREE! So what you are waiting for?!! Let\'s Fire It Up!',
                     textAlign: TextAlign.justify,
                     style: TextStyle(fontSize: 14),
                   ),
@@ -102,6 +105,7 @@ class AboutSection extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   TextField(
+                    controller: _messageController, // Attach the controller to the TextField
                     decoration: InputDecoration(
                       hintText: 'Write your message...',
                       border: OutlineInputBorder(
@@ -113,7 +117,14 @@ class AboutSection extends StatelessWidget {
                   const SizedBox(height: 16),
                   ElevatedButton(
                     onPressed: () {
-                      // Handle send message action
+                      // Show Snackbar
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Message Sent!'),
+                        ),
+                      );
+                      // Clear the TextField
+                      _messageController.clear();
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color.fromARGB(255, 226, 189, 255), // Background color
