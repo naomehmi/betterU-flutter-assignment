@@ -7,19 +7,21 @@ import 'package:flutter/widgets.dart';
 
 class HomePagePickTemplate extends StatelessWidget {
   HomePagePickTemplate({
-    super.key,
+    Key? key,
     required this.title,
     required this.nextRoute,
     required this.height,
     required this.content,
     required this.type,
+    required this.textColor, 
   });
 
-  String title;
-  String nextRoute;
-  double height;
-  List content;
-  String type;
+  final String title;
+  final String nextRoute;
+  final double height;
+  final List content;
+  final String type;
+  final Color textColor; 
 
   @override
   Widget build(BuildContext context) {
@@ -31,17 +33,17 @@ class HomePagePickTemplate extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               DefaultTextStyle(
-                style: const TextStyle(
+                style: TextStyle(
                   fontWeight: FontWeight.w600,
                   fontSize: 24,
-                  color: Colors.black
+                  color: textColor,
                 ),
                 child: Text(
                   title,
                 ),
               ),
               OutlinedButton(
-                onPressed: (){
+                onPressed: () {
                   Navigator.pushNamed(context, nextRoute);
                 },
                 style: OutlinedButton.styleFrom(
@@ -49,12 +51,12 @@ class HomePagePickTemplate extends StatelessWidget {
                   side: const BorderSide(
                     width: 2,
                     color: Color.fromARGB(255, 224, 186, 253),
-                  )
+                  ),
                 ),
                 child: const Text(
                   "view all",
                   style: TextStyle(
-                    color: Color.fromARGB(255, 224, 186, 253) 
+                    color: Color.fromARGB(255, 224, 186, 253),
                   ),
                 ),
               ),
@@ -65,20 +67,20 @@ class HomePagePickTemplate extends StatelessWidget {
           height: height,
           child: ListView(
             scrollDirection: Axis.horizontal,
-            children: [...content.map(
-              (e) => GestureDetector(
-                onTap: () {
-                  if(type == "video") {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => PlayVideo(video: e,)));
-                  } else {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => WorkoutProgramChecklist(program: e)));
-                  }
-                },
-                child: type == "program" ? 
-                TopPicksCard(program: e) : 
-                TopVideos(video: e),
-              )
-            )],  
+            children: [
+              ...content.map(
+                (e) => GestureDetector(
+                  onTap: () {
+                    if (type == "video") {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => PlayVideo(video: e,)));
+                    } else {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => WorkoutProgramChecklist(program: e)));
+                    }
+                  },
+                  child: type == "program" ? TopPicksCard(program: e) : TopVideos(video: e),
+                ),
+              ),
+            ],
           ),
         )
       ],

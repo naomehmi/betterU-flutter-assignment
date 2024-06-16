@@ -4,10 +4,12 @@ import 'package:better_u/models/custom_widgets/todays_exercise.dart';
 import 'package:better_u/models/objects/user.dart';
 import 'package:better_u/state_management/user_management.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
+import 'package:better_u/state_management/theme_provider.dart';
 
 class ProgressTracker extends StatefulWidget {
   const ProgressTracker({super.key});
@@ -43,6 +45,11 @@ class _ProgressTrackerState extends State<ProgressTracker> {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+    Color textColor = themeProvider.themeType == ThemeType.dark
+        ? Colors.yellow // Yellow for dark mode
+        : Color.fromARGB(255, 139, 93, 175); // Purple for light mode
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -71,7 +78,7 @@ class _ProgressTrackerState extends State<ProgressTracker> {
                   TodaysExercise(
                     icon: Icons.local_fire_department,
                     text: "191.6 Kcal",
-                    color: const Color.fromARGB(255, 241, 230, 130),
+                    color: Color.fromARGB(255, 255, 231, 96),
                   )
                 ],
               ),
@@ -580,20 +587,20 @@ class _ProgressTrackerState extends State<ProgressTracker> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text(
+                      Text(
                         "Total Workouts Done",
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
-                          color: Color.fromARGB(255, 139, 93, 175),
+                          color: textColor,
                         ),
                       ),
                       Text(
                         "$totalWorkouts",
-                        style: const TextStyle(
+                        style: TextStyle(
                             fontSize: 50,
                             fontFamily: "Monoton",
-                            color: Color.fromARGB(255, 139, 93, 175)),
+                            color: textColor),
                       )
                     ],
                   ),
