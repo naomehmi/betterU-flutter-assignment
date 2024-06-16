@@ -22,7 +22,7 @@ class _CommunityState extends State<Community> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ForumManagement>( 
+    return Consumer<ForumManagement>(
       builder: (context, posts, child){
 
     List<Post> allPosts = Provider.of<ForumManagement>(context).allForums.where((element) => !element.reply).toList();
@@ -39,21 +39,22 @@ class _CommunityState extends State<Community> {
             ),
           ),
         ),
-        floatingActionButton: FloatingActionButton(
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => AddPost(function: refreshCommunityPost)));
-                },
-                backgroundColor: Colors.purple[200],
-                shape: const CircleBorder(),
-                child: const Icon(
-                  Icons.add_comment_rounded,
-                  color: Colors.white,
-                  size: 22,
+        floatingActionButton: Tooltip(
+                message: 'Add post',
+                child: FloatingActionButton(
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => AddPost(function: refreshCommunityPost)));
+                  },
+                  backgroundColor: Colors.purple[200],
+                  shape: const CircleBorder(),
+                  child: const Icon(
+                    Icons.add_comment_rounded,
+                    color: Colors.white,
+                    size: 22,
+                  ),
                 ),
               ),
       );},
     );
   }
 }
-
-// testcommit

@@ -1,35 +1,44 @@
 import 'package:flutter/material.dart';
 
 class BotNavBar extends StatelessWidget {
-  BotNavBar({super.key, required this.curIdx, required this.changeIdx});
+  BotNavBar({Key? key, required this.curIdx, required this.changeIdx});
 
-  int curIdx;
-  Function changeIdx;
+  final int curIdx;
+  final Function(int) changeIdx;
 
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
       currentIndex: curIdx,
-      onTap: (int newIdx){
-          curIdx = newIdx;
-          changeIdx(newIdx);
-      },
+      onTap: changeIdx,
       items: const [
         BottomNavigationBarItem(
           label: "Home",
-          icon: Icon(Icons.home),
+          icon: Tooltip(
+            message: "Home",
+            child: Icon(Icons.home),
+          ),
         ),
         BottomNavigationBarItem(
           label: "Progress",
-          icon: Icon(Icons.bar_chart),
+          icon: Tooltip(
+            message: "Progress",
+            child: Icon(Icons.bar_chart),
+          ),
         ),
         BottomNavigationBarItem(
           label: "Community",
-          icon: Icon(Icons.people),
+          icon: Tooltip(
+            message: "Community",
+            child: Icon(Icons.people),
+          ),
         ),
         BottomNavigationBarItem(
           label: "Profile",
-          icon: Icon(Icons.account_circle),
+          icon: Tooltip(
+            message: "Profile",
+            child: Icon(Icons.account_circle),
+          ),
         ),
       ],
       selectedItemColor: const Color.fromARGB(255, 226, 189, 255),
