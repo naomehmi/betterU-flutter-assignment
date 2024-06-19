@@ -47,8 +47,8 @@ class _ProgressTrackerState extends State<ProgressTracker> {
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
     Color textColor = themeProvider.themeType == ThemeType.dark
-        ? Colors.yellow // Yellow for dark mode
-        : Color.fromARGB(255, 139, 93, 175); // Purple for light mode
+        ? Colors.yellow 
+        : Color.fromARGB(255, 139, 93, 175);
 
     return Scaffold(
       body: SingleChildScrollView(

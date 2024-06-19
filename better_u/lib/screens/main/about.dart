@@ -5,7 +5,6 @@ class AboutSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Create a TextEditingController to manage the text in the TextField
     final TextEditingController _messageController = TextEditingController();
 
     return Scaffold(
@@ -33,7 +32,7 @@ class AboutSection extends StatelessWidget {
                   ),
                   SizedBox(height: 16),
                   Text(
-                    'BetterU is an application that is designed to helped you reach your dream weight body goal. We provide a lot of workout programs that you can do at your own home and it\'s totally FREE! So what you are waiting for?!! Let\'s Fire It Up!',
+                    'BetterU is an application that is designed to helped you reach your dream weight body goal. We provide a lot of workout programs that you can do at your own home and it\'s totally FREE! So what are you waiting for?!! Let\'s Fire It Up!',
                     textAlign: TextAlign.justify,
                     style: TextStyle(fontSize: 14),
                   ),

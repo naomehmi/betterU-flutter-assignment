@@ -87,6 +87,7 @@ flutter:
     - assets/other/
     - assets/video-thumbnails/
     - assets/workout-programs/
+    - assets/member/
 
   fonts:
     - family: Monoton
