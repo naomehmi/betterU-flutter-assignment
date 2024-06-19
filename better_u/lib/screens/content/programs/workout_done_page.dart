@@ -45,6 +45,7 @@ class _WorkoutDonePageState extends State<WorkoutDonePage> {
                 fontSize: 20,
                 color: Colors.white,
               ),
+              textAlign: TextAlign.center,
             ),
           ],
         ),
