@@ -483,7 +483,7 @@ class _ProgressTrackerState extends State<ProgressTracker> {
                   ),
                   const Expanded(child: SizedBox()),
                   Text(
-                    "$userTarget kg",
+                    "${Provider.of<UserManagement>(context, listen: false).loggedInUser.goalWeight} kg",
                     style: const TextStyle(
                         color: Color.fromARGB(255, 170, 140, 36),
                         fontWeight: FontWeight.w600,
@@ -552,6 +552,7 @@ class _ProgressTrackerState extends State<ProgressTracker> {
                                                       listen: false)
                                                   .changeGoal(double.parse(
                                                       targetWeight.text));
+                                              setState(() {});
                                               Navigator.pop(context);
                                             },
                                             child: const Text("OK"))
