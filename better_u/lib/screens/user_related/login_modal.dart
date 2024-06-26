@@ -1,4 +1,5 @@
 import 'package:better_u/models/custom_widgets/login_texfield.dart';
+import 'package:better_u/state_management/theme_provider.dart';
 import 'package:better_u/state_management/user_management.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -45,6 +46,7 @@ Future<dynamic> loginModal(context) {
                                 if (user.userLoginCreds(emailController.text,
                                     passwordController.text)) {
                                   user.setCurrentUser(emailController.text);
+                                  Provider.of<ThemeProvider>(context, listen: false).setTheme(user.loggedInUser.theme);
                                   Navigator.pushNamedAndRemoveUntil(context,
                                       '/home', ModalRoute.withName('/home'));
                                 } else {

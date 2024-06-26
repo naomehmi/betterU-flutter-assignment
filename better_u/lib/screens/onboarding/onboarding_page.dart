@@ -2,7 +2,9 @@ import 'package:better_u/models/custom_widgets/login_signup_button.dart';
 import 'package:better_u/screens/onboarding/onboarding_contents.dart';
 import 'package:better_u/screens/user_related/login_modal.dart';
 import 'package:better_u/screens/user_related/sign_up.dart';
+import 'package:better_u/state_management/theme_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});
@@ -46,8 +48,14 @@ class _OnboardingPageState extends State<OnboardingPage> {
 
   @override
   Widget build(BuildContext context) {
+
+    final theme = Provider.of<ThemeProvider>(context).themeType;
+    Color titleColor = theme == ThemeType.dark ? Colors.purple[200]! : Colors.black;
+    Color descColor = theme == ThemeType.dark ? Colors.grey[300]! : Colors.grey;
+    Color backgroundColor = theme == ThemeType.dark ? Colors.black :Colors.white;
+
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: backgroundColor,
       resizeToAvoidBottomInset: false,
       body: Padding(
         padding: const EdgeInsets.all(20),
@@ -74,18 +82,19 @@ class _OnboardingPageState extends State<OnboardingPage> {
                         Text(
                           contents[i].title,
                           textAlign: TextAlign.center,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 27,
                             fontWeight: FontWeight.w600,
+                            color: titleColor
                           ),
                         ),
                         const SizedBox(height: 20),
                         Text(
                           contents[i].description,
                           textAlign: TextAlign.center,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 18,
-                            color: Colors.grey,
+                            color: descColor,
                           ),
                         ),
                       ],
@@ -131,13 +140,14 @@ class _OnboardingPageState extends State<OnboardingPage> {
   }
 
   Widget buildDot(int index, BuildContext context) {
+    Color indicatorColor = Provider.of<ThemeProvider>(context).themeType == ThemeType.dark ? Colors.purple[200]! : const Color.fromARGB(255, 139, 93, 175);
     return Container(
       height: 10,
       width: currentIndex == index ? 25 : 10,
       margin: const EdgeInsets.only(right: 5),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        color: Theme.of(context).primaryColor,
+        color: indicatorColor,
       ),
     );
   }

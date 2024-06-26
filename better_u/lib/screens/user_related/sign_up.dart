@@ -1,6 +1,7 @@
 import 'package:better_u/main_app/better_u.dart';
 import 'package:better_u/models/custom_widgets/login_signup_button.dart';
 import 'package:better_u/models/custom_widgets/sign_up_textfield.dart';
+import 'package:better_u/state_management/theme_provider.dart';
 import 'package:better_u/state_management/user_management.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -156,6 +157,7 @@ class _SignUpState extends State<SignUp> {
                         gender: selectedGender,
                       );
                       users.setCurrentUser(emailController.text);
+                      Provider.of<ThemeProvider>(context, listen: false).setTheme(ThemeType.light);
                       Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(builder: (context) => const BetterU()),

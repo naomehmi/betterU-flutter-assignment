@@ -101,7 +101,7 @@ class _WorkoutProgramChecklistState extends State<WorkoutProgramChecklist> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Image.asset("assets/other/rest.jpg", width: 200,),
+                        Image.asset("assets/other/rest.png", width: 200,),
                         const SizedBox(
                           height: 15,
                         ),

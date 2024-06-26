@@ -25,18 +25,6 @@ class _PlayVideoState extends State<PlayVideo> {
     _controller = YoutubePlayerController(
         initialVideoId: videoId!, flags: const YoutubePlayerFlags());
     otherVids.shuffle();
-
-    _controller.addListener(() {
-      if (Provider.of<UserManagement>(context, listen: false)
-              .loggedInUser
-              .autoPlay &&
-          _controller.value.playerState == PlayerState.ended) {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => PlayVideo(video: otherVids[0])));
-      }
-    });
     super.initState();
   }
 
@@ -74,28 +62,9 @@ class _PlayVideoState extends State<PlayVideo> {
                   Text(widget.video.cat,
                       style: const TextStyle(fontSize: 15, color: Colors.grey)),
                   const SizedBox(height: 20),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text(
-                        "More Videos",
-                        style: TextStyle(fontSize: 18),
-                      ),
-                      Consumer<UserManagement>(
-                        builder: (context, user, child) => Row(
-                          children: [
-                            const Text("AutoPlay"),
-                            Switch(
-                                value: user.loggedInUser.autoPlay,
-                                onChanged: (value) {
-                                  setState(() {
-                                    user.loggedInUser.autoPlay = value;
-                                  });
-                                }),
-                          ],
-                        ),
-                      )
-                    ],
+                  const Text(
+                    "More Videos",
+                    style: TextStyle(fontSize: 18),
                   ),
                   const SizedBox(
                     height: 8,

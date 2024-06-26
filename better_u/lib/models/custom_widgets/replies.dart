@@ -1,6 +1,7 @@
 import 'package:better_u/models/objects/post.dart';
 import 'package:better_u/models/objects/user.dart';
 import 'package:better_u/state_management/forum_management.dart';
+import 'package:better_u/state_management/theme_provider.dart';
 import 'package:better_u/state_management/user_management.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -173,7 +174,7 @@ class _RepliesState extends State<Replies> {
                               vertical: 4, horizontal: 15),
                           hintText: "Reply to ${poster.firstName}'s Post",
                           hintStyle:
-                              TextStyle(color: Colors.purple.withOpacity(0.40)),
+                              TextStyle(color: Provider.of<ThemeProvider>(context).themeType == ThemeType.light ? Colors.purple.withOpacity(0.40) : Colors.purple[200]),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(50),
                           ),

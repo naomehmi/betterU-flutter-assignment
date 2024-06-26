@@ -29,8 +29,6 @@ class _ForumPostState extends State<ForumPost> {
             builder: (context, forum, child) {
               User poster = users.allUsers.firstWhere((element) => element.email == widget.post.userEmail);
               User curUser = users.loggedInUser;
-              print(curUser.firstName);
-              print(curUser.likedPosts);
               int replies = forum.allForums.where(
               (element) => element.reply && element.replyToId == widget.post.id).length;
               return Container(

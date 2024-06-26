@@ -1,6 +1,8 @@
 import 'dart:collection';
+import 'dart:math';
 
 import 'package:better_u/models/objects/user.dart';
+import 'package:better_u/state_management/theme_provider.dart';
 import 'package:flutter/material.dart';
 
 enum Gender { male, female, other }
@@ -33,7 +35,7 @@ class UserManagement extends ChangeNotifier {
           DateTime(2024, 06, DateTime.now().day - 2): 55.7,
           DateTime(2024, 06, DateTime.now().day - 1): 54.8,
           DateTime(2024, 06, DateTime.now().day): 52.0,
-        })),
+        }),),
     User(
         firstName: 'Emma',
         lastName: 'Stone',
@@ -136,6 +138,7 @@ class UserManagement extends ChangeNotifier {
     Gender? gender,
     DateTime? memberSince,
   }) {
+    print(email);
     firstName =
         firstName.substring(0, 1).toUpperCase() + firstName.substring(1);
     lastName = lastName != null && lastName.isNotEmpty
@@ -251,6 +254,11 @@ class UserManagement extends ChangeNotifier {
 
   void addNewLog(DateTime date, double weight) {
     loggedInUser.weightLog[date] = weight;
+    notifyListeners();
+  }
+
+  void setTheme(ThemeType type){
+    loggedInUser.theme = type;
     notifyListeners();
   }
 }

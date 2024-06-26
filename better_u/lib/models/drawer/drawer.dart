@@ -7,8 +7,7 @@
   final Function(int) changeIdx;
   final Function clickedLogout;
 
-  const CustomDrawer({
-    Key? key,
+  const CustomDrawer({super.key,
     required this.changeIdx,
     required this.clickedLogout,
   });
@@ -17,7 +16,7 @@
   Widget build(BuildContext context) {
     final theme = Provider.of<ThemeProvider>(context).themeType;
 
-    Color iconColor = theme == ThemeType.dark ? Colors.white : const Color.fromARGB(255, 226, 189, 255);
+    Color iconColor = const Color.fromARGB(255, 226, 189, 255);
     Color dividerColor = theme == ThemeType.dark ? Colors.grey : const Color.fromARGB(255, 226, 189, 255);
     Color backgroundColor = theme == ThemeType.dark ? Colors.black : Colors.white;
 
@@ -65,7 +64,7 @@
             const SizedBox(height: 80),
             ListTile(
               leading: Icon(Icons.home, color: iconColor),
-              title: Text('Home'),
+              title: const Text('Home'),
               onTap: () {
                 changeIdx(0);
                 Navigator.pop(context);
@@ -73,7 +72,7 @@
             ),
             ListTile(
               leading: Icon(Icons.bar_chart, color: iconColor),
-              title: Text('Progress Tracker'),
+              title: const Text('Progress Tracker'),
               onTap: () {
                 changeIdx(1);
                 Navigator.pop(context);
@@ -81,7 +80,7 @@
             ),
             ListTile(
               leading: Icon(Icons.people, color: iconColor),
-              title: Text('Community'),
+              title: const Text('Community'),
               onTap: () {
                 changeIdx(2);
                 Navigator.pop(context);
@@ -89,7 +88,7 @@
             ),
             ListTile(
               leading: Icon(Icons.account_circle, color: iconColor),
-              title: Text('Profile'),
+              title: const Text('Profile'),
               onTap: () {
                 changeIdx(3);
                 Navigator.pop(context);
@@ -97,7 +96,7 @@
             ),
             ListTile(
               leading: Icon(Icons.settings, color: iconColor),
-              title: Text('Setting'),
+              title: const Text('Setting'),
               onTap: () {
                 Navigator.pushNamed(context, '/settings');
               },
@@ -107,7 +106,7 @@
             ),
             ListTile(
               leading: Icon(Icons.logout, color: iconColor),
-              title: Text('Log out'),
+              title: const Text('Log out'),
               onTap: () {
                 clickedLogout(context);
               },

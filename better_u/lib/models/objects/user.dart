@@ -1,5 +1,6 @@
 import 'dart:collection';
 
+import 'package:better_u/state_management/theme_provider.dart';
 import 'package:better_u/state_management/user_management.dart';
 
 class User {
@@ -11,13 +12,13 @@ class User {
     required this.completedWorkouts,
     required this.likedPosts,
     this.gender = Gender.other,
-    this.autoPlay = false,
     this.profilePic = 'assets/other/default-profile.jpg',
     this.role = 'Rookie',
     this.goalWeight = 0,
     required this.pronouns,
     required this.memberSince,
     required this.weightLog,
+    this.theme = ThemeType.light
   });
 
   String firstName;
@@ -26,7 +27,6 @@ class User {
   String password;
   Map<int, Map<int, Set<int>>> completedWorkouts;
   Gender gender;
-  bool autoPlay;
   String profilePic;
   String role;
   Set<int> likedPosts;
@@ -34,4 +34,5 @@ class User {
   DateTime memberSince;
   double goalWeight; 
   SplayTreeMap<DateTime, double> weightLog;
+  ThemeType theme;
 }

@@ -1,5 +1,6 @@
 import 'package:better_u/models/objects/user.dart';
 import 'package:better_u/screens/main/editprofilepage.dart';
+import 'package:better_u/state_management/theme_provider.dart';
 import 'package:better_u/state_management/user_management.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -69,7 +70,7 @@ class Profile extends StatelessWidget {
                                 ),
                                 child: LinearProgressIndicator(
                                   value: _getProgressPercentage(currentUser.role),
-                                  backgroundColor: Colors.white,
+                                  backgroundColor: Provider.of<ThemeProvider>(context).themeType == ThemeType.dark ? const ColorScheme.dark().background : const ColorScheme.light().background,
                                   color: const Color.fromARGB(255, 226, 189, 255),
                                   borderRadius: BorderRadius.circular(10),
                                   minHeight: 15,
