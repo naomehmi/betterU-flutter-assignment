@@ -261,4 +261,22 @@ class UserManagement extends ChangeNotifier {
     loggedInUser.theme = type;
     notifyListeners();
   }
+
+  void rankUp(int totalWorkouts, BuildContext context){
+    void showSnackBar(String rank){
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Hurray, you've reached $rank! Check your profile")));
+    }
+
+    if(loggedInUser.role == 'Advanced') {
+      return;
+    } else if(loggedInUser.role == 'Intermediate' && totalWorkouts >= 10) {
+      loggedInUser.role = 'Advanced';
+      showSnackBar('Advanced');
+    }
+    else if(loggedInUser.role == 'Rookie' && totalWorkouts >= 5) {
+      loggedInUser.role = 'Intermediate';
+      showSnackBar('Intermediate');
+    }
+    notifyListeners();
+  }
 }

@@ -30,6 +30,15 @@ class _ProgramDetailsState extends State<ProgramDetails> {
             (element) => element == widget.programId,
             orElse: () => 0) ==
         0) completedByUser[widget.programId] = {};
+    
+    int totalWorkouts = 0;
+
+    for (int i in completedByUser.keys) {
+      List days = completedByUser[i]!.keys.toList();
+      for (int j in days) {
+        totalWorkouts += completedByUser[i]![j]!.length;
+      }
+    }
 
     return Column(
       children: [
@@ -66,6 +75,8 @@ class _ProgramDetailsState extends State<ProgramDetails> {
                       thisWorkout.contains(e)
                           ? thisWorkout.remove(e)
                           : thisWorkout.add(e);
+                      thisWorkout.contains(e) ? totalWorkouts++ : totalWorkouts--;
+                      Provider.of<UserManagement>(context, listen: false).rankUp(totalWorkouts, context);
                     });
                   },
                 ),

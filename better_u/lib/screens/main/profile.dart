@@ -78,7 +78,7 @@ class Profile extends StatelessWidget {
                               ),
                               Positioned(
                                 top: -5,
-                                left:  _getProgressPercentage(currentUser.role) * MediaQuery.of(context).size.width - 25,
+                                left: currentUser.role == 'Advanced' ? _getProgressPercentage(currentUser.role) * MediaQuery.of(context).size.width - 35 - 16 : currentUser.role == 'Intermediate' ? _getProgressPercentage(currentUser.role) * MediaQuery.of(context).size.width - 35 : _getProgressPercentage(currentUser.role) * MediaQuery.of(context).size.width - 25,
                                 child: const Icon(Icons.star, color: Color.fromARGB(255, 250, 225, 0), size: 30, weight: 25, fill: 1,)
                               )
                             ],
