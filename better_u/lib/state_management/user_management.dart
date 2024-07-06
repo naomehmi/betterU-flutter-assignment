@@ -1,7 +1,9 @@
 import 'dart:collection';
 import 'dart:math';
 
+import 'package:better_u/main_app/better_u.dart';
 import 'package:better_u/models/objects/user.dart';
+import 'package:better_u/screens/main/profile.dart';
 import 'package:better_u/state_management/theme_provider.dart';
 import 'package:flutter/material.dart';
 
@@ -11,31 +13,32 @@ class UserManagement extends ChangeNotifier {
   // every user that has signed up
   final List<User> allUsers = [
     User(
-        firstName: "Kelly",
-        lastName: "Moon",
-        email: "kellymoon@gmail.com",
-        password: "12345678",
-        pronouns: "she/her",
-        memberSince: DateTime(2024, 2, 11),
-        completedWorkouts: {
-          // program id : {day n : {video ids completed}}
-          1: {
-            1: {2}
-          }
-        },
-        gender: Gender.female,
-        profilePic: 'assets/other/profile-picture.jpg',
-        likedPosts: {2},
-        goalWeight: 55,
-        weightLog: SplayTreeMap.from({
-          DateTime(2024, 06, DateTime.now().day - 6): 59.0,
-          DateTime(2024, 06, DateTime.now().day - 5): 54.8,
-          DateTime(2024, 06, DateTime.now().day - 4): 55.7,
-          DateTime(2024, 06, DateTime.now().day - 3): 60.8,
-          DateTime(2024, 06, DateTime.now().day - 2): 55.7,
-          DateTime(2024, 06, DateTime.now().day - 1): 54.8,
-          DateTime(2024, 06, DateTime.now().day): 52.0,
-        }),),
+      firstName: "Kelly",
+      lastName: "Moon",
+      email: "kellymoon@gmail.com",
+      password: "12345678",
+      pronouns: "she/her",
+      memberSince: DateTime(2024, 2, 11),
+      completedWorkouts: {
+        // program id : {day n : {video ids completed}}
+        1: {
+          1: {2}
+        }
+      },
+      gender: Gender.female,
+      profilePic: 'assets/other/profile-picture.jpg',
+      likedPosts: {2},
+      goalWeight: 55,
+      weightLog: SplayTreeMap.from({
+        DateTime(2024, DateTime.now().month, DateTime.now().day - 6): 59.0,
+        DateTime(2024, DateTime.now().month, DateTime.now().day - 5): 54.8,
+        DateTime(2024, DateTime.now().month, DateTime.now().day - 4): 55.7,
+        DateTime(2024, DateTime.now().month, DateTime.now().day - 3): 60.8,
+        DateTime(2024, DateTime.now().month, DateTime.now().day - 2): 55.7,
+        DateTime(2024, DateTime.now().month, DateTime.now().day - 1): 54.8,
+        DateTime(2024, DateTime.now().month, DateTime.now().day): 52.0,
+      }),
+    ),
     User(
         firstName: 'Emma',
         lastName: 'Stone',
@@ -257,23 +260,35 @@ class UserManagement extends ChangeNotifier {
     notifyListeners();
   }
 
-  void setTheme(ThemeType type){
+  void setTheme(ThemeType type) {
     loggedInUser.theme = type;
     notifyListeners();
   }
 
-  void rankUp(int totalWorkouts, BuildContext context){
-    void showSnackBar(String rank){
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Hurray, you've reached $rank! Check your profile")));
+  void rankUp(int totalWorkouts, BuildContext context) {
+    void showSnackBar(String rank) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        behavior: SnackBarBehavior.floating,
+        margin: const EdgeInsets.all(20),
+        duration: const Duration(seconds: 7),
+        content: Text("Hurray, you've reached $rank! Check your profile"),
+        action: SnackBarAction(
+            label: "Go to Profile",
+            onPressed: () {
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => BetterU(idx: 3,)),
+                  (route) => false);
+            }),
+      ));
     }
 
-    if(loggedInUser.role == 'Advanced') {
+    if (loggedInUser.role == 'Advanced') {
       return;
-    } else if(loggedInUser.role == 'Intermediate' && totalWorkouts >= 10) {
+    } else if (loggedInUser.role == 'Intermediate' && totalWorkouts >= 10) {
       loggedInUser.role = 'Advanced';
       showSnackBar('Advanced');
-    }
-    else if(loggedInUser.role == 'Rookie' && totalWorkouts >= 5) {
+    } else if (loggedInUser.role == 'Rookie' && totalWorkouts >= 5) {
       loggedInUser.role = 'Intermediate';
       showSnackBar('Intermediate');
     }

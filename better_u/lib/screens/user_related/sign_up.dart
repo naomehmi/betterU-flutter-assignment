@@ -160,7 +160,7 @@ class _SignUpState extends State<SignUp> {
                       Provider.of<ThemeProvider>(context, listen: false).setTheme(ThemeType.light);
                       Navigator.pushAndRemoveUntil(
                           context,
-                          MaterialPageRoute(builder: (context) => const BetterU()),
+                          MaterialPageRoute(builder: (context) => BetterU()),
                           (route) => false);
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(

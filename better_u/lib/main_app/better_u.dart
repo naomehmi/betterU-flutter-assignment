@@ -1,21 +1,22 @@
 import 'package:better_u/models/bottom_nav_bar/bottom_nav_bar.dart';
-import 'package:better_u/models/custom_widgets/add_post.dart';
 import 'package:better_u/models/drawer/drawer.dart';
 import 'package:better_u/screens/main/community.dart';
 import 'package:better_u/screens/main/home.dart';
 import 'package:better_u/screens/main/profile.dart';
 import 'package:better_u/screens/main/progress_tracker.dart';
 import 'package:better_u/screens/onboarding/onboarding_page.dart';
-import 'package:better_u/state_management/forum_management.dart';
 import 'package:better_u/state_management/user_management.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:better_u/models/app_bars/custom_appbar.dart';
 
 class BetterU extends StatefulWidget {
-  const BetterU({
+  BetterU({
     super.key,
+    this.idx
   });
+
+  int? idx;
 
   @override
   State<BetterU> createState() => _BetterUState();
@@ -23,6 +24,13 @@ class BetterU extends StatefulWidget {
 
 class _BetterUState extends State<BetterU> {
   int screenIdx = 0;
+
+  @override
+  void initState() {
+    screenIdx = widget.idx ?? 0;
+    super.initState();
+  }
+
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   List screens = [

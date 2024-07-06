@@ -24,7 +24,7 @@ Future main() async {
 
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key});
+  const MyApp({super.key,});
 
   @override
   Widget build(BuildContext context) {
@@ -33,9 +33,9 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           theme: themeProvider.themeData,
           debugShowCheckedModeBanner: false,
-          home: const BetterU(),
+          home: BetterU(),
           routes: {
-            '/home': (context) => const BetterU(),
+            '/home': (context) => BetterU(),
             '/all-programs': (context) => const AllProgramsShow(),
             '/all-videos': (context) => const AllVideosShow(),
             '/settings': (context) => const Setting(),
